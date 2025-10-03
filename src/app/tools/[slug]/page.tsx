@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
-  const tool = getToolBySlug(params.slug);
+  const { slug } = await params;
+  const tool = getToolBySlug(slug);
   
   if (!tool) {
     return {
@@ -45,8 +46,9 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
   };
 }
 
-export default function ToolPage({ params }: ToolPageProps) {
-  const tool = getToolBySlug(params.slug);
+export default async function ToolPage({ params }: ToolPageProps) {
+  const { slug } = await params;
+  const tool = getToolBySlug(slug);
   
   if (!tool) {
     notFound();
