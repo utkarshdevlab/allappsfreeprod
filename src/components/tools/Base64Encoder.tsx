@@ -246,7 +246,7 @@ export default function Base64Encoder() {
             className="text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
           >
             <h4 className="font-semibold text-gray-900 mb-1">JSON Data</h4>
-            <p className="text-sm text-gray-600 truncate">{"{"}"name":"John"...</p>
+            <p className="text-sm text-gray-600 truncate">{`{"name":"John"...`}</p>
           </button>
           
           <button

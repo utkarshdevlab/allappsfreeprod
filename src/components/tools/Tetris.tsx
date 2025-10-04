@@ -172,7 +172,7 @@ export default function Tetris() {
     }
   }, [moveDown, level, gameStarted, gameOver, isPaused]);
 
-  const startGame = () => {
+  const startGame = useCallback(() => {
     setBoard(createEmptyBoard());
     const firstPiece = getRandomPiece();
     setCurrentPiece({ ...firstPiece, x: Math.floor(BOARD_WIDTH / 2) - 1, y: 0 });
@@ -183,7 +183,7 @@ export default function Tetris() {
     setGameOver(false);
     setIsPaused(false);
     setGameStarted(true);
-  };
+  }, [getRandomPiece]);
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
