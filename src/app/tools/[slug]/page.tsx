@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import ToolSection from '@/components/ToolSection';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import ParaphraseTool from '@/components/tools/ParaphraseTool';
 
 interface ToolPageProps {
   params: {
@@ -109,23 +110,27 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Try {tool.title}</h2>
               
-              {/* Tool-specific content will be rendered here */}
-              <div className="min-h-[400px] flex items-center justify-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">
-                    {tool.type === 'game' ? '🎮' : '⚙️'}
+              {/* Tool-specific content */}
+              {tool.id === 'ai-paraphrase' ? (
+                <ParaphraseTool />
+              ) : (
+                <div className="min-h-[400px] flex items-center justify-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">
+                      {tool.type === 'game' ? '🎮' : '⚙️'}
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                      {tool.title} Interface
+                    </h3>
+                    <p className="text-gray-500">
+                      This is where the actual tool functionality would be implemented.
+                    </p>
+                    <p className="text-sm text-gray-400 mt-2">
+                      Tool ID: {tool.id}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                    {tool.title} Interface
-                  </h3>
-                  <p className="text-gray-500">
-                    This is where the actual tool functionality would be implemented.
-                  </p>
-                  <p className="text-sm text-gray-400 mt-2">
-                    Tool ID: {tool.id}
-                  </p>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Related Tools */}

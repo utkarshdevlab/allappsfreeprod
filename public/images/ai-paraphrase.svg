@@ -1,0 +1,16 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="200" height="200" rx="20" fill="url(#paint0_linear_0_1)"/>
+<defs>
+<linearGradient id="paint0_linear_0_1" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+<stop stop-color="#8B5CF6"/>
+<stop offset="1" stop-color="#F473F4"/>
+</linearGradient>
+</defs>
+<rect x="30" y="30" width="140" height="100" rx="10" fill="white" fill-opacity="0.9"/>
+<rect x="40" y="50" width="80" height="8" rx="4" fill="#6B728A"/>
+<rect x="40" y="70" width="100" height="8" rx="4" fill="#6B728A"/>
+<rect x="40" y="90" width="60" height="8" rx="4" fill="#6B728A"/>
+<circle cx="120" cy="120" r="15" fill="#8B5CF6"/>
+<path d="M110 120L115 125L130 110" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="100" y="160" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">AI Rewrite</text>
+</svg>
