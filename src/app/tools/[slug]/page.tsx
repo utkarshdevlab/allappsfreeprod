@@ -14,6 +14,11 @@ import TextToSpeech from '@/components/tools/TextToSpeech';
 import WordCounter from '@/components/tools/WordCounter';
 import ImageCompressor from '@/components/tools/ImageCompressor';
 import Base64Encoder from '@/components/tools/Base64Encoder';
+import SnakeGame from '@/components/tools/SnakeGame';
+import Tetris from '@/components/tools/Tetris';
+import MemoryGame from '@/components/tools/MemoryGame';
+import TicTacToe from '@/components/tools/TicTacToe';
+import Sudoku from '@/components/tools/Sudoku';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -167,6 +172,16 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <ImageCompressor />
           ) : tool.id === 'base64-encoder' ? (
             <Base64Encoder />
+          ) : tool.id === 'snake-game' ? (
+            <SnakeGame />
+          ) : tool.id === 'tetris' ? (
+            <Tetris />
+          ) : tool.id === 'memory-game' ? (
+            <MemoryGame />
+          ) : tool.id === 'tic-tac-toe' ? (
+            <TicTacToe />
+          ) : tool.id === 'sudoku' ? (
+            <Sudoku />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">
