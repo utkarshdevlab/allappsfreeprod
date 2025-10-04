@@ -83,7 +83,7 @@ export default function PasswordGenerator() {
       await navigator.clipboard.writeText(password);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       alert('Failed to copy password');
     }
   };

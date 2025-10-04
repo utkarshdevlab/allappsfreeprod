@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
@@ -39,7 +40,7 @@ export default function AdminLogin() {
         setError('Invalid password. Please try again.');
         setPassword('');
       }
-    } catch (err) {
+    } catch {
       setError('An error occurred. Please try again.');
     } finally {
       setIsLoading(false);
@@ -105,12 +106,12 @@ export default function AdminLogin() {
 
         {/* Footer */}
         <div className="text-center mt-6">
-          <a
+          <Link
             href="/"
             className="text-white hover:text-blue-200 transition-colors text-sm font-medium"
           >
             ← Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>

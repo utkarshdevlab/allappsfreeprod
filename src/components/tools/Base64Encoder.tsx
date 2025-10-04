@@ -14,7 +14,7 @@ export default function Base64Encoder() {
     try {
       const encoded = btoa(unescape(encodeURIComponent(inputText)));
       setOutputText(encoded);
-    } catch (error) {
+    } catch {
       alert('Error encoding text. Please check your input.');
     }
   };
@@ -23,7 +23,7 @@ export default function Base64Encoder() {
     try {
       const decoded = decodeURIComponent(escape(atob(inputText)));
       setOutputText(decoded);
-    } catch (error) {
+    } catch {
       alert('Error decoding text. Please check your Base64 input.');
     }
   };
@@ -61,7 +61,7 @@ export default function Base64Encoder() {
       await navigator.clipboard.writeText(outputText);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch {
       alert('Failed to copy to clipboard');
     }
   };
@@ -213,6 +213,7 @@ export default function Base64Encoder() {
           {imagePreview && mode === 'encode' && (
             <div className="mt-4">
               <p className="text-sm font-medium text-gray-700 mb-2">Image Preview:</p>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imagePreview}
                 alt="Preview"
@@ -278,7 +279,7 @@ export default function Base64Encoder() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-800">
           <div>
             <h4 className="font-semibold mb-2">What is Base64?</h4>
-            <p>Base64 is an encoding scheme that converts binary data into ASCII text format. It's commonly used for transmitting data over text-based protocols.</p>
+            <p>Base64 is an encoding scheme that converts binary data into ASCII text format. It&apos;s commonly used for transmitting data over text-based protocols.</p>
           </div>
           <div>
             <h4 className="font-semibold mb-2">Common Uses</h4>

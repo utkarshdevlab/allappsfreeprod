@@ -1,6 +1,5 @@
-import { HfInference } from '@huggingface/inference';
-
 // Initialize Hugging Face inference (unused but kept for future use)
+// import { HfInference } from '@huggingface/inference';
 // const hf = new HfInference(process.env.HUGGINGFACE_API_KEY);
 
 export interface ParaphraseOptions {

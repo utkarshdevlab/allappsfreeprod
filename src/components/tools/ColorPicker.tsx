@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import NextImage from 'next/image';
 
 interface ColorInfo {
   hex: string;

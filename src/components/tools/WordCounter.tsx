@@ -187,9 +187,9 @@ export default function WordCounter() {
       <div className="bg-white rounded-2xl p-6 border-2 border-gray-200">
         <h3 className="text-lg font-bold text-gray-900 mb-4">📝 Try Sample Texts</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {sampleTexts.map((sample, index) => (
+          {sampleTexts.map((sample, idx) => (
             <button
-              key={index}
+              key={idx}
               onClick={() => setText(sample.text)}
               className="text-left p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border-2 border-transparent hover:border-blue-300"
             >

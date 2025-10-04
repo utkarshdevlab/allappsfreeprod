@@ -100,7 +100,6 @@ export default function ResumeChecker() {
   // Main analysis function
   const performAnalysis = (resume: string, jobDesc: string, industry: string): ResumeAnalysis => {
     const resumeLower = resume.toLowerCase();
-    const jobDescLower = jobDesc.toLowerCase();
     const words = resume.split(/\s+/).length;
     const lines = resume.split('\n').length;
 
