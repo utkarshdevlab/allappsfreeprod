@@ -4,6 +4,9 @@ import ToolSection from '@/components/ToolSection';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import ParaphraseTool from '@/components/tools/ParaphraseTool';
+import QRCodeGenerator from '@/components/tools/QRCodeGenerator';
+import ImageConverter from '@/components/tools/ImageConverter';
+import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
   params: {
@@ -57,45 +60,71 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   const relatedTools = getToolsByType(tool.type).filter(t => t.id !== tool.id).slice(0, 4);
 
+  const thumbnailUrl = getToolThumbnail(tool.id);
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-4">
-            <Link href="/" className="hover:text-gray-700">Home</Link>
-            <span>/</span>
-            <Link href="/tools" className="hover:text-gray-700">Tools</Link>
-            <span>/</span>
-            <span className="text-gray-900">{tool.title}</span>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      {/* Hero Header with Thumbnail */}
+      <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-10"></div>
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
+        }}></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Breadcrumb */}
+          <nav className="flex items-center space-x-2 text-sm text-white/80 mb-6">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span>→</span>
+            <Link href="/tools" className="hover:text-white transition-colors">Tools</Link>
+            <span>→</span>
+            <span className="text-white font-medium">{tool.title}</span>
           </nav>
           
-          <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <div className="flex items-center space-x-3 mb-2">
-                <span className="text-4xl">
-                  {tool.type === 'game' ? '🎮' : '⚙️'}
-                </span>
-                <div>
-                  <h1 className="text-3xl font-bold text-gray-900">{tool.title}</h1>
-                  <p className="text-lg text-gray-600">{tool.description}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-4 mt-4">
-                <span className={`px-3 py-1 text-sm font-medium rounded-full ${
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            {/* Tool Info */}
+            <div className="lg:col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <span className={`px-4 py-2 text-sm font-bold rounded-full backdrop-blur-sm ${
                   tool.type === 'game' 
-                    ? 'bg-purple-100 text-purple-800' 
-                    : 'bg-blue-100 text-blue-800'
+                    ? 'bg-purple-500/30 text-white border-2 border-white/30' 
+                    : 'bg-blue-500/30 text-white border-2 border-white/30'
                 }`}>
-                  {tool.type}
+                  {tool.type === 'game' ? '🎮 GAME' : '⚙️ APP'}
                 </span>
-                <span className="px-3 py-1 text-sm font-medium bg-gray-100 text-gray-800 rounded-full">
+                <span className="px-4 py-2 text-sm font-bold bg-white/20 text-white rounded-full backdrop-blur-sm border-2 border-white/30">
                   {tool.category}
                 </span>
-                <span className="px-3 py-1 text-sm font-medium bg-green-100 text-green-800 rounded-full">
-                  {tool.popularity}% popular
-                </span>
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
+                {tool.title}
+              </h1>
+              <p className="text-xl text-white/90 mb-6 leading-relaxed">
+                {tool.description}
+              </p>
+              
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
+                  <span className="text-2xl">⭐</span>
+                  <span className="text-white font-bold">{tool.popularity}% Popular</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
+                  <span className="text-2xl">👥</span>
+                  <span className="text-white font-bold">{tool.usageCount.toLocaleString()} uses</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Thumbnail */}
+            <div className="lg:col-span-1">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                <img 
+                  src={thumbnailUrl} 
+                  alt={tool.title}
+                  className="relative w-full h-48 object-cover rounded-2xl shadow-2xl border-4 border-white/20"
+                />
               </div>
             </div>
           </div>
@@ -103,109 +132,121 @@ export default async function ToolPage({ params }: ToolPageProps) {
       </div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Tool Interface */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Try {tool.title}</h2>
-              
-              {/* Tool-specific content */}
-              {tool.id === 'ai-paraphrase' ? (
-                <ParaphraseTool />
-              ) : (
-                <div className="min-h-[400px] flex items-center justify-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">
-                      {tool.type === 'game' ? '🎮' : '⚙️'}
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                      {tool.title} Interface
-                    </h3>
-                    <p className="text-gray-500">
-                      This is where the actual tool functionality would be implemented.
-                    </p>
-                    <p className="text-sm text-gray-400 mt-2">
-                      Tool ID: {tool.id}
-                    </p>
-                  </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Tool Interface */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-gray-100">
+          {/* Tool-specific content */}
+          {tool.id === 'ai-paraphrase' ? (
+            <ParaphraseTool />
+          ) : tool.id === 'qr-code-generator' ? (
+            <QRCodeGenerator />
+          ) : tool.id === 'image-converter' ? (
+            <ImageConverter />
+          ) : (
+            <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
+              <div className="text-center">
+                <div className="text-6xl mb-4">
+                  {tool.type === 'game' ? '🎮' : '⚙️'}
                 </div>
-              )}
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                  {tool.title} Interface
+                </h3>
+                <p className="text-gray-500">
+                  This is where the actual tool functionality would be implemented.
+                </p>
+                <p className="text-sm text-gray-400 mt-2">
+                  Tool ID: {tool.id}
+                </p>
+              </div>
             </div>
+          )}
+        </div>
 
-            {/* Related Tools */}
-            {relatedTools.length > 0 && (
-              <ToolSection 
-                title="Related Tools" 
-                tools={relatedTools} 
-                showViewAll={false}
-                maxItems={4}
-              />
-            )}
+        {/* Info Cards Below Tool */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {/* Stats Card */}
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200 shadow-lg">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-blue-900">📊 Statistics</h3>
+              <span className="text-3xl">📈</span>
+            </div>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-blue-700 font-medium">Usage Count</span>
+                <span className="text-blue-900 font-bold text-lg">{tool.usageCount.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-blue-700 font-medium">Popularity</span>
+                <span className="text-blue-900 font-bold text-lg">{tool.popularity}%</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-blue-700 font-medium">Last Used</span>
+                <span className="text-blue-900 font-bold text-sm">{new Date(tool.lastUsed).toLocaleDateString()}</span>
+              </div>
+            </div>
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Tool Stats */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Tool Statistics</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Usage Count</span>
-                  <span className="font-semibold">{tool.usageCount.toLocaleString()}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Popularity</span>
-                  <span className="font-semibold">{tool.popularity}%</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Last Used</span>
-                  <span className="font-semibold">{new Date(tool.lastUsed).toLocaleDateString()}</span>
-                </div>
-              </div>
+          {/* Tags Card */}
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200 shadow-lg">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-purple-900">🏷️ Tags</h3>
+              <span className="text-3xl">✨</span>
             </div>
-
-            {/* Tags */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Tags</h3>
-              <div className="flex flex-wrap gap-2">
-                {tool.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            <div className="flex flex-wrap gap-2">
+              {tool.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1.5 text-sm font-medium bg-white text-purple-700 rounded-full shadow-sm border border-purple-200 hover:bg-purple-50 transition-colors"
+                >
+                  #{tag}
+                </span>
+              ))}
             </div>
+          </div>
 
-            {/* Quick Links */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h3>
-              <div className="space-y-2">
-                <Link 
-                  href="/tools?type=game" 
-                  className="block text-blue-600 hover:text-blue-800 text-sm"
-                >
-                  🎮 All Games
-                </Link>
-                <Link 
-                  href="/tools?type=app" 
-                  className="block text-blue-600 hover:text-blue-800 text-sm"
-                >
-                  ⚙️ All Apps
-                </Link>
-                <Link 
-                  href={`/tools?category=${encodeURIComponent(tool.category)}`} 
-                  className="block text-blue-600 hover:text-blue-800 text-sm"
-                >
-                  {tool.category} Tools
-                </Link>
-              </div>
+          {/* Quick Links Card */}
+          <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 border border-pink-200 shadow-lg">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-pink-900">🔗 Quick Links</h3>
+              <span className="text-3xl">🚀</span>
+            </div>
+            <div className="space-y-2">
+              <Link 
+                href="/tools?type=game" 
+                className="flex items-center space-x-2 px-4 py-2 bg-white text-pink-700 rounded-lg hover:bg-pink-50 transition-colors font-medium shadow-sm border border-pink-200"
+              >
+                <span>🎮</span>
+                <span>All Games</span>
+              </Link>
+              <Link 
+                href="/tools?type=app" 
+                className="flex items-center space-x-2 px-4 py-2 bg-white text-pink-700 rounded-lg hover:bg-pink-50 transition-colors font-medium shadow-sm border border-pink-200"
+              >
+                <span>⚙️</span>
+                <span>All Apps</span>
+              </Link>
+              <Link 
+                href={`/tools?category=${encodeURIComponent(tool.category)}`} 
+                className="flex items-center space-x-2 px-4 py-2 bg-white text-pink-700 rounded-lg hover:bg-pink-50 transition-colors font-medium shadow-sm border border-pink-200"
+              >
+                <span>📂</span>
+                <span>{tool.category} Tools</span>
+              </Link>
             </div>
           </div>
         </div>
+
+        {/* Related Tools */}
+        {relatedTools.length > 0 && (
+          <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200">
+            <ToolSection 
+              title="Related Tools" 
+              tools={relatedTools} 
+              showViewAll={false}
+              maxItems={4}
+            />
+          </div>
+        )}
       </main>
     </div>
   );

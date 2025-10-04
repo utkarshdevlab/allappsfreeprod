@@ -18,13 +18,13 @@
       "title": "QR Code Generator",
       "category": "Utility",
       "type": "app",
-      "description": "Create QR codes for URLs, text, and contact information",
-      "popularity": 88,
+      "description": "Premium QR code generator with customization, analytics, dynamic codes, bulk generation, and multiple export formats",
+      "popularity": 95,
       "slug": "qr-code-generator",
       "image": "/images/qr-generator.png",
-      "tags": ["qr", "generator", "utility"],
-      "lastUsed": "2024-01-14",
-      "usageCount": 980
+      "tags": ["qr", "generator", "utility", "dynamic", "analytics", "bulk", "customization"],
+      "lastUsed": "2024-01-15",
+      "usageCount": 2450
     },
     {
       "id": "color-picker",
@@ -129,6 +129,19 @@
       "tags": ["puzzle", "sudoku", "numbers"],
       "lastUsed": "2024-01-11",
       "usageCount": 1400
+    },
+    {
+      "id": "image-converter",
+      "title": "Image Converter Pro",
+      "category": "Media",
+      "type": "app",
+      "description": "All-format image converter with AI enhancement, batch processing, EXIF preservation, compression, and pro editing tools",
+      "popularity": 94,
+      "slug": "image-converter",
+      "image": "/images/image-converter.png",
+      "tags": ["image", "converter", "batch", "ai", "compression", "editing", "webp", "avif", "heic"],
+      "lastUsed": "2024-01-15",
+      "usageCount": 3200
     },
     {
       "id": "image-compressor",

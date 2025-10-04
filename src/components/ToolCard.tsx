@@ -2,6 +2,7 @@
 
 import { Tool } from '@/types/tools';
 import Link from 'next/link';
+import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolCardProps {
   tool: Tool;
@@ -9,73 +10,89 @@ interface ToolCardProps {
 }
 
 export default function ToolCard({ tool, variant = 'default' }: ToolCardProps) {
-  const baseClasses = "group relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1";
+  const thumbnailUrl = getToolThumbnail(tool.id);
+  const baseClasses = "group relative overflow-hidden rounded-2xl bg-white border-2 border-gray-100 shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300";
   
   const variantClasses = {
-    default: "p-6",
-    compact: "p-4",
-    featured: "p-8 border-2 border-blue-200"
+    default: "",
+    compact: "",
+    featured: "border-blue-300 shadow-xl"
   };
 
   return (
     <Link href={`/tools/${tool.slug}`} className="block">
       <div className={`${baseClasses} ${variantClasses[variant]}`}>
-        {/* Popularity Badge */}
-        <div className="absolute top-4 right-4 z-10">
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-            {tool.popularity}% popular
-          </span>
-        </div>
-
-        {/* Image */}
-        <div className="relative mb-4 h-32 w-full overflow-hidden rounded-lg bg-gradient-to-br from-blue-50 to-indigo-100">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-4xl">
-              {tool.type === 'game' ? '🎮' : '⚙️'}
-            </div>
-          </div>
-          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300" />
-        </div>
-
-        {/* Content */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-              {tool.title}
-            </h3>
-            <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+        {/* Thumbnail Image */}
+        <div className="relative h-48 w-full overflow-hidden">
+          <img 
+            src={thumbnailUrl} 
+            alt={tool.title}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          
+          {/* Floating Badges */}
+          <div className="absolute top-3 left-3 flex gap-2">
+            <span className={`px-3 py-1.5 text-xs font-bold rounded-full backdrop-blur-md shadow-lg ${
               tool.type === 'game' 
-                ? 'bg-purple-100 text-purple-800' 
-                : 'bg-blue-100 text-blue-800'
+                ? 'bg-purple-500/90 text-white' 
+                : 'bg-blue-500/90 text-white'
             }`}>
-              {tool.type}
+              {tool.type === 'game' ? '🎮 GAME' : '⚙️ APP'}
+            </span>
+          </div>
+          
+          <div className="absolute top-3 right-3">
+            <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-green-500/90 text-white backdrop-blur-md shadow-lg">
+              ⭐ {tool.popularity}%
             </span>
           </div>
 
-          <p className="text-sm text-gray-600 line-clamp-2">
-            {tool.description}
-          </p>
-
-          <div className="flex items-center justify-between text-xs text-gray-500">
-            <span className="font-medium">{tool.category}</span>
-            <span>{tool.usageCount.toLocaleString()} uses</span>
-          </div>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1">
-            {tool.tags.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded-md"
-              >
-                {tag}
-              </span>
-            ))}
+          {/* Title Overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <h3 className="text-xl font-bold text-white drop-shadow-lg line-clamp-1 group-hover:text-blue-200 transition-colors">
+              {tool.title}
+            </h3>
           </div>
         </div>
 
-        {/* Hover Effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5 transition-all duration-300" />
+        {/* Content */}
+        <div className="p-5 space-y-3">
+          <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
+            {tool.description}
+          </p>
+
+          <div className="flex items-center justify-between text-xs">
+            <span className="px-3 py-1.5 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 rounded-full font-semibold">
+              📂 {tool.category}
+            </span>
+            <span className="text-gray-500 font-medium">
+              👥 {tool.usageCount.toLocaleString()}
+            </span>
+          </div>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5 pt-2 border-t border-gray-100">
+            {tool.tags.slice(0, 3).map((tag) => (
+              <span
+                key={tag}
+                className="px-2.5 py-1 text-xs bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700 rounded-full font-medium border border-blue-100"
+              >
+                #{tag}
+              </span>
+            ))}
+            {tool.tags.length > 3 && (
+              <span className="px-2.5 py-1 text-xs bg-gray-100 text-gray-600 rounded-full font-medium">
+                +{tool.tags.length - 3}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Animated Gradient Border on Hover */}
+        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-20"></div>
+        </div>
       </div>
     </Link>
   );
