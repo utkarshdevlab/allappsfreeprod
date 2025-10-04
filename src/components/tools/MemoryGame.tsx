@@ -78,7 +78,9 @@ export default function MemoryGame() {
     if (!gameStarted || gameWon) return;
     if (flippedCards.length === 2) return;
     if (flippedCards.includes(id)) return;
-    if (cards[id].isMatched) return;
+    
+    const clickedCard = cards.find(card => card.id === id);
+    if (clickedCard?.isMatched) return;
 
     const newFlipped = [...flippedCards, id];
     setFlippedCards(newFlipped);
@@ -90,8 +92,11 @@ export default function MemoryGame() {
     if (newFlipped.length === 2) {
       setMoves(m => m + 1);
       const [first, second] = newFlipped;
+      
+      const firstCard = cards.find(c => c.id === first);
+      const secondCard = cards.find(c => c.id === second);
 
-      if (cards[first].emoji === cards[second].emoji) {
+      if (firstCard && secondCard && firstCard.emoji === secondCard.emoji) {
         setMatches(m => m + 1);
         setCards(prev => prev.map(card =>
           card.id === first || card.id === second
