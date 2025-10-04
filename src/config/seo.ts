@@ -14,7 +14,7 @@ export const seoConfig = {
   
   // Analytics IDs (Replace with your actual IDs)
   analytics: {
-    googleAnalyticsId: 'G-XXXXXXXXXX', // Replace with your GA4 ID
+    googleAnalyticsId: 'G-VSX8VZ7GTM', // Replace with your GA4 ID
     googleSearchConsoleId: 'XXXXXXXXXXXXXXXXX', // Replace with your Search Console verification
     microsoftClarityId: '', // Optional: Microsoft Clarity
     hotjarId: '', // Optional: Hotjar
