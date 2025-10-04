@@ -8,6 +8,12 @@ import ParaphraseTool from '@/components/tools/ParaphraseTool';
 import QRCodeGenerator from '@/components/tools/QRCodeGenerator';
 import ImageConverter from '@/components/tools/ImageConverter';
 import ResumeChecker from '@/components/tools/ResumeChecker';
+import PasswordGenerator from '@/components/tools/PasswordGenerator';
+import ColorPicker from '@/components/tools/ColorPicker';
+import TextToSpeech from '@/components/tools/TextToSpeech';
+import WordCounter from '@/components/tools/WordCounter';
+import ImageCompressor from '@/components/tools/ImageCompressor';
+import Base64Encoder from '@/components/tools/Base64Encoder';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -149,6 +155,18 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <ImageConverter />
           ) : tool.id === 'resume-checker' ? (
             <ResumeChecker />
+          ) : tool.id === 'password-generator' ? (
+            <PasswordGenerator />
+          ) : tool.id === 'color-picker' ? (
+            <ColorPicker />
+          ) : tool.id === 'text-to-speech' ? (
+            <TextToSpeech />
+          ) : tool.id === 'word-counter' ? (
+            <WordCounter />
+          ) : tool.id === 'image-compressor' ? (
+            <ImageCompressor />
+          ) : tool.id === 'base64-encoder' ? (
+            <Base64Encoder />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">
