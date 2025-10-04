@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Analytics from "@/components/Analytics";
 import StructuredData from "@/components/StructuredData";
+import Footer from "@/components/Footer";
 import { seoConfig } from "@/config/seo";
 
 const geistSans = Geist({
@@ -74,6 +75,7 @@ export default function RootLayout({
       >
         <Navigation />
         {children}
+        <Footer />
         <Analytics />
       </body>
     </html>

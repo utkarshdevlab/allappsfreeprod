@@ -98,31 +98,31 @@ export default async function ToolPage({ params }: ToolPageProps) {
             {/* Tool Info */}
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <span className={`px-4 py-2 text-sm font-bold rounded-full backdrop-blur-sm ${
+                <span className={`px-4 py-2 text-sm font-bold rounded-full backdrop-blur-sm shadow-lg ${
                   tool.type === 'game' 
-                    ? 'bg-purple-500/30 text-white border-2 border-white/30' 
-                    : 'bg-blue-500/30 text-white border-2 border-white/30'
+                    ? 'bg-purple-600 text-white border-2 border-purple-400' 
+                    : 'bg-blue-600 text-white border-2 border-blue-400'
                 }`}>
                   {tool.type === 'game' ? '🎮 GAME' : '⚙️ APP'}
                 </span>
-                <span className="px-4 py-2 text-sm font-bold bg-white/20 text-white rounded-full backdrop-blur-sm border-2 border-white/30">
+                <span className="px-4 py-2 text-sm font-bold bg-gray-800 text-white rounded-full backdrop-blur-sm border-2 border-gray-600 shadow-lg">
                   {tool.category}
                 </span>
               </div>
               
-              <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight drop-shadow-lg">
                 {tool.title}
               </h1>
-              <p className="text-xl text-white/90 mb-6 leading-relaxed">
+              <p className="text-xl text-white mb-6 leading-relaxed drop-shadow-md">
                 {tool.description}
               </p>
               
               <div className="flex flex-wrap items-center gap-4">
-                <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
+                <div className="flex items-center space-x-2 bg-gray-800/90 backdrop-blur-sm px-4 py-2 rounded-full border-2 border-gray-600 shadow-lg">
                   <span className="text-2xl">⭐</span>
                   <span className="text-white font-bold">{tool.popularity}% Popular</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
+                <div className="flex items-center space-x-2 bg-gray-800/90 backdrop-blur-sm px-4 py-2 rounded-full border-2 border-gray-600 shadow-lg">
                   <span className="text-2xl">👥</span>
                   <span className="text-white font-bold">{tool.usageCount.toLocaleString()} uses</span>
                 </div>
