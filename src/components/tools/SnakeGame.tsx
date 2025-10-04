@@ -21,7 +21,7 @@ export default function SnakeGame() {
   const [gameStarted, setGameStarted] = useState(false);
 
   const directionRef = useRef(direction);
-  const gameLoopRef = useRef<NodeJS.Timeout>();
+  const gameLoopRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
     const savedHighScore = localStorage.getItem('snakeHighScore');
