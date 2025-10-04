@@ -34,7 +34,7 @@ export default function Tetris() {
   const [highScore, setHighScore] = useState(0);
   const [nextPiece, setNextPiece] = useState<{ shape: Tetromino; color: string } | null>(null);
 
-  const gameLoopRef = useRef<NodeJS.Timeout>();
+  const gameLoopRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   useEffect(() => {
     const saved = localStorage.getItem('tetrisHighScore');
@@ -172,6 +172,19 @@ export default function Tetris() {
     }
   }, [moveDown, level, gameStarted, gameOver, isPaused]);
 
+  const startGame = () => {
+    setBoard(createEmptyBoard());
+    const firstPiece = getRandomPiece();
+    setCurrentPiece({ ...firstPiece, x: Math.floor(BOARD_WIDTH / 2) - 1, y: 0 });
+    setNextPiece(getRandomPiece());
+    setScore(0);
+    setLevel(1);
+    setLines(0);
+    setGameOver(false);
+    setIsPaused(false);
+    setGameStarted(true);
+  };
+
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (!gameStarted) {
@@ -201,20 +214,7 @@ export default function Tetris() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [gameStarted, gameOver, isPaused, moveHorizontal, moveDown, rotatePiece, drop]);
-
-  const startGame = () => {
-    setBoard(createEmptyBoard());
-    const firstPiece = getRandomPiece();
-    setCurrentPiece({ ...firstPiece, x: Math.floor(BOARD_WIDTH / 2) - 1, y: 0 });
-    setNextPiece(getRandomPiece());
-    setScore(0);
-    setLevel(1);
-    setLines(0);
-    setGameOver(false);
-    setIsPaused(false);
-    setGameStarted(true);
-  };
+  }, [gameStarted, gameOver, isPaused, moveHorizontal, moveDown, rotatePiece, drop, startGame]);
 
   const renderBoard = () => {
     const displayBoard = board.map(row => [...row]);

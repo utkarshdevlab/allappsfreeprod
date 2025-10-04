@@ -78,12 +78,6 @@ export default function Base64Encoder() {
     URL.revokeObjectURL(url);
   };
 
-  const clearAll = () => {
-    setInputText('');
-    setOutputText('');
-    setImagePreview('');
-  };
-
   const swapInputOutput = () => {
     setInputText(outputText);
     setOutputText(inputText);
@@ -285,7 +279,7 @@ export default function Base64Encoder() {
             <h4 className="font-semibold mb-2">Common Uses</h4>
             <ul className="list-disc list-inside space-y-1">
               <li>Email attachments</li>
-              <li>Embedding images in HTML/CSS</li>
+              <li>Embedding images in HTML or CSS</li>
               <li>Data URLs</li>
               <li>API authentication tokens</li>
             </ul>

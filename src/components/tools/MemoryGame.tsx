@@ -42,7 +42,8 @@ export default function MemoryGame() {
   }, [gameStarted, gameWon]);
 
   useEffect(() => {
-    if (matches === difficultySettings[difficulty].pairs && gameStarted) {
+    const { pairs } = difficultySettings[difficulty];
+    if (matches === pairs && gameStarted) {
       setGameWon(true);
       if (!bestTime || time < bestTime) {
         setBestTime(time);
