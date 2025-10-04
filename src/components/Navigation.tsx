@@ -16,9 +16,9 @@ export default function Navigation() {
             <Image 
               src="/logo.png" 
               alt="AllAppsFree" 
-              width={240} 
-              height={60}
-              className="h-12 w-auto"
+              width={312} 
+              height={78}
+              className="h-16 w-auto"
               priority
             />
           </Link>
