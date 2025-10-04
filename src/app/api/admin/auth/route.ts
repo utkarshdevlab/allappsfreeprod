@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 
-// Admin password hash (you'll set this in environment variables)
-// To generate: node -e "console.log(require('crypto').createHash('sha256').update('YOUR_PASSWORD').digest('hex'))"
+// Admin password hash
+// Password: Nesc@fe@2703
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || 
-  crypto.createHash('sha256').update('admin123').digest('hex'); // Default password: admin123 (CHANGE THIS!)
+  'fdb1113f03da1d7f522aa82aa5e8c7bea955f2171dd9d4c533ae2dee670ebba3';
 
 export async function POST(request: NextRequest) {
   try {
