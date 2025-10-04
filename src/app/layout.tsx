@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import Analytics from "@/components/Analytics";
+import StructuredData from "@/components/StructuredData";
+import { seoConfig } from "@/config/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,11 +60,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData type="website" />
+        {seoConfig.verification.google && (
+          <meta name="google-site-verification" content={seoConfig.verification.google} />
+        )}
+        {seoConfig.verification.bing && (
+          <meta name="msvalidate.01" content={seoConfig.verification.bing} />
+        )}
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navigation />
         {children}
+        <Analytics />
       </body>
     </html>
   );
