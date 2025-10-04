@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import QRCodeStyling, { 
   Options as QRCodeOptions,
   DotType,
@@ -112,19 +113,19 @@ export default function QRCodeGenerator() {
     margin: 10
   });
 
-  const [logo, setLogo] = useState<File | null>(null);
+  const [, setLogo] = useState<File | null>(null);
   const [logoPreview, setLogoPreview] = useState<string>('');
   const [caption, setCaption] = useState('');
-  const [frame, setFrame] = useState<'none' | 'scan-me' | 'download' | 'custom'>('none');
+  const [, ] = useState<'none' | 'scan-me' | 'download' | 'custom'>('none');
   const [isDynamic, setIsDynamic] = useState(false);
   const [qrName, setQrName] = useState('');
   
   const [savedQRCodes, setSavedQRCodes] = useState<SavedQRCode[]>([]);
-  const [selectedQR, setSelectedQR] = useState<SavedQRCode | null>(null);
+  const [, ] = useState<SavedQRCode | null>(null);
   
   // Bulk generation
   const [bulkData, setBulkData] = useState('');
-  const [bulkQRCodes, setBulkQRCodes] = useState<any[]>([]);
+  const [bulkQRCodes, setBulkQRCodes] = useState<Array<{ id: string; content: string; name: string }>>([]);
   
   const qrRef = useRef<HTMLDivElement>(null);
   const qrCodeRef = useRef<QRCodeStyling | null>(null);
@@ -689,7 +690,7 @@ export default function QRCodeGenerator() {
           {['generate', 'bulk', 'manage'].map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab as any)}
+              onClick={() => setActiveTab(tab as 'generate' | 'bulk' | 'manage')}
               className={`py-4 px-1 border-b-2 font-medium text-sm capitalize ${
                 activeTab === tab
                   ? 'border-blue-500 text-blue-600'
@@ -879,7 +880,7 @@ export default function QRCodeGenerator() {
                 />
                 {logoPreview && (
                   <div className="mt-2">
-                    <img src={logoPreview} alt="Logo preview" className="w-16 h-16 object-contain" />
+                    <Image src={logoPreview} alt="Logo preview" width={64} height={64} className="w-16 h-16 object-contain" unoptimized />
                     <button
                       onClick={() => {
                         setLogo(null);
@@ -1041,7 +1042,7 @@ export default function QRCodeGenerator() {
                 <div className="mt-6">
                   <h4 className="font-semibold mb-3">Generated QR Codes ({bulkQRCodes.length})</h4>
                   <div className="space-y-2 max-h-96 overflow-y-auto">
-                    {bulkQRCodes.map((qr, index) => (
+                    {bulkQRCodes.map((qr) => (
                       <div key={qr.id} className="flex items-center justify-between bg-white p-3 rounded-lg border">
                         <span className="text-sm truncate flex-1">{qr.name}</span>
                         <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">

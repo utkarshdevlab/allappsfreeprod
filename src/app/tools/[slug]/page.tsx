@@ -2,6 +2,7 @@ import { getToolBySlug, getToolsByType, getAllTools } from '@/utils/tools';
 import { notFound } from 'next/navigation';
 import ToolSection from '@/components/ToolSection';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 import ParaphraseTool from '@/components/tools/ParaphraseTool';
 import QRCodeGenerator from '@/components/tools/QRCodeGenerator';
@@ -120,10 +121,13 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <div className="lg:col-span-1">
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                <img 
+                <Image 
                   src={thumbnailUrl} 
                   alt={tool.title}
+                  width={400}
+                  height={300}
                   className="relative w-full h-48 object-cover rounded-2xl shadow-2xl border-4 border-white/20"
+                  unoptimized
                 />
               </div>
             </div>

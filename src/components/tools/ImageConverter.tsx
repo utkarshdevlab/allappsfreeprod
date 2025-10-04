@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
+import NextImage from 'next/image';
 
 type ImageFormat = 'jpg' | 'png' | 'webp' | 'avif' | 'gif' | 'bmp' | 'tiff' | 'ico' | 'svg';
 type CompressionMode = 'lossless' | 'lossy' | 'smart';
@@ -78,8 +79,6 @@ export default function ImageConverter() {
   // Handle file selection
   const handleFileSelect = useCallback((files: FileList | null) => {
     if (!files) return;
-
-    const newImages: ImageFile[] = [];
     
     Array.from(files).forEach((file) => {
       if (file.type.startsWith('image/')) {
@@ -234,7 +233,6 @@ export default function ImageConverter() {
           
           let x = 10, y = 30;
           const textWidth = ctx.measureText(settings.watermarkText).width;
-          const textHeight = Math.floor(width / 20);
           
           switch (settings.watermarkPosition) {
             case 'top-right':
@@ -351,7 +349,7 @@ export default function ImageConverter() {
           {['convert', 'edit', 'compress'].map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab as any)}
+              onClick={() => setActiveTab(tab as 'convert' | 'edit' | 'compress')}
               className={`py-4 px-1 border-b-2 font-medium text-sm capitalize ${
                 activeTab === tab
                   ? 'border-blue-500 text-blue-600'
@@ -433,10 +431,13 @@ export default function ImageConverter() {
                 onClick={() => setSelectedImage(img)}
               >
                 <div className="aspect-square relative">
-                  <img
+                  <NextImage
                     src={img.convertedUrl || img.preview}
                     alt={img.name}
+                    width={300}
+                    height={300}
                     className="w-full h-full object-cover"
+                    unoptimized
                   />
                   {img.converted && (
                     <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-medium">
@@ -778,7 +779,7 @@ export default function ImageConverter() {
                           </label>
                           <select
                             value={settings.watermarkPosition}
-                            onChange={(e) => setSettings({ ...settings, watermarkPosition: e.target.value as any })}
+                            onChange={(e) => setSettings({ ...settings, watermarkPosition: e.target.value as 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center' })}
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
                           >
                             <option value="top-left">Top Left</option>

@@ -1,7 +1,7 @@
 import { HfInference } from '@huggingface/inference';
 
-// Initialize Hugging Face inference
-const hf = new HfInference(process.env.HUGGINGFACE_API_KEY);
+// Initialize Hugging Face inference (unused but kept for future use)
+// const hf = new HfInference(process.env.HUGGINGFACE_API_KEY);
 
 export interface ParaphraseOptions {
   tone: string;
@@ -15,14 +15,14 @@ export interface ParaphraseResult {
   error?: string;
 }
 
-// Tone-specific prompts for better paraphrasing
-const TONE_PROMPTS = {
-  standard: "Paraphrase the following text in a clear, professional manner while preserving the original meaning:",
-  formal: "Rewrite the following text in a formal, academic tone while maintaining the original meaning:",
-  casual: "Rewrite the following text in a casual, conversational tone while keeping the original meaning:",
-  creative: "Rewrite the following text in a creative, engaging style while preserving the original meaning:",
-  academic: "Rewrite the following text in an academic, scholarly tone while maintaining the original meaning:"
-};
+// Tone-specific prompts for better paraphrasing (unused but kept for future use)
+// const TONE_PROMPTS = {
+//   standard: "Paraphrase the following text in a clear, professional manner while preserving the original meaning:",
+//   formal: "Rewrite the following text in a formal, academic tone while maintaining the original meaning:",
+//   casual: "Rewrite the following text in a casual, conversational tone while keeping the original meaning:",
+//   creative: "Rewrite the following text in a creative, engaging style while preserving the original meaning:",
+//   academic: "Rewrite the following text in an academic, scholarly tone while maintaining the original meaning:"
+// };
 
 export async function paraphraseText(
   text: string, 
@@ -86,7 +86,7 @@ export async function paraphraseText(
         text: fallbackResult,
         success: true
       };
-    } catch (fallbackError) {
+    } catch {
       return {
         text: '',
         success: false,

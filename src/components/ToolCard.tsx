@@ -2,6 +2,7 @@
 
 import { Tool } from '@/types/tools';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolCardProps {
@@ -24,10 +25,13 @@ export default function ToolCard({ tool, variant = 'default' }: ToolCardProps) {
       <div className={`${baseClasses} ${variantClasses[variant]}`}>
         {/* Thumbnail Image */}
         <div className="relative h-48 w-full overflow-hidden">
-          <img 
+          <Image 
             src={thumbnailUrl} 
             alt={tool.title}
+            width={400}
+            height={300}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           
