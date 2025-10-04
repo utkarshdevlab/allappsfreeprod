@@ -7,6 +7,7 @@ import { Metadata } from 'next';
 import ParaphraseTool from '@/components/tools/ParaphraseTool';
 import QRCodeGenerator from '@/components/tools/QRCodeGenerator';
 import ImageConverter from '@/components/tools/ImageConverter';
+import ResumeChecker from '@/components/tools/ResumeChecker';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -146,6 +147,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <QRCodeGenerator />
           ) : tool.id === 'image-converter' ? (
             <ImageConverter />
+          ) : tool.id === 'resume-checker' ? (
+            <ResumeChecker />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">

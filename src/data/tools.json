@@ -131,6 +131,19 @@
       "usageCount": 1400
     },
     {
+      "id": "resume-checker",
+      "title": "Resume Score Checker",
+      "category": "Career",
+      "type": "app",
+      "description": "AI-powered resume analyzer with ATS compatibility check, keyword optimization, formatting analysis, and detailed improvement suggestions",
+      "popularity": 96,
+      "slug": "resume-checker",
+      "image": "/images/resume-checker.png",
+      "tags": ["resume", "ats", "career", "job", "cv", "analyzer", "keywords", "optimization"],
+      "lastUsed": "2024-01-15",
+      "usageCount": 4100
+    },
+    {
       "id": "image-converter",
       "title": "Image Converter Pro",
       "category": "Media",

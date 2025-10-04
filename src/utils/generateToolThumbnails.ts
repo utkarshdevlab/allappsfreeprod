@@ -27,6 +27,7 @@ export const toolThumbnails: Record<string, { emoji: string; gradient: string[] 
   'memory-game': { emoji: '🧠', gradient: ['#ff9a9e', '#fecfef'] },
   'tic-tac-toe': { emoji: '⭕', gradient: ['#ffecd2', '#fcb69f'] },
   'sudoku': { emoji: '🔢', gradient: ['#ff6e7f', '#bfe9ff'] },
+  'resume-checker': { emoji: '📄', gradient: ['#667eea', '#f093fb'] },
   'image-converter': { emoji: '🖼️', gradient: ['#a18cd1', '#fbc2eb'] },
   'image-compressor': { emoji: '🗜️', gradient: ['#fad0c4', '#ffd1ff'] },
   'base64-encoder': { emoji: '💻', gradient: ['#6a11cb', '#2575fc'] },
