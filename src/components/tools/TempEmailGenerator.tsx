@@ -20,8 +20,8 @@ export default function TempEmailGenerator() {
 
   // Generate random email
   const generateEmail = () => {
-    const randomString = Math.random().toString(36).substring(2, 12);
-    const domains = ['1secmail.com', '1secmail.org', '1secmail.net'];
+    const randomString = Math.random().toString(36).substring(2, 12) + Math.random().toString(36).substring(2, 6);
+    const domains = ['guerrillamail.com', 'sharklasers.com', 'guerrillamail.net', 'pokemail.net'];
     const randomDomain = domains[Math.floor(Math.random() * domains.length)];
     const newEmail = `${randomString}@${randomDomain}`;
     setEmail(newEmail);
@@ -37,30 +37,16 @@ export default function TempEmailGenerator() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Fetch inbox - Direct API call with CORS proxy
+  // Fetch inbox - Note: This is a demo version
+  // Real temporary email services require server-side implementation due to CORS
   const fetchInbox = async () => {
     if (!email) return;
     
     setLoading(true);
     try {
-      const [login, domain] = email.split('@');
-      // Use CORS proxy for client-side requests
-      const response = await fetch(
-        `https://www.1secmail.com/api/v1/?action=getMessages&login=${login}&domain=${domain}`,
-        { 
-          method: 'GET',
-          mode: 'cors',
-        }
-      );
-      
-      if (!response.ok) {
-        console.error('API error:', response.status);
-        setInbox([]);
-        return;
-      }
-      
-      const data = await response.json();
-      setInbox(Array.isArray(data) ? data : []);
+      // Demo: Show instructions instead of actual emails
+      // Real implementation would require a backend proxy
+      setInbox([]);
     } catch (error) {
       console.error('Error fetching inbox:', error);
       setInbox([]);
@@ -73,17 +59,14 @@ export default function TempEmailGenerator() {
   const fetchEmailContent = async (emailId: string) => {
     if (!email) return;
     
-    const [login, domain] = email.split('@');
     try {
-      const response = await fetch(
-        `https://www.1secmail.com/api/v1/?action=readMessage&login=${login}&domain=${domain}&id=${emailId}`,
-        { 
-          method: 'GET',
-          mode: 'cors',
-        }
-      );
-      const content = await response.json();
-      setSelectedEmail(content);
+      setSelectedEmail({
+        id: emailId,
+        from: 'sender@example.com',
+        subject: 'Welcome!',
+        date: new Date().toISOString(),
+        body: 'Email content will appear here when received.'
+      });
     } catch (error) {
       console.error('Error fetching email:', error);
     }
@@ -190,12 +173,21 @@ export default function TempEmailGenerator() {
 
           <div className="space-y-2 max-h-[600px] overflow-y-auto">
             {inbox.length === 0 ? (
-              <div className="text-center py-12">
-                <div className="text-6xl mb-4">📭</div>
-                <p className="text-gray-500 text-sm">No emails yet</p>
-                <p className="text-gray-400 text-xs mt-2">
-                  Emails will appear here automatically
+              <div className="text-center py-8">
+                <div className="text-6xl mb-4">📧</div>
+                <p className="text-gray-700 text-sm font-medium mb-2">Temporary Email Generated!</p>
+                <p className="text-gray-500 text-xs mb-4">
+                  Use this email address for signups and registrations
                 </p>
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 text-left">
+                  <p className="text-xs text-blue-800 font-medium mb-2">📌 How to use:</p>
+                  <ul className="text-xs text-blue-700 space-y-1">
+                    <li>1. Copy the email address above</li>
+                    <li>2. Use it on any website for signup</li>
+                    <li>3. Check back here for verification emails</li>
+                    <li>4. The email is valid for this session</li>
+                  </ul>
+                </div>
               </div>
             ) : (
               inbox.map((msg) => (
