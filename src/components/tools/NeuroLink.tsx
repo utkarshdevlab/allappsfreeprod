@@ -29,7 +29,7 @@ export default function NeuroLink() {
   const [level, setLevel] = useState(1);
   const [connecting, setConnecting] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   // Initialize neurons
   useEffect(() => {

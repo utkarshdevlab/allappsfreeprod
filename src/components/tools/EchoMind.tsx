@@ -26,7 +26,7 @@ export default function EchoMind() {
   const [gameOver, setGameOver] = useState(false);
   const [level, setLevel] = useState(1);
   const [moves, setMoves] = useState(0);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   const obstacles = useRef<Position[]>([
     { x: 5, y: 5 }, { x: 6, y: 5 }, { x: 7, y: 5 },
