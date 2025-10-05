@@ -109,15 +109,26 @@ export default function JigsawPuzzle() {
     setCompletedPieces(0);
     
     const gridSize = Math.sqrt(puzzle.pieces);
+    const pieceWidth = 600 / gridSize;
+    const pieceHeight = 600 / gridSize;
     const newPieces: PuzzlePiece[] = [];
+    
+    // Shuffle pieces randomly around the canvas
+    const shuffledPositions: {x: number, y: number}[] = [];
+    for (let i = 0; i < puzzle.pieces; i++) {
+      shuffledPositions.push({
+        x: Math.random() * (600 - pieceWidth * 0.8),
+        y: Math.random() * (600 - pieceHeight * 0.8)
+      });
+    }
     
     for (let i = 0; i < puzzle.pieces; i++) {
       newPieces.push({
         id: i,
-        correctX: (i % gridSize) * 100,
-        correctY: Math.floor(i / gridSize) * 100,
-        currentX: Math.random() * 400,
-        currentY: Math.random() * 400,
+        correctX: (i % gridSize) * pieceWidth,
+        correctY: Math.floor(i / gridSize) * pieceHeight,
+        currentX: shuffledPositions[i].x,
+        currentY: shuffledPositions[i].y,
         isPlaced: false,
         rotation: 0
       });
@@ -181,15 +192,29 @@ export default function JigsawPuzzle() {
     if (draggedPiece === null) return;
     
     setPieces(prev => prev.map(piece => {
-      if (piece.id === draggedPiece) {
+      if (piece.id === draggedPiece && !piece.isPlaced) {
         const gridSize = Math.sqrt(selectedPuzzle?.pieces || 9);
         const pieceWidth = 600 / gridSize;
+        const pieceHeight = 600 / gridSize;
+        
+        // Calculate center of dragged piece
+        const pieceCenterX = piece.currentX + (pieceWidth * 0.8) / 2;
+        const pieceCenterY = piece.currentY + (pieceHeight * 0.8) / 2;
+        
+        // Calculate center of correct position
+        const correctCenterX = piece.correctX + pieceWidth / 2;
+        const correctCenterY = piece.correctY + pieceHeight / 2;
+        
+        // Calculate distance between centers
         const distance = Math.sqrt(
-          Math.pow(piece.correctX + pieceWidth / 2 - piece.currentX - pieceWidth * 0.4, 2) +
-          Math.pow(piece.correctY + pieceWidth / 2 - piece.currentY - pieceWidth * 0.4, 2)
+          Math.pow(correctCenterX - pieceCenterX, 2) +
+          Math.pow(correctCenterY - pieceCenterY, 2)
         );
         
-        if (distance < 50 && !piece.isPlaced) {
+        // Snap threshold based on piece size
+        const snapThreshold = Math.min(pieceWidth, pieceHeight) * 0.4;
+        
+        if (distance < snapThreshold) {
           setCompletedPieces(c => c + 1);
           return { ...piece, currentX: piece.correctX, currentY: piece.correctY, isPlaced: true };
         }
@@ -279,11 +304,17 @@ export default function JigsawPuzzle() {
             ctx.strokeRect(piece.currentX, piece.currentY, pieceWidth * 0.8, pieceHeight * 0.8);
             
             // Draw snap guide when close to correct position
+            const pieceCenterX = piece.currentX + (pieceWidth * 0.8) / 2;
+            const pieceCenterY = piece.currentY + (pieceHeight * 0.8) / 2;
+            const correctCenterX = piece.correctX + pieceWidth / 2;
+            const correctCenterY = piece.correctY + pieceHeight / 2;
             const distance = Math.sqrt(
-              Math.pow(piece.correctX + pieceWidth / 2 - piece.currentX - pieceWidth * 0.4, 2) +
-              Math.pow(piece.correctY + pieceWidth / 2 - piece.currentY - pieceWidth * 0.4, 2)
+              Math.pow(correctCenterX - pieceCenterX, 2) +
+              Math.pow(correctCenterY - pieceCenterY, 2)
             );
-            if (distance < 50) {
+            const snapThreshold = Math.min(pieceWidth, pieceHeight) * 0.4;
+            
+            if (distance < snapThreshold) {
               ctx.strokeStyle = '#10b981';
               ctx.lineWidth = 3;
               ctx.setLineDash([5, 5]);
