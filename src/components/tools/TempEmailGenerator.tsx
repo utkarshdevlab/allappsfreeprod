@@ -15,7 +15,7 @@ export default function TempEmailGenerator() {
   const [inbox, setInbox] = useState<Email[]>([]);
   const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
   const [loading, setLoading] = useState(false);
-  const [autoRefresh, setAutoRefresh] = useState(true);
+  const [autoRefresh, setAutoRefresh] = useState(false);
   const [copied, setCopied] = useState(false);
 
   // Generate random email
@@ -89,13 +89,6 @@ export default function TempEmailGenerator() {
       generateEmail();
     }
   }, []);
-
-  // Fetch inbox when email changes
-  useEffect(() => {
-    if (email) {
-      fetchInbox();
-    }
-  }, [email]);
 
   return (
     <div className="space-y-6">
