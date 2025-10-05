@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { seoConfig } from '@/config/seo';
 
 declare global {
@@ -12,8 +12,8 @@ declare global {
   }
 }
 
-export default function Analytics() {
-  const { googleAnalyticsId, microsoftClarityId, hotjarId } = seoConfig.analytics;
+function AnalyticsTracker() {
+  const { googleAnalyticsId } = seoConfig.analytics;
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -29,6 +29,12 @@ export default function Analytics() {
       }
     }
   }, [pathname, searchParams, googleAnalyticsId]);
+
+  return null;
+}
+
+export default function Analytics() {
+  const { googleAnalyticsId, microsoftClarityId, hotjarId } = seoConfig.analytics;
 
   return (
     <>
@@ -81,6 +87,11 @@ export default function Analytics() {
           `}
         </Script>
       )}
+
+      {/* Page View Tracker */}
+      <Suspense fallback={null}>
+        <AnalyticsTracker />
+      </Suspense>
     </>
   );
 }
