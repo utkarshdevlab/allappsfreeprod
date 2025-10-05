@@ -16,6 +16,7 @@ interface SEOData {
       keywords: string[];
       pageTitle: string;
       pageDescription: string;
+      seoContent: string;
     };
   };
 }
@@ -94,7 +95,8 @@ export default function SEOEditor() {
             metaDescription: '',
             keywords: [],
             pageTitle: '',
-            pageDescription: ''
+            pageDescription: '',
+            seoContent: ''
           }),
           [field]: value
         }
@@ -229,91 +231,148 @@ export default function SEOEditor() {
       {activeTab === 'tools' && (
         <div className="space-y-6">
           <div className="bg-white rounded-lg border-2 border-gray-200 p-6">
-            <h3 className="text-lg font-semibold mb-4">Select Tool/Game</h3>
-            <select
-              value={selectedTool}
-              onChange={(e) => setSelectedTool(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">-- Select a tool or game --</option>
+            <h3 className="text-lg font-semibold mb-4">Click on a tool to edit its SEO settings</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {tools.map(tool => (
-                <option key={tool.id} value={tool.id}>
-                  {tool.type === 'game' ? '🎮' : '⚙️'} {tool.title}
-                </option>
+                <button
+                  key={tool.id}
+                  onClick={() => setSelectedTool(selectedTool === tool.id ? '' : tool.id)}
+                  className={`p-4 rounded-lg border-2 text-left transition-all ${
+                    selectedTool === tool.id
+                      ? 'border-blue-500 bg-blue-50'
+                      : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">{tool.type === 'game' ? '🎮' : '⚙️'}</span>
+                    <div className="flex-1">
+                      <div className="font-semibold text-gray-900">{tool.title}</div>
+                      <div className="text-xs text-gray-500">{tool.category}</div>
+                    </div>
+                    {selectedTool === tool.id && (
+                      <span className="text-blue-600">✓</span>
+                    )}
+                  </div>
+                </button>
               ))}
-            </select>
+            </div>
           </div>
 
           {selectedTool && (
-            <div className="bg-white rounded-lg border-2 border-gray-200 p-6">
-              <h3 className="text-lg font-semibold mb-4">
-                SEO Settings for: {tools.find(t => t.id === selectedTool)?.title}
-              </h3>
+            <div className="bg-white rounded-lg border-2 border-blue-300 p-6 shadow-lg">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-bold text-gray-900">
+                  {tools.find(t => t.id === selectedTool)?.title}
+                </h3>
+                <button
+                  onClick={() => setSelectedTool('')}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  ✕
+                </button>
+              </div>
               
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Meta Title
-                  </label>
-                  <input
-                    type="text"
-                    value={seoData.tools[selectedTool]?.metaTitle || ''}
-                    onChange={(e) => updateToolSEO(selectedTool, 'metaTitle', e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="Tool Name - All Apps Free"
-                  />
+              <div className="space-y-6">
+                {/* Meta Tags Section */}
+                <div className="border-b border-gray-200 pb-6">
+                  <h4 className="text-sm font-bold text-gray-700 mb-4 uppercase">Meta Tags</h4>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Meta Title
+                      </label>
+                      <input
+                        type="text"
+                        value={seoData.tools[selectedTool]?.metaTitle || ''}
+                        onChange={(e) => updateToolSEO(selectedTool, 'metaTitle', e.target.value)}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder={`${tools.find(t => t.id === selectedTool)?.title} - All Apps Free`}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">50-60 characters recommended</p>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Meta Description
+                      </label>
+                      <textarea
+                        value={seoData.tools[selectedTool]?.metaDescription || ''}
+                        onChange={(e) => updateToolSEO(selectedTool, 'metaDescription', e.target.value)}
+                        rows={3}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="Describe what this tool does..."
+                      />
+                      <p className="text-xs text-gray-500 mt-1">150-160 characters recommended</p>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Keywords (comma-separated)
+                      </label>
+                      <input
+                        type="text"
+                        value={seoData.tools[selectedTool]?.keywords?.join(', ') || ''}
+                        onChange={(e) => updateToolSEO(selectedTool, 'keywords', e.target.value.split(',').map(k => k.trim()))}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="keyword1, keyword2, keyword3"
+                      />
+                    </div>
+                  </div>
                 </div>
 
+                {/* Page Content Section */}
+                <div className="border-b border-gray-200 pb-6">
+                  <h4 className="text-sm font-bold text-gray-700 mb-4 uppercase">Page Content</h4>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Page Title (H1)
+                      </label>
+                      <input
+                        type="text"
+                        value={seoData.tools[selectedTool]?.pageTitle || ''}
+                        onChange={(e) => updateToolSEO(selectedTool, 'pageTitle', e.target.value)}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="Main heading on the page"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Page Description
+                      </label>
+                      <textarea
+                        value={seoData.tools[selectedTool]?.pageDescription || ''}
+                        onChange={(e) => updateToolSEO(selectedTool, 'pageDescription', e.target.value)}
+                        rows={3}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="Brief description shown on the page"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* SEO Content Section */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Meta Description
-                  </label>
+                  <h4 className="text-sm font-bold text-gray-700 mb-2 uppercase">SEO Content</h4>
+                  <p className="text-xs text-gray-500 mb-4">
+                    This content will appear after the tool/game and related tools section, before the footer
+                  </p>
                   <textarea
-                    value={seoData.tools[selectedTool]?.metaDescription || ''}
-                    onChange={(e) => updateToolSEO(selectedTool, 'metaDescription', e.target.value)}
-                    rows={3}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="Describe what this tool does..."
+                    value={seoData.tools[selectedTool]?.seoContent || ''}
+                    onChange={(e) => updateToolSEO(selectedTool, 'seoContent', e.target.value)}
+                    rows={15}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+                    placeholder="Add comprehensive SEO content here. You can use HTML tags like <h2>, <p>, <ul>, <li>, <strong>, etc."
                   />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Keywords (comma-separated)
-                  </label>
-                  <input
-                    type="text"
-                    value={seoData.tools[selectedTool]?.keywords?.join(', ') || ''}
-                    onChange={(e) => updateToolSEO(selectedTool, 'keywords', e.target.value.split(',').map(k => k.trim()))}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="keyword1, keyword2, keyword3"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Page Title (H1)
-                  </label>
-                  <input
-                    type="text"
-                    value={seoData.tools[selectedTool]?.pageTitle || ''}
-                    onChange={(e) => updateToolSEO(selectedTool, 'pageTitle', e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="Main heading on the page"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Page Description
-                  </label>
-                  <textarea
-                    value={seoData.tools[selectedTool]?.pageDescription || ''}
-                    onChange={(e) => updateToolSEO(selectedTool, 'pageDescription', e.target.value)}
-                    rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="Detailed description shown on the page"
-                  />
+                  <div className="mt-2 flex items-center justify-between">
+                    <p className="text-xs text-gray-500">
+                      Supports HTML formatting
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {(seoData.tools[selectedTool]?.seoContent || '').length} characters
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
