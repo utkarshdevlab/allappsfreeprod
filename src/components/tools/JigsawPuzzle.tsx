@@ -415,9 +415,16 @@ export default function JigsawPuzzle() {
       {/* Game Header */}
       <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
         <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900">{selectedPuzzle.name}</h2>
-            <p className="text-gray-600">{selectedPuzzle.category} • {selectedPuzzle.pieces} pieces</p>
+          <div className="flex items-center gap-4">
+            <img 
+              src={selectedPuzzle.imageUrl} 
+              alt={selectedPuzzle.name}
+              className="w-20 h-20 object-cover rounded-lg border-2 border-gray-300 shadow-md"
+            />
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">{selectedPuzzle.name}</h2>
+              <p className="text-gray-600">{selectedPuzzle.category} • {selectedPuzzle.pieces} pieces • {selectedPuzzle.difficulty}</p>
+            </div>
           </div>
           <button
             onClick={() => setSelectedPuzzle(null)}
@@ -473,6 +480,165 @@ export default function JigsawPuzzle() {
             Pieces will snap into place when you&apos;re close to the right spot
           </p>
         </div>
+      </div>
+
+      {/* SEO Content */}
+      <div className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-2xl p-8 border border-gray-200 prose prose-lg max-w-none">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Free Jigsaw Puzzle Game Online - 100+ Premium Puzzles</h1>
+        
+        <p className="text-gray-700 mb-6">
+          Play the best free jigsaw puzzle game online with 100+ beautiful high-quality puzzles. Choose from multiple difficulty levels ranging from easy 9-piece puzzles to expert 36-piece challenges. No downloads, no registration - just pure puzzle-solving fun!
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">Why Play Our Jigsaw Puzzles?</h2>
+        <ul className="list-disc pl-6 text-gray-700 mb-6">
+          <li><strong>100+ Premium Puzzles</strong> - Stunning images across 7 categories</li>
+          <li><strong>Multiple Difficulty Levels</strong> - Easy (9), Medium (16), Hard (25), Expert (36 pieces)</li>
+          <li><strong>Smooth Drag & Drop</strong> - Intuitive controls with auto-snap feature</li>
+          <li><strong>Beautiful Categories</strong> - Nature, Animals, Cities, Space, Art, Food, Architecture</li>
+          <li><strong>Timer & Progress Tracking</strong> - Track your solving time and completion</li>
+          <li><strong>Preview Mode</strong> - Toggle reference image when needed</li>
+          <li><strong>100% Free</strong> - No ads, no downloads, no registration required</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">Puzzle Categories</h2>
+        <div className="grid md:grid-cols-3 gap-4 mb-6">
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="font-semibold text-gray-900 mb-2">🌿 Nature Puzzles</h3>
+            <p className="text-sm text-gray-600">Sunset beaches, mountain lakes, forest paths, tropical paradises, and cherry blossoms</p>
+          </div>
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="font-semibold text-gray-900 mb-2">🦁 Animal Puzzles</h3>
+            <p className="text-sm text-gray-600">Cute puppies, colorful parrots, majestic lions, playful kittens, and elephant families</p>
+          </div>
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="font-semibold text-gray-900 mb-2">🏙️ City Puzzles</h3>
+            <p className="text-sm text-gray-600">Paris Eiffel Tower, New York skyline, Tokyo nights, London Bridge, Dubai Marina</p>
+          </div>
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="font-semibold text-gray-900 mb-2">🌌 Space Puzzles</h3>
+            <p className="text-sm text-gray-600">Galaxy spirals, colorful nebulas, Earth from space, moon surface, Milky Way</p>
+          </div>
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="font-semibold text-gray-900 mb-2">🎨 Art Puzzles</h3>
+            <p className="text-sm text-gray-600">Abstract colors, geometric patterns, watercolor art, street graffiti, modern sculptures</p>
+          </div>
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="font-semibold text-gray-900 mb-2">🍕 Food Puzzles</h3>
+            <p className="text-sm text-gray-600">Sushi platters, fruit baskets, chocolate desserts, coffee art, pizza slices</p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">How to Play Jigsaw Puzzles</h2>
+        <ol className="list-decimal pl-6 text-gray-700 mb-6">
+          <li><strong>Choose Your Puzzle</strong> - Browse 100+ puzzles and select one that interests you</li>
+          <li><strong>Select Difficulty</strong> - Pick from Easy, Medium, Hard, or Expert levels</li>
+          <li><strong>Drag & Drop Pieces</strong> - Click and drag puzzle pieces to their correct positions</li>
+          <li><strong>Use Preview</strong> - Toggle the preview button to see the complete image</li>
+          <li><strong>Complete the Puzzle</strong> - Pieces auto-snap when placed correctly</li>
+        </ol>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">Benefits of Playing Jigsaw Puzzles</h2>
+        <ul className="list-disc pl-6 text-gray-700 mb-6">
+          <li><strong>Improves Memory</strong> - Enhances short-term memory and visual-spatial reasoning</li>
+          <li><strong>Reduces Stress</strong> - Relaxing activity that helps calm the mind</li>
+          <li><strong>Boosts Problem-Solving</strong> - Develops critical thinking and analytical skills</li>
+          <li><strong>Increases Focus</strong> - Improves concentration and attention to detail</li>
+          <li><strong>Brain Exercise</strong> - Keeps your mind sharp and active</li>
+          <li><strong>Meditation Alternative</strong> - Mindful activity for mental wellness</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">Difficulty Levels Explained</h2>
+        <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <div className="bg-green-50 rounded-lg p-4 border-2 border-green-200">
+            <h3 className="font-semibold text-green-900 mb-2">🟢 Easy - 9 Pieces</h3>
+            <p className="text-sm text-green-700">Perfect for beginners and quick relaxation. Complete in 2-5 minutes.</p>
+          </div>
+          <div className="bg-blue-50 rounded-lg p-4 border-2 border-blue-200">
+            <h3 className="font-semibold text-blue-900 mb-2">🔵 Medium - 16 Pieces</h3>
+            <p className="text-sm text-blue-700">Moderate challenge for casual players. Takes 5-10 minutes to solve.</p>
+          </div>
+          <div className="bg-orange-50 rounded-lg p-4 border-2 border-orange-200">
+            <h3 className="font-semibold text-orange-900 mb-2">🟠 Hard - 25 Pieces</h3>
+            <p className="text-sm text-orange-700">Challenging puzzles for experienced players. 10-20 minutes to complete.</p>
+          </div>
+          <div className="bg-red-50 rounded-lg p-4 border-2 border-red-200">
+            <h3 className="font-semibold text-red-900 mb-2">🔴 Expert - 36 Pieces</h3>
+            <p className="text-sm text-red-700">Ultimate challenge for puzzle masters. Can take 20-30+ minutes.</p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">Premium Features - All Free!</h2>
+        <ul className="list-disc pl-6 text-gray-700 mb-6">
+          <li><strong>High-Quality Images</strong> - Professional photography from Unsplash</li>
+          <li><strong>Smart Snap System</strong> - Pieces automatically lock when correctly placed</li>
+          <li><strong>Visual Guides</strong> - Green dashed lines show when you&apos;re close to the right spot</li>
+          <li><strong>Progress Tracking</strong> - See completion percentage in real-time</li>
+          <li><strong>Timer Function</strong> - Challenge yourself to beat your best time</li>
+          <li><strong>Responsive Design</strong> - Works perfectly on desktop, tablet, and mobile</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">Tips for Solving Jigsaw Puzzles Faster</h2>
+        <ul className="list-disc pl-6 text-gray-700 mb-6">
+          <li>Start with corner and edge pieces to build the frame</li>
+          <li>Group pieces by color and pattern similarities</li>
+          <li>Use the preview mode to understand the complete picture</li>
+          <li>Focus on distinctive features like faces, text, or unique colors</li>
+          <li>Work on small sections at a time rather than random placement</li>
+          <li>Take breaks if you get stuck - fresh eyes help spot connections</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
+        
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">Is this jigsaw puzzle game really free?</h3>
+        <p className="text-gray-700 mb-4">
+          Yes! All 100+ puzzles are completely free to play. No hidden costs, no subscriptions, no ads. Just pure puzzle-solving entertainment.
+        </p>
+
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">Do I need to download anything?</h3>
+        <p className="text-gray-700 mb-4">
+          No downloads required! Play directly in your web browser on any device. Works on Chrome, Firefox, Safari, and Edge.
+        </p>
+
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">Can I play on mobile devices?</h3>
+        <p className="text-gray-700 mb-4">
+          Yes! Our jigsaw puzzles work on smartphones and tablets. The drag-and-drop interface is optimized for touch screens.
+        </p>
+
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">How do I save my progress?</h3>
+        <p className="text-gray-700 mb-4">
+          Currently, puzzles are session-based. You can complete them in one sitting. We recommend starting with easier puzzles if you have limited time.
+        </p>
+
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">Are new puzzles added regularly?</h3>
+        <p className="text-gray-700 mb-4">
+          Yes! We continuously add new high-quality puzzles across all categories. Check back regularly for fresh challenges.
+        </p>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">Popular Searches</h2>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {[
+            'free jigsaw puzzles online',
+            'jigsaw puzzle game',
+            'online puzzle games',
+            'free puzzle games no download',
+            'jigsaw puzzles for adults',
+            'relaxing puzzle games',
+            'brain training puzzles',
+            'picture puzzles online'
+          ].map((keyword) => (
+            <span key={keyword} className="px-4 py-2 bg-white rounded-full text-sm text-gray-700 border border-gray-300">
+              {keyword}
+            </span>
+          ))}
+        </div>
+
+        <p className="text-lg text-gray-700 mt-8">
+          Start solving beautiful jigsaw puzzles today! Choose from 100+ premium puzzles across nature, animals, cities, space, art, and more. Perfect for relaxation, brain training, and stress relief.
+        </p>
+        <p className="text-xl font-bold text-purple-600 mt-4">
+          Play Free Jigsaw Puzzles Online - No Download Required!
+        </p>
       </div>
 
       {/* Win Modal */}

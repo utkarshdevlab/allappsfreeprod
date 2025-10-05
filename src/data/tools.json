@@ -184,14 +184,14 @@
     },
     {
       "id": "jigsaw-puzzle",
-      "title": "Jigsaw Puzzle",
+      "title": "Jigsaw Puzzle - 100+ Free Online Puzzles",
       "category": "Puzzle",
       "type": "game",
-      "description": "100+ premium jigsaw puzzles with multiple difficulty levels. Beautiful images across nature, animals, cities, space, art, and more",
+      "description": "Play 100+ free jigsaw puzzles online with smooth drag-and-drop. Choose from nature, animals, cities, space, art categories. Easy to expert difficulty levels. No download required!",
       "popularity": 95,
       "slug": "jigsaw-puzzle",
       "image": "/images/jigsaw-puzzle.png",
-      "tags": ["puzzle", "jigsaw", "brain", "relaxing", "premium", "levels"],
+      "tags": ["puzzle", "jigsaw", "brain games", "relaxing", "free puzzles", "online games", "no download"],
       "lastUsed": "2024-01-18",
       "usageCount": 3200
     },
