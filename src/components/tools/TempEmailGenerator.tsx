@@ -47,8 +47,15 @@ export default function TempEmailGenerator() {
       const response = await fetch(
         `/api/temp-email?action=getMessages&login=${login}&domain=${domain}`
       );
-      const messages = await response.json();
-      setInbox(Array.isArray(messages) ? messages : []);
+      
+      if (!response.ok) {
+        console.error('API error:', response.status);
+        setInbox([]);
+        return;
+      }
+      
+      const data = await response.json();
+      setInbox(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching inbox:', error);
       setInbox([]);

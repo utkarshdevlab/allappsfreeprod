@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -20,12 +21,31 @@ export async function GET(request: NextRequest) {
       url += `&id=${id}`;
     }
 
-    const response = await fetch(url);
-    const data = await response.json();
+    const response = await fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+      },
+    });
 
-    return NextResponse.json(data);
+    if (!response.ok) {
+      return NextResponse.json({ error: 'API request failed', data: [] }, { status: response.status });
+    }
+
+    const text = await response.text();
+    
+    // Try to parse as JSON
+    try {
+      const data = JSON.parse(text);
+      return NextResponse.json(data);
+    } catch {
+      // If not JSON, return empty array for messages or error for single message
+      if (action === 'getMessages') {
+        return NextResponse.json([]);
+      }
+      return NextResponse.json({ error: 'Invalid response format' }, { status: 500 });
+    }
   } catch (error) {
     console.error('Temp email API error:', error);
-    return NextResponse.json({ error: 'Failed to fetch emails' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch emails', data: [] }, { status: 500 });
   }
 }
