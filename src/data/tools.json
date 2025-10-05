@@ -209,6 +209,58 @@
       "usageCount": 8500
     },
     {
+      "id": "random-6-digit",
+      "title": "Random 6 Digit Number Generator",
+      "category": "Utility",
+      "type": "app",
+      "description": "Generate premium 6-digit random numbers with uniqueness, prefixes, suffixes, favourites, history, and CSV/TXT export.",
+      "popularity": 92,
+      "slug": "random-6-digit-generator",
+      "image": "/images/random-6-digit.png",
+      "tags": ["random", "number generator", "6 digit", "otp", "coupon", "bulk"],
+      "lastUsed": "2024-01-19",
+      "usageCount": 4200
+    },
+    {
+      "id": "random-5-digit",
+      "title": "Random 5 Digit Number Generator",
+      "category": "Utility",
+      "type": "app",
+      "description": "Create bulk 5-digit random numbers with uniqueness control, formatting options, favourites, history, and exports.",
+      "popularity": 90,
+      "slug": "random-5-digit-generator",
+      "image": "/images/random-5-digit.png",
+      "tags": ["random", "number generator", "5 digit", "coupon", "raffle", "bulk"],
+      "lastUsed": "2024-01-19",
+      "usageCount": 3800
+    },
+    {
+      "id": "random-4-digit",
+      "title": "Random 4 Digit Number Generator",
+      "category": "Utility",
+      "type": "app",
+      "description": "Generate curated 4-digit random numbers with prefixes, suffixes, history, favourites, sorting, and export tools.",
+      "popularity": 88,
+      "slug": "random-4-digit-generator",
+      "image": "/images/random-4-digit.png",
+      "tags": ["random", "number generator", "4 digit", "ticket", "queue", "bulk"],
+      "lastUsed": "2024-01-19",
+      "usageCount": 3600
+    },
+    {
+      "id": "random-3-digit",
+      "title": "Random 3 Digit Number Generator",
+      "category": "Utility",
+      "type": "app",
+      "description": "Produce premium 3-digit random numbers with formatting controls, uniqueness, favourites, history, and exports.",
+      "popularity": 87,
+      "slug": "random-3-digit-generator",
+      "image": "/images/random-3-digit.png",
+      "tags": ["random", "number generator", "3 digit", "raffle", "queue", "bulk"],
+      "lastUsed": "2024-01-19",
+      "usageCount": 3400
+    },
+    {
       "id": "emi-calculator",
       "title": "EMI Calculator",
       "category": "Finance",
