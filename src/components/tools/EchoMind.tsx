@@ -223,6 +223,37 @@ export default function EchoMind() {
         </div>
       </div>
 
+      {/* Instructions */}
+      <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-200">
+        <h3 className="text-lg font-bold text-blue-900 mb-4">🧠 How to Play EchoMind</h3>
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-blue-800">
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Use arrow keys to move the blue square</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Reach the green target to win</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>After 5 seconds, your past actions replay as purple echo</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Avoid colliding with your echo or obstacles</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Plan your moves carefully - your past will haunt you!</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Each level adds more obstacles</span>
+          </li>
+        </ul>
+      </div>
+
       {/* Game Canvas */}
       <div className="bg-white rounded-2xl p-8 border-2 border-gray-200">
         <div className="flex flex-col items-center">
@@ -281,37 +312,6 @@ export default function EchoMind() {
             <div></div>
           </div>
         </div>
-      </div>
-
-      {/* Instructions */}
-      <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-200">
-        <h3 className="text-lg font-bold text-blue-900 mb-4">🧠 How to Play EchoMind</h3>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-blue-800">
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Use arrow keys to move the blue square</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Reach the green target to win</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>After 5 seconds, your past actions replay as purple echo</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Avoid colliding with your echo or obstacles</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Plan your moves carefully - your past will haunt you!</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Each level adds more obstacles</span>
-          </li>
-        </ul>
       </div>
     </div>
   );
