@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { getAllTools } from '@/utils/tools';
 
 interface SEOData {
   homepage: {
@@ -33,17 +34,11 @@ export default function SEOEditor() {
     },
     tools: {}
   });
-  const [tools, setTools] = useState<any[]>([]);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
+  const tools = getAllTools();
 
   useEffect(() => {
-    // Load tools list
-    fetch('/api/admin/tools')
-      .then(res => res.json())
-      .then(data => setTools(data.tools || []))
-      .catch(err => console.error('Error loading tools:', err));
-
     // Load SEO data
     const savedData = localStorage.getItem('seoData');
     if (savedData) {
