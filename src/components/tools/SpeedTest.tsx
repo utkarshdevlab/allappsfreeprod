@@ -74,7 +74,7 @@ export default function SpeedTest() {
       }
       
       // Apply realistic adjustment factor (accounts for overhead, protocol, etc.)
-      const adjustedSpeed = (totalSpeed / iterations) * 0.7;
+      const adjustedSpeed = (totalSpeed / iterations) * 0.85;
       
       // Animate to final speed
       let current = downloadSpeed;
