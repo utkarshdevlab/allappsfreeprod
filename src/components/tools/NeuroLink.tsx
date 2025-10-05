@@ -62,6 +62,7 @@ export default function NeuroLink() {
   }, [neurons, connections]);
 
   const handleCanvasClick = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
+    e.preventDefault();
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -91,13 +92,15 @@ export default function NeuroLink() {
         }
         setConnecting(null);
       } else {
-        // Toggle neuron or start connection
-        if (e.shiftKey) {
-          setConnecting(clickedNeuron.id);
-        } else {
+        // Start connection on click, toggle on double click
+        if (e.detail === 2) {
+          // Double click - toggle neuron
           setNeurons(prev => prev.map(n =>
             n.id === clickedNeuron.id ? { ...n, active: !n.active } : n
           ));
+        } else {
+          // Single click - start connection
+          setConnecting(clickedNeuron.id);
         }
       }
     } else {
@@ -317,15 +320,15 @@ export default function NeuroLink() {
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-blue-800">
           <li className="flex items-start space-x-2">
             <span className="text-blue-600 font-bold">→</span>
-            <span>Click neurons to activate/deactivate them</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Shift + Click to start drawing connections</span>
+            <span>Single click neuron to start drawing connection</span>
           </li>
           <li className="flex items-start space-x-2">
             <span className="text-blue-600 font-bold">→</span>
             <span>Click another neuron to complete connection</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Double click neuron to activate/deactivate it</span>
           </li>
           <li className="flex items-start space-x-2">
             <span className="text-blue-600 font-bold">→</span>

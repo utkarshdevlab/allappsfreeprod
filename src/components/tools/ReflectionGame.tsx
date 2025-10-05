@@ -144,11 +144,14 @@ export default function ReflectionGame() {
   // Keyboard controls
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      switch (e.key) {
-        case 'ArrowUp': movePlayer('up'); break;
-        case 'ArrowDown': movePlayer('down'); break;
-        case 'ArrowLeft': movePlayer('left'); break;
-        case 'ArrowRight': movePlayer('right'); break;
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault(); // Prevent page scrolling
+        switch (e.key) {
+          case 'ArrowUp': movePlayer('up'); break;
+          case 'ArrowDown': movePlayer('down'); break;
+          case 'ArrowLeft': movePlayer('left'); break;
+          case 'ArrowRight': movePlayer('right'); break;
+        }
       }
     };
 
