@@ -406,6 +406,148 @@ export default function JigsawPuzzle() {
         <div className="text-center text-gray-500 text-sm">
           Showing {filteredPuzzles.length} of {PUZZLE_LIBRARY.length} puzzles
         </div>
+
+        {/* SEO Content on Main Puzzle Selection Page */}
+        <div className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-2xl p-8 border border-gray-200 prose prose-lg max-w-none mt-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">Free Online Jigsaw Puzzles - 100+ Premium Puzzle Games</h1>
+          
+          <p className="text-gray-700 mb-6">
+            Welcome to the ultimate collection of free online jigsaw puzzles! Choose from over 100 stunning high-quality puzzles across 7 beautiful categories. Whether you&apos;re a beginner looking for easy 9-piece puzzles or an expert seeking 36-piece challenges, we have the perfect puzzle for you. No downloads, no registration - just click and play!
+          </p>
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Why Choose Our Jigsaw Puzzle Collection?</h2>
+          <ul className="list-disc pl-6 text-gray-700 mb-6">
+            <li><strong>100+ Premium Puzzles</strong> - Largest free collection online with professional photography</li>
+            <li><strong>7 Diverse Categories</strong> - Nature, Animals, Cities, Space, Art, Food, and Architecture</li>
+            <li><strong>4 Difficulty Levels</strong> - Easy (9 pieces), Medium (16), Hard (25), Expert (36)</li>
+            <li><strong>Smart Filtering</strong> - Find puzzles by category or difficulty instantly</li>
+            <li><strong>Smooth Gameplay</strong> - Intuitive drag-and-drop with auto-snap feature</li>
+            <li><strong>100% Free Forever</strong> - No ads, no paywalls, no hidden costs</li>
+          </ul>
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Explore Our Puzzle Categories</h2>
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-green-500">
+              <h3 className="font-semibold text-gray-900 mb-2">🌿 Nature Puzzles</h3>
+              <p className="text-sm text-gray-600">Breathtaking landscapes including sunset beaches, mountain lakes, forest paths, tropical paradises, and cherry blossoms. Perfect for relaxation and stress relief.</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-orange-500">
+              <h3 className="font-semibold text-gray-900 mb-2">🦁 Animal Puzzles</h3>
+              <p className="text-sm text-gray-600">Adorable and majestic animals including cute puppies, colorful parrots, majestic lions, playful kittens, and elephant families. Great for animal lovers!</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-blue-500">
+              <h3 className="font-semibold text-gray-900 mb-2">🏙️ City Puzzles</h3>
+              <p className="text-sm text-gray-600">Iconic cityscapes from around the world - Paris Eiffel Tower, New York skyline, Tokyo nights, London Bridge, and Dubai Marina. Travel the world through puzzles!</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-purple-500">
+              <h3 className="font-semibold text-gray-900 mb-2">🌌 Space Puzzles</h3>
+              <p className="text-sm text-gray-600">Stunning cosmic imagery featuring galaxy spirals, colorful nebulas, Earth from space, moon surface, and the Milky Way. Perfect for astronomy enthusiasts.</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-pink-500">
+              <h3 className="font-semibold text-gray-900 mb-2">🎨 Art Puzzles</h3>
+              <p className="text-sm text-gray-600">Creative and colorful art pieces including abstract colors, geometric patterns, watercolor art, street graffiti, and modern sculptures. For the artistic soul!</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm border-l-4 border-yellow-500">
+              <h3 className="font-semibold text-gray-900 mb-2">🍕 Food Puzzles</h3>
+              <p className="text-sm text-gray-600">Delicious food photography featuring sushi platters, fruit baskets, chocolate desserts, coffee art, and pizza. Makes you hungry while you play!</p>
+            </div>
+          </div>
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Choose Your Perfect Difficulty Level</h2>
+          <div className="grid md:grid-cols-4 gap-3 mb-6">
+            <div className="bg-green-50 rounded-lg p-3 border-2 border-green-200 text-center">
+              <div className="text-2xl mb-1">🟢</div>
+              <div className="font-bold text-green-900">Easy</div>
+              <div className="text-xs text-green-700">9 pieces</div>
+              <div className="text-xs text-green-600 mt-1">2-5 min</div>
+            </div>
+            <div className="bg-blue-50 rounded-lg p-3 border-2 border-blue-200 text-center">
+              <div className="text-2xl mb-1">🔵</div>
+              <div className="font-bold text-blue-900">Medium</div>
+              <div className="text-xs text-blue-700">16 pieces</div>
+              <div className="text-xs text-blue-600 mt-1">5-10 min</div>
+            </div>
+            <div className="bg-orange-50 rounded-lg p-3 border-2 border-orange-200 text-center">
+              <div className="text-2xl mb-1">🟠</div>
+              <div className="font-bold text-orange-900">Hard</div>
+              <div className="text-xs text-orange-700">25 pieces</div>
+              <div className="text-xs text-orange-600 mt-1">10-20 min</div>
+            </div>
+            <div className="bg-red-50 rounded-lg p-3 border-2 border-red-200 text-center">
+              <div className="text-2xl mb-1">🔴</div>
+              <div className="font-bold text-red-900">Expert</div>
+              <div className="text-xs text-red-700">36 pieces</div>
+              <div className="text-xs text-red-600 mt-1">20-30+ min</div>
+            </div>
+          </div>
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">How to Get Started</h2>
+          <ol className="list-decimal pl-6 text-gray-700 mb-6">
+            <li><strong>Browse the Collection</strong> - Scroll through 100+ beautiful puzzle images above</li>
+            <li><strong>Filter by Category</strong> - Use the category buttons to find your favorite themes</li>
+            <li><strong>Choose Difficulty</strong> - Select Easy, Medium, Hard, or Expert based on your skill level</li>
+            <li><strong>Click to Play</strong> - Simply click any puzzle thumbnail to start playing instantly</li>
+            <li><strong>Enjoy & Relax</strong> - Drag and drop pieces to complete your masterpiece!</li>
+          </ol>
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Benefits of Playing Jigsaw Puzzles Daily</h2>
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="text-3xl mb-2">🧠</div>
+              <h3 className="font-semibold text-gray-900 mb-1">Brain Training</h3>
+              <p className="text-sm text-gray-600">Improves memory, problem-solving skills, and cognitive function</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="text-3xl mb-2">😌</div>
+              <h3 className="font-semibold text-gray-900 mb-1">Stress Relief</h3>
+              <p className="text-sm text-gray-600">Relaxing activity that helps reduce anxiety and calm the mind</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="text-3xl mb-2">🎯</div>
+              <h3 className="font-semibold text-gray-900 mb-1">Focus & Concentration</h3>
+              <p className="text-sm text-gray-600">Enhances attention to detail and improves concentration skills</p>
+            </div>
+          </div>
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Premium Features - All Free!</h2>
+          <ul className="list-disc pl-6 text-gray-700 mb-6">
+            <li><strong>High-Resolution Images</strong> - Professional quality photos from Unsplash</li>
+            <li><strong>Reference Image Panel</strong> - Always visible guide while you solve</li>
+            <li><strong>Smart Auto-Snap</strong> - Pieces lock into place when correctly positioned</li>
+            <li><strong>Progress Tracking</strong> - See your completion percentage in real-time</li>
+            <li><strong>Timer Function</strong> - Track and improve your solving speed</li>
+            <li><strong>Mobile Friendly</strong> - Play on any device - desktop, tablet, or phone</li>
+          </ul>
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Popular Puzzle Searches</h2>
+          <div className="flex flex-wrap gap-2 mb-6">
+            {[
+              'free jigsaw puzzles',
+              'online puzzle games',
+              'jigsaw puzzles for adults',
+              'free puzzle games no download',
+              'nature puzzles',
+              'animal puzzles',
+              'city puzzles',
+              'space puzzles',
+              'relaxing games',
+              'brain games free'
+            ].map((keyword) => (
+              <span key={keyword} className="px-3 py-1 bg-white rounded-full text-xs text-gray-700 border border-gray-300">
+                {keyword}
+              </span>
+            ))}
+          </div>
+
+          <div className="bg-purple-100 border-2 border-purple-300 rounded-xl p-6 text-center">
+            <p className="text-lg font-semibold text-purple-900 mb-2">
+              🎉 Start Playing Now - 100% Free!
+            </p>
+            <p className="text-purple-800">
+              Choose from 100+ premium jigsaw puzzles above and start solving beautiful puzzles today. No registration, no downloads, no limits!
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
