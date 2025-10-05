@@ -163,6 +163,91 @@ export default function JigsawPuzzle() {
     }
   }, [completedPieces, selectedPuzzle]);
 
+  // Draw puzzle on canvas
+  useEffect(() => {
+    if (!selectedPuzzle || !canvasRef.current) return;
+    
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = selectedPuzzle.imageUrl;
+    
+    img.onload = () => {
+      const gridSize = Math.sqrt(selectedPuzzle.pieces);
+      const pieceWidth = 600 / gridSize;
+      const pieceHeight = 600 / gridSize;
+      
+      ctx.clearRect(0, 0, 600, 600);
+      
+      // Draw background grid
+      ctx.strokeStyle = '#e5e7eb';
+      ctx.lineWidth = 2;
+      for (let i = 0; i <= gridSize; i++) {
+        ctx.beginPath();
+        ctx.moveTo(i * pieceWidth, 0);
+        ctx.lineTo(i * pieceWidth, 600);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(0, i * pieceHeight);
+        ctx.lineTo(600, i * pieceHeight);
+        ctx.stroke();
+      }
+      
+      // Draw pieces
+      pieces.forEach((piece) => {
+        const sx = (piece.id % gridSize) * (img.width / gridSize);
+        const sy = Math.floor(piece.id / gridSize) * (img.height / gridSize);
+        const sWidth = img.width / gridSize;
+        const sHeight = img.height / gridSize;
+        
+        ctx.save();
+        
+        if (piece.isPlaced) {
+          // Draw placed pieces
+          ctx.drawImage(
+            img,
+            sx, sy, sWidth, sHeight,
+            piece.correctX, piece.correctY, pieceWidth, pieceHeight
+          );
+          ctx.strokeStyle = '#10b981';
+          ctx.lineWidth = 3;
+          ctx.strokeRect(piece.correctX, piece.correctY, pieceWidth, pieceHeight);
+        } else {
+          // Draw unplaced pieces with shadow
+          ctx.shadowColor = 'rgba(0,0,0,0.3)';
+          ctx.shadowBlur = 10;
+          ctx.shadowOffsetX = 2;
+          ctx.shadowOffsetY = 2;
+          
+          ctx.drawImage(
+            img,
+            sx, sy, sWidth, sHeight,
+            piece.currentX, piece.currentY, pieceWidth * 0.8, pieceHeight * 0.8
+          );
+          
+          // Highlight selected piece
+          if (selectedPiece === piece.id) {
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(piece.currentX, piece.currentY, pieceWidth * 0.8, pieceHeight * 0.8);
+          }
+        }
+        
+        ctx.restore();
+      });
+      
+      // Draw preview if enabled
+      if (showPreview) {
+        ctx.globalAlpha = 0.3;
+        ctx.drawImage(img, 0, 0, 600, 600);
+        ctx.globalAlpha = 1;
+      }
+    };
+  }, [selectedPuzzle, pieces, selectedPiece, showPreview]);
+
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -311,15 +396,51 @@ export default function JigsawPuzzle() {
         </div>
       </div>
 
-      {/* Game Canvas */}
-      <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
-        <canvas
-          ref={canvasRef}
-          width={600}
-          height={600}
-          onClick={handleCanvasClick}
-          className="border-4 border-gray-800 rounded-lg mx-auto cursor-crosshair"
-        />
+      {/* Game Area */}
+      <div className="grid md:grid-cols-3 gap-6">
+        {/* Puzzle Pieces Panel */}
+        <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
+          <h3 className="font-bold text-gray-900 mb-4">Puzzle Pieces</h3>
+          <div className="grid grid-cols-2 gap-2 max-h-[600px] overflow-y-auto">
+            {pieces.filter(p => !p.isPlaced).map(piece => (
+              <button
+                key={piece.id}
+                onClick={() => handlePieceClick(piece.id)}
+                className={`aspect-square rounded-lg border-2 transition-all ${
+                  selectedPiece === piece.id
+                    ? 'border-blue-500 bg-blue-50 scale-95'
+                    : 'border-gray-300 hover:border-blue-300 hover:scale-105'
+                }`}
+              >
+                <div className="text-xs font-bold text-gray-600">#{piece.id + 1}</div>
+              </button>
+            ))}
+          </div>
+          {pieces.filter(p => !p.isPlaced).length === 0 && (
+            <div className="text-center text-gray-500 py-8">
+              <div className="text-4xl mb-2">🎉</div>
+              <p>All pieces placed!</p>
+            </div>
+          )}
+        </div>
+
+        {/* Game Canvas */}
+        <div className="md:col-span-2 bg-white rounded-xl p-6 border-2 border-gray-200">
+          <canvas
+            ref={canvasRef}
+            width={600}
+            height={600}
+            onClick={handleCanvasClick}
+            className="border-4 border-gray-800 rounded-lg mx-auto cursor-crosshair"
+          />
+          <div className="mt-4 text-center text-sm text-gray-600">
+            {selectedPiece !== null ? (
+              <p className="text-blue-600 font-medium">Click on the canvas to place piece #{selectedPiece + 1}</p>
+            ) : (
+              <p>Select a piece from the left panel, then click where it belongs</p>
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Win Modal */}
