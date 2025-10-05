@@ -37,15 +37,20 @@ export default function TempEmailGenerator() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Fetch inbox
+  // Fetch inbox - Direct API call with CORS proxy
   const fetchInbox = async () => {
     if (!email) return;
     
     setLoading(true);
     try {
       const [login, domain] = email.split('@');
+      // Use CORS proxy for client-side requests
       const response = await fetch(
-        `/api/temp-email?action=getMessages&login=${login}&domain=${domain}`
+        `https://www.1secmail.com/api/v1/?action=getMessages&login=${login}&domain=${domain}`,
+        { 
+          method: 'GET',
+          mode: 'cors',
+        }
       );
       
       if (!response.ok) {
@@ -71,7 +76,11 @@ export default function TempEmailGenerator() {
     const [login, domain] = email.split('@');
     try {
       const response = await fetch(
-        `/api/temp-email?action=readMessage&login=${login}&domain=${domain}&id=${emailId}`
+        `https://www.1secmail.com/api/v1/?action=readMessage&login=${login}&domain=${domain}&id=${emailId}`,
+        { 
+          method: 'GET',
+          mode: 'cors',
+        }
       );
       const content = await response.json();
       setSelectedEmail(content);
