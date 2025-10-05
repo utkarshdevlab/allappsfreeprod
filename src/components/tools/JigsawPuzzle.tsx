@@ -191,36 +191,43 @@ export default function JigsawPuzzle() {
   const handleMouseUp = () => {
     if (draggedPiece === null) return;
     
-    setPieces(prev => prev.map(piece => {
-      if (piece.id === draggedPiece && !piece.isPlaced) {
-        const gridSize = Math.sqrt(selectedPuzzle?.pieces || 9);
-        const pieceWidth = 600 / gridSize;
-        const pieceHeight = 600 / gridSize;
-        
-        // Calculate center of dragged piece
-        const pieceCenterX = piece.currentX + (pieceWidth * 0.8) / 2;
-        const pieceCenterY = piece.currentY + (pieceHeight * 0.8) / 2;
-        
-        // Calculate center of correct position
-        const correctCenterX = piece.correctX + pieceWidth / 2;
-        const correctCenterY = piece.correctY + pieceHeight / 2;
-        
-        // Calculate distance between centers
-        const distance = Math.sqrt(
-          Math.pow(correctCenterX - pieceCenterX, 2) +
-          Math.pow(correctCenterY - pieceCenterY, 2)
-        );
-        
-        // Snap threshold based on piece size
-        const snapThreshold = Math.min(pieceWidth, pieceHeight) * 0.4;
-        
-        if (distance < snapThreshold) {
-          setCompletedPieces(c => c + 1);
-          return { ...piece, currentX: piece.correctX, currentY: piece.correctY, isPlaced: true };
+    setPieces(prev => {
+      const newPieces = prev.map(piece => {
+        if (piece.id === draggedPiece && !piece.isPlaced) {
+          const gridSize = Math.sqrt(selectedPuzzle?.pieces || 9);
+          const pieceWidth = 600 / gridSize;
+          const pieceHeight = 600 / gridSize;
+          
+          // Calculate center of dragged piece
+          const pieceCenterX = piece.currentX + (pieceWidth * 0.8) / 2;
+          const pieceCenterY = piece.currentY + (pieceHeight * 0.8) / 2;
+          
+          // Calculate center of correct position
+          const correctCenterX = piece.correctX + pieceWidth / 2;
+          const correctCenterY = piece.correctY + pieceHeight / 2;
+          
+          // Calculate distance between centers
+          const distance = Math.sqrt(
+            Math.pow(correctCenterX - pieceCenterX, 2) +
+            Math.pow(correctCenterY - pieceCenterY, 2)
+          );
+          
+          // Snap threshold based on piece size
+          const snapThreshold = Math.min(pieceWidth, pieceHeight) * 0.4;
+          
+          if (distance < snapThreshold) {
+            return { ...piece, currentX: piece.correctX, currentY: piece.correctY, isPlaced: true };
+          }
         }
-      }
-      return piece;
-    }));
+        return piece;
+      });
+      
+      // Update completed count based on actual placed pieces
+      const placedCount = newPieces.filter(p => p.isPlaced).length;
+      setCompletedPieces(placedCount);
+      
+      return newPieces;
+    });
     
     setDraggedPiece(null);
   };
