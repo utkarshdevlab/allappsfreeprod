@@ -30,6 +30,7 @@ export default function GamesPage() {
             tools={recentlyUsed.filter(tool => tool.type === 'game')} 
             variant="carousel"
             showViewAll={false}
+            maxItems={12}
           />
         )}
 
@@ -40,6 +41,7 @@ export default function GamesPage() {
             tools={mostUsed.filter(tool => tool.type === 'game')} 
             variant="carousel"
             showViewAll={false}
+            maxItems={12}
           />
         )}
 
@@ -48,6 +50,7 @@ export default function GamesPage() {
           title="All Games" 
           tools={games} 
           showViewAll={false}
+          maxItems={20}
         />
 
         {/* Top Categories */}

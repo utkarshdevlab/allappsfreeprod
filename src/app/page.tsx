@@ -53,6 +53,7 @@ export default function Home() {
             tools={recentlyUsed} 
             variant="carousel"
             showViewAll={false}
+            maxItems={12}
           />
         )}
 
@@ -63,6 +64,7 @@ export default function Home() {
             tools={mostUsed} 
             variant="carousel"
             showViewAll={false}
+            maxItems={12}
           />
         )}
 

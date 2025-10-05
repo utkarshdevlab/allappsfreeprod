@@ -30,6 +30,7 @@ export default function AppsPage() {
             tools={recentlyUsed.filter(tool => tool.type === 'app')} 
             variant="carousel"
             showViewAll={false}
+            maxItems={12}
           />
         )}
 
@@ -40,6 +41,7 @@ export default function AppsPage() {
             tools={mostUsed.filter(tool => tool.type === 'app')} 
             variant="carousel"
             showViewAll={false}
+            maxItems={12}
           />
         )}
 
@@ -48,6 +50,7 @@ export default function AppsPage() {
           title="All Apps & Tools" 
           tools={apps} 
           showViewAll={false}
+          maxItems={20}
         />
 
         {/* Top Categories */}
