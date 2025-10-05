@@ -36,8 +36,62 @@ export default function SEOEditor() {
 <h2>Free Online Tools for Everyday Use</h2>
 <p>AllAppsFree brings together a growing collection of professional-grade web tools designed for creators, developers, students, and professionals. Each tool runs directly in your browser — no installation, no account, and no limitations.</p>
 
+<div class="tool-features">
+<h3>Password Generator</h3>
+<p>Create strong, customizable passwords instantly. Control the length, use of numbers, symbols, and cases to ensure complete online security. The generator runs locally, so your passwords are never stored or shared.</p>
+
+<h3>Color Picker</h3>
+<p>Extract and identify colors from any image. Instantly get values in HEX, RGB, HSL, and CMYK formats. Ideal for designers, developers, and artists who need accurate color codes.</p>
+
+<h3>Text to Speech</h3>
+<p>Convert any text into natural-sounding speech with multiple voice options. Adjust speed, pitch, and volume for realistic results. Perfect for content creators, readers, and accessibility use.</p>
+
+<h3>Word Counter</h3>
+<p>Count words, characters, sentences, and paragraphs in real time. Includes reading time, keyword density, and word frequency statistics — perfect for writers, editors, and students.</p>
+
+<h3>Image Compressor</h3>
+<p>Compress images in bulk without losing quality. Adjust compression level, preview output, and download optimized files instantly. Works with JPG, PNG, and WebP formats.</p>
+
+<h3>Base64 Encoder</h3>
+<p>Encode or decode text and images into Base64 format securely. Useful for developers and content creators working with web and email integrations.</p>
+
+<h3>AI Paraphraser</h3>
+<p>Rephrase and rewrite text using advanced AI models. Improve clarity, tone, and originality in seconds — suitable for content writing, academics, and SEO professionals.</p>
+</div>
+
 <h2>Free Games with a Classic Touch</h2>
 <p>AllAppsFree is not just about productivity — it's also a place to relax and have fun. Play classic browser games with no ads, no downloads, and no interruptions.</p>
+
+<div class="game-features">
+<h3>Snake Game</h3>
+<p>Play the classic Snake game online with levels, speed settings, and high-score tracking. Simple, fast, and endlessly addictive.</p>
+
+<h3>Tetris</h3>
+<p>Experience the timeless falling blocks puzzle with scoring and smooth controls. Compete for high scores and challenge your reflexes.</p>
+
+<h3>Memory Game</h3>
+<p>Enhance focus and memory with this card-matching challenge. Choose from three difficulty levels and test your pattern recognition.</p>
+
+<h3>Tic Tac Toe</h3>
+<p>Play against a friend or the computer. The game tracks scores and offers a clean, fast interface for quick matches.</p>
+
+<h3>Sudoku</h3>
+<p>Solve logical puzzles online with adjustable difficulty levels. Track progress and sharpen your mind with every grid.</p>
+</div>
+
+<h2>Premium Tools – 100% Free to Use</h2>
+<p>AllAppsFree includes premium-grade web utilities that are normally paid on other platforms. Every feature is available to all users, free of charge.</p>
+
+<div class="premium-tools">
+<h3>QR Code Generator</h3>
+<p>Create, customize, and download QR codes instantly. Supports URLs, text, Wi-Fi credentials, and more — no watermark or restrictions.</p>
+
+<h3>Image Converter Pro</h3>
+<p>Convert images between formats like PNG, JPG, WebP, and SVG. Supports batch conversion and high-quality export.</p>
+
+<h3>Resume Score Checker</h3>
+<p>Analyze your resume instantly using AI. Get detailed feedback on structure, keywords, and readability to improve your job applications.</p>
+</div>
 
 <h2>Why Choose AllAppsFree</h2>
 <ul>
@@ -47,6 +101,9 @@ export default function SEOEditor() {
 <li><strong>Privacy-First</strong> – No account required, and your data stays on your device.</li>
 <li><strong>Works on All Devices</strong> – Access tools and games seamlessly on desktop, tablet, or mobile.</li>
 </ul>
+
+<h2>Popular Searches</h2>
+<p>free online tools without login, ad-free online games, image compressor without quality loss, AI paraphraser free, text to speech online free, password generator secure, QR code generator without watermark, convert image formats online, resume checker free, color picker online</p>
 
 <p>AllAppsFree is built for users who want quality without compromise. It's fast, minimal, and completely open — a platform where productivity meets simplicity.</p>
 <p><strong>AllAppsFree – All Tools and Games, Free Forever.</strong></p>`
