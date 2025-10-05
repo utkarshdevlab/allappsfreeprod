@@ -36,12 +36,13 @@ export default function NeuroLink() {
     const neuronCount = 5 + level;
     const newNeurons: Neuron[] = [];
     
+    // Start with all neurons inactive for challenge
     for (let i = 0; i < neuronCount; i++) {
       newNeurons.push({
         id: i,
         x: Math.random() * (CANVAS_WIDTH - 100) + 50,
         y: Math.random() * (CANVAS_HEIGHT - 100) + 50,
-        active: Math.random() > 0.5
+        active: false // Start inactive for challenge
       });
     }
     
@@ -128,7 +129,7 @@ export default function NeuroLink() {
 
   const resetLevel = useCallback(() => {
     setConnections([]);
-    setNeurons(prev => prev.map(n => ({ ...n, active: Math.random() > 0.5 })));
+    setNeurons(prev => prev.map(n => ({ ...n, active: false })));
   }, []);
 
   // Canvas rendering
@@ -257,6 +258,37 @@ export default function NeuroLink() {
         </div>
       </div>
 
+      {/* Instructions */}
+      <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-200">
+        <h3 className="text-lg font-bold text-blue-900 mb-4">🧠 How to Play NeuroLink</h3>
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-blue-800">
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Single click neuron to start drawing connection</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Click another neuron to complete connection</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Double click neuron to activate/deactivate it</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Balance signal load between 40% and 60%</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Active neurons increase load by 10%</span>
+          </li>
+          <li className="flex items-start space-x-2">
+            <span className="text-blue-600 font-bold">→</span>
+            <span>Each connection adds 5% load</span>
+          </li>
+        </ul>
+      </div>
+
       {/* Game Canvas */}
       <div className="bg-white rounded-2xl p-8 border-2 border-gray-200">
         <div className="flex flex-col items-center">
@@ -311,37 +343,6 @@ export default function NeuroLink() {
             )}
           </div>
         </div>
-      </div>
-
-      {/* Instructions */}
-      <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-200">
-        <h3 className="text-lg font-bold text-blue-900 mb-4">🧠 How to Play NeuroLink</h3>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-blue-800">
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Single click neuron to start drawing connection</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Click another neuron to complete connection</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Double click neuron to activate/deactivate it</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Balance signal load between 40% and 60%</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Active neurons increase load by 10%</span>
-          </li>
-          <li className="flex items-start space-x-2">
-            <span className="text-blue-600 font-bold">→</span>
-            <span>Each connection adds 5% load</span>
-          </li>
-        </ul>
       </div>
     </div>
   );
