@@ -32,6 +32,8 @@ import Random6DigitGenerator from '@/components/tools/Random6DigitGenerator';
 import Random5DigitGenerator from '@/components/tools/Random5DigitGenerator';
 import Random4DigitGenerator from '@/components/tools/Random4DigitGenerator';
 import Random3DigitGenerator from '@/components/tools/Random3DigitGenerator';
+import JsonToCsvConverter from '@/components/tools/JsonToCsvConverter';
+import CsvToJsonConverter from '@/components/tools/CsvToJsonConverter';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -221,6 +223,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <Random4DigitGenerator />
           ) : tool.id === 'random-3-digit' ? (
             <Random3DigitGenerator />
+          ) : tool.id === 'json-to-csv' ? (
+            <JsonToCsvConverter />
+          ) : tool.id === 'csv-to-json' ? (
+            <CsvToJsonConverter />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">

@@ -37,6 +37,8 @@ export const toolThumbnails: Record<string, { emoji: string; gradient: string[] 
   'random-5-digit': { emoji: '🎲', gradient: ['#ff9a9e', '#fecfef'] },
   'random-4-digit': { emoji: '🔢', gradient: ['#43cea2', '#185a9d'] },
   'random-3-digit': { emoji: '🎟️', gradient: ['#f7971e', '#ffd200'] },
+  'json-to-csv': { emoji: '🧾', gradient: ['#7F7FD5', '#91EAE4'] },
+  'csv-to-json': { emoji: '🔄', gradient: ['#FFDEE9', '#B5FFFC'] },
   'emi-calculator': { emoji: '🏦', gradient: ['#667eea', '#764ba2'] },
   'sip-calculator': { emoji: '📈', gradient: ['#11998e', '#38ef7d'] },
   'gst-calculator': { emoji: '💰', gradient: ['#ee0979', '#ff6a00'] },

@@ -261,6 +261,32 @@
       "usageCount": 3400
     },
     {
+      "id": "json-to-csv",
+      "title": "JSON to CSV Converter",
+      "category": "Utility",
+      "type": "app",
+      "description": "Convert JSON arrays into analytics-ready CSV files with delimiter control, quote wrapping, preview tables, and instant export.",
+      "popularity": 91,
+      "slug": "json-to-csv-converter",
+      "image": "/images/json-to-csv.png",
+      "tags": ["json", "csv", "converter", "data", "export", "spreadsheet"],
+      "lastUsed": "2024-01-19",
+      "usageCount": 4100
+    },
+    {
+      "id": "csv-to-json",
+      "title": "CSV to JSON Converter",
+      "category": "Utility",
+      "type": "app",
+      "description": "Transform spreadsheet exports into developer-friendly JSON arrays with header detection, delimiter switching, and pretty-print output.",
+      "popularity": 90,
+      "slug": "csv-to-json-converter",
+      "image": "/images/csv-to-json.png",
+      "tags": ["csv", "json", "converter", "api", "data", "import"],
+      "lastUsed": "2024-01-19",
+      "usageCount": 3950
+    },
+    {
       "id": "emi-calculator",
       "title": "EMI Calculator",
       "category": "Finance",
