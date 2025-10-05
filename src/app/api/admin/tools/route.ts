@@ -15,7 +15,7 @@ export async function GET() {
         category: tool.category
       }))
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { success: false, error: 'Failed to fetch tools' },
       { status: 500 }

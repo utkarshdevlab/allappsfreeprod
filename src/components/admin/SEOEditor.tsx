@@ -43,8 +43,25 @@ export default function SEOEditor() {
     const savedData = localStorage.getItem('seoData');
     if (savedData) {
       setSeoData(JSON.parse(savedData));
+    } else {
+      // Pre-populate with existing tool data
+      const initialToolsData: { [key: string]: { metaTitle: string; metaDescription: string; keywords: string[]; pageTitle: string; pageDescription: string; seoContent: string } } = {};
+      tools.forEach(tool => {
+        initialToolsData[tool.id] = {
+          metaTitle: `${tool.title} - All Apps Free`,
+          metaDescription: tool.description,
+          keywords: tool.tags || [],
+          pageTitle: tool.title,
+          pageDescription: tool.description,
+          seoContent: ''
+        };
+      });
+      setSeoData(prev => ({
+        ...prev,
+        tools: initialToolsData
+      }));
     }
-  }, []);
+  }, [tools]);
 
   const handleSave = () => {
     setSaving(true);
@@ -69,7 +86,7 @@ export default function SEOEditor() {
     URL.revokeObjectURL(url);
   };
 
-  const updateHomepageSEO = (field: string, value: any) => {
+  const updateHomepageSEO = (field: string, value: string | string[]) => {
     setSeoData(prev => ({
       ...prev,
       homepage: {
@@ -79,7 +96,7 @@ export default function SEOEditor() {
     }));
   };
 
-  const updateToolSEO = (toolId: string, field: string, value: any) => {
+  const updateToolSEO = (toolId: string, field: string, value: string | string[]) => {
     setSeoData(prev => ({
       ...prev,
       tools: {
