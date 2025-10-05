@@ -86,6 +86,7 @@ export default function Home() {
           title=""
           tools={games} 
           viewAllHref="/tools/games"
+          maxItems={12}
         />
 
         {/* Top Categories */}
