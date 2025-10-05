@@ -251,6 +251,11 @@ export default function JigsawPuzzle() {
       
       ctx.clearRect(0, 0, 600, 600);
       
+      // Calculate crop dimensions to make image square
+      const imgSize = Math.min(img.width, img.height);
+      const cropX = (img.width - imgSize) / 2;
+      const cropY = (img.height - imgSize) / 2;
+      
       // Draw background grid
       ctx.strokeStyle = '#e5e7eb';
       ctx.lineWidth = 2;
@@ -267,10 +272,10 @@ export default function JigsawPuzzle() {
       
       // Draw pieces
       pieces.forEach((piece) => {
-        const sx = (piece.id % gridSize) * (img.width / gridSize);
-        const sy = Math.floor(piece.id / gridSize) * (img.height / gridSize);
-        const sWidth = img.width / gridSize;
-        const sHeight = img.height / gridSize;
+        const sx = cropX + (piece.id % gridSize) * (imgSize / gridSize);
+        const sy = cropY + Math.floor(piece.id / gridSize) * (imgSize / gridSize);
+        const sWidth = imgSize / gridSize;
+        const sHeight = imgSize / gridSize;
         
         ctx.save();
         
@@ -330,7 +335,7 @@ export default function JigsawPuzzle() {
       // Draw preview if enabled
       if (showPreview) {
         ctx.globalAlpha = 0.3;
-        ctx.drawImage(img, 0, 0, 600, 600);
+        ctx.drawImage(img, cropX, cropY, imgSize, imgSize, 0, 0, 600, 600);
         ctx.globalAlpha = 1;
       }
     };
