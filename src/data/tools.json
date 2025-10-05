@@ -183,6 +183,19 @@
       "usageCount": 920
     },
     {
+      "id": "jigsaw-puzzle",
+      "title": "Jigsaw Puzzle",
+      "category": "Puzzle",
+      "type": "game",
+      "description": "100+ premium jigsaw puzzles with multiple difficulty levels. Beautiful images across nature, animals, cities, space, art, and more",
+      "popularity": 95,
+      "slug": "jigsaw-puzzle",
+      "image": "/images/jigsaw-puzzle.png",
+      "tags": ["puzzle", "jigsaw", "brain", "relaxing", "premium", "levels"],
+      "lastUsed": "2024-01-18",
+      "usageCount": 3200
+    },
+    {
       "id": "emi-calculator",
       "title": "EMI Calculator",
       "category": "Finance",

@@ -31,6 +31,7 @@ export const toolThumbnails: Record<string, { emoji: string; gradient: string[] 
   'cipherspace': { emoji: '🔐', gradient: ['#ff0844', '#ffb199'] },
   'reflection-game': { emoji: '🪞', gradient: ['#00d2ff', '#3a7bd5'] },
   'neurolink': { emoji: '🧬', gradient: ['#f857a6', '#ff5858'] },
+  'jigsaw-puzzle': { emoji: '🧩', gradient: ['#a8edea', '#fed6e3'] },
   'emi-calculator': { emoji: '🏦', gradient: ['#667eea', '#764ba2'] },
   'sip-calculator': { emoji: '📈', gradient: ['#11998e', '#38ef7d'] },
   'gst-calculator': { emoji: '💰', gradient: ['#ee0979', '#ff6a00'] },

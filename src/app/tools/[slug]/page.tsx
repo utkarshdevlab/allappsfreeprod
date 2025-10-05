@@ -26,6 +26,7 @@ import NeuroLink from '@/components/tools/NeuroLink';
 import EMICalculator from '@/components/tools/EMICalculator';
 import SIPCalculator from '@/components/tools/SIPCalculator';
 import GSTCalculator from '@/components/tools/GSTCalculator';
+import JigsawPuzzle from '@/components/tools/JigsawPuzzle';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -203,6 +204,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <SIPCalculator />
           ) : tool.id === 'gst-calculator' ? (
             <GSTCalculator />
+          ) : tool.id === 'jigsaw-puzzle' ? (
+            <JigsawPuzzle />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">
