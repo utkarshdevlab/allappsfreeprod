@@ -196,19 +196,6 @@
       "usageCount": 3200
     },
     {
-      "id": "temp-email",
-      "title": "Temporary Email Generator - Free Disposable Email",
-      "category": "Privacy",
-      "type": "app",
-      "description": "Generate free temporary email addresses with active inbox. Receive emails instantly, protect your privacy, avoid spam. Perfect for signups and testing!",
-      "popularity": 97,
-      "slug": "temp-email",
-      "image": "/images/temp-email.png",
-      "tags": ["email", "temporary", "disposable", "privacy", "spam", "inbox", "verification"],
-      "lastUsed": "2024-01-19",
-      "usageCount": 5800
-    },
-    {
       "id": "emi-calculator",
       "title": "EMI Calculator",
       "category": "Finance",
