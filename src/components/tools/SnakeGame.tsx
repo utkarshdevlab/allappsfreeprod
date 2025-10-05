@@ -94,6 +94,18 @@ export default function SnakeGame() {
     }
   }, [moveSnake, speed, gameStarted, gameOver, isPaused]);
 
+  const startGame = useCallback(() => {
+    setSnake([{ x: 10, y: 10 }]);
+    setFood({ x: 15, y: 15 });
+    setDirection('RIGHT');
+    directionRef.current = 'RIGHT';
+    setGameOver(false);
+    setScore(0);
+    setSpeed(INITIAL_SPEED);
+    setIsPaused(false);
+    setGameStarted(true);
+  }, []);
+
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       // Prevent default for arrow keys and space
@@ -132,18 +144,6 @@ export default function SnakeGame() {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [gameStarted, gameOver, isPaused, startGame]);
-
-  const startGame = () => {
-    setSnake([{ x: 10, y: 10 }]);
-    setFood({ x: 15, y: 15 });
-    setDirection('RIGHT');
-    directionRef.current = 'RIGHT';
-    setGameOver(false);
-    setScore(0);
-    setSpeed(INITIAL_SPEED);
-    setIsPaused(false);
-    setGameStarted(true);
-  };
 
   const handleDirectionClick = (newDirection: Direction) => {
     if (!gameStarted) {
