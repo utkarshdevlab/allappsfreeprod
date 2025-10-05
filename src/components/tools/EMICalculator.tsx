@@ -187,7 +187,7 @@ export default function EMICalculator() {
           <li><strong>Instant Results</strong> - Get your EMI calculated in seconds</li>
           <li><strong>Plan Your Budget</strong> - Know your monthly outgo before taking a loan</li>
           <li><strong>Compare Loans</strong> - Try different loan amounts and tenures</li>
-          <li><strong>Interest Breakup</strong> - See how much interest you'll pay</li>
+          <li><strong>Interest Breakup</strong> - See how much interest you&apos;ll pay</li>
           <li><strong>100% Free</strong> - No registration or hidden charges</li>
         </ul>
 

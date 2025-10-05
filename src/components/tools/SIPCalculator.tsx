@@ -148,12 +148,12 @@ export default function SIPCalculator() {
 
         <h2 className="text-2xl font-bold text-gray-900 mb-3">What is SIP?</h2>
         <p className="text-gray-700 mb-6">
-          SIP (Systematic Investment Plan) is a method of investing in mutual funds where you invest a fixed amount regularly (monthly/quarterly) instead of a lump sum. It's a disciplined approach to wealth creation that leverages rupee cost averaging and the power of compounding.
+          SIP (Systematic Investment Plan) is a method of investing in mutual funds where you invest a fixed amount regularly (monthly/quarterly) instead of a lump sum. It&apos;s a disciplined approach to wealth creation that leverages rupee cost averaging and the power of compounding.
         </p>
 
         <h2 className="text-2xl font-bold text-gray-900 mb-3">How Does SIP Work?</h2>
         <p className="text-gray-700 mb-4">
-          When you invest through SIP, a fixed amount is automatically debited from your bank account and invested in your chosen mutual fund scheme. You get more units when the market is down and fewer units when it's up, averaging out your purchase cost.
+          When you invest through SIP, a fixed amount is automatically debited from your bank account and invested in your chosen mutual fund scheme. You get more units when the market is down and fewer units when it&apos;s up, averaging out your purchase cost.
         </p>
 
         <h2 className="text-2xl font-bold text-gray-900 mb-3">Benefits of SIP Investment</h2>
@@ -220,7 +220,7 @@ export default function SIPCalculator() {
           <li>Stay invested for long term (5+ years) for better returns</li>
           <li>Diversify across different fund categories</li>
           <li>Review portfolio annually but avoid frequent changes</li>
-          <li>Don't stop SIP during market downturns</li>
+          <li>Don&apos;t stop SIP during market downturns</li>
         </ul>
 
         <h2 className="text-2xl font-bold text-gray-900 mb-3">Frequently Asked Questions</h2>
@@ -237,7 +237,7 @@ export default function SIPCalculator() {
 
         <h3 className="text-xl font-semibold text-gray-900 mb-2">What returns can I expect from SIP?</h3>
         <p className="text-gray-700 mb-4">
-          Historical data shows equity mutual funds have delivered 12-15% annual returns over 10+ years. However, past performance doesn't guarantee future returns.
+          Historical data shows equity mutual funds have delivered 12-15% annual returns over 10+ years. However, past performance doesn&apos;t guarantee future returns.
         </p>
 
         <h3 className="text-xl font-semibold text-gray-900 mb-2">Is SIP tax-free?</h3>
