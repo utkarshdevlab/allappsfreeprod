@@ -1,10 +1,34 @@
 'use client';
 
 import Script from 'next/script';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { seoConfig } from '@/config/seo';
+
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+    dataLayer: any[];
+  }
+}
 
 export default function Analytics() {
   const { googleAnalyticsId, microsoftClarityId, hotjarId } = seoConfig.analytics;
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Track page views on route change
+  useEffect(() => {
+    if (googleAnalyticsId && googleAnalyticsId !== 'G-XXXXXXXXXX') {
+      const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
+      
+      if (typeof window.gtag !== 'undefined') {
+        window.gtag('config', googleAnalyticsId, {
+          page_path: url,
+        });
+      }
+    }
+  }, [pathname, searchParams, googleAnalyticsId]);
 
   return (
     <>
@@ -22,6 +46,7 @@ export default function Analytics() {
               gtag('js', new Date());
               gtag('config', '${googleAnalyticsId}', {
                 page_path: window.location.pathname,
+                send_page_view: true
               });
             `}
           </Script>
