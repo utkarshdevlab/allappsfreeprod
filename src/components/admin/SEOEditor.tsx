@@ -27,10 +27,29 @@ export default function SEOEditor() {
   const [selectedTool, setSelectedTool] = useState<string>('');
   const [seoData, setSeoData] = useState<SEOData>({
     homepage: {
-      title: 'All Apps Free - Free Online Tools & Games',
-      description: 'Discover amazing games and useful tools. Everything you need, completely free.',
-      keywords: ['free tools', 'online games', 'free apps'],
-      content: ''
+      title: 'AllAppsFree – All Tools and Games, Completely Free with Premium Features',
+      description: 'AllAppsFree is a web platform where every online tool and game is completely free to use — with all premium features unlocked. No signups, no ads, no hidden costs.',
+      keywords: ['free online tools', 'free games', 'online tools without login', 'ad-free games', 'password generator', 'QR code generator', 'image converter', 'resume checker', 'text to speech', 'word counter'],
+      content: `<h1>AllAppsFree – All Tools and Games, Completely Free with Premium Features</h1>
+<p>AllAppsFree is a web platform where every online tool and game is completely free to use — with all premium features unlocked. There are no signups, no ads, and no hidden costs. Whether you want to generate secure passwords, compress images, or play classic games like Snake and Tetris, you can do it all in one simple, fast, and privacy-friendly place.</p>
+
+<h2>Free Online Tools for Everyday Use</h2>
+<p>AllAppsFree brings together a growing collection of professional-grade web tools designed for creators, developers, students, and professionals. Each tool runs directly in your browser — no installation, no account, and no limitations.</p>
+
+<h2>Free Games with a Classic Touch</h2>
+<p>AllAppsFree is not just about productivity — it's also a place to relax and have fun. Play classic browser games with no ads, no downloads, and no interruptions.</p>
+
+<h2>Why Choose AllAppsFree</h2>
+<ul>
+<li><strong>100% Free</strong> – All tools and games are available without payment or subscriptions.</li>
+<li><strong>No Ads</strong> – A fast, clean, distraction-free interface for every user.</li>
+<li><strong>Premium Features Unlocked</strong> – Get full access to advanced functions with no paywall.</li>
+<li><strong>Privacy-First</strong> – No account required, and your data stays on your device.</li>
+<li><strong>Works on All Devices</strong> – Access tools and games seamlessly on desktop, tablet, or mobile.</li>
+</ul>
+
+<p>AllAppsFree is built for users who want quality without compromise. It's fast, minimal, and completely open — a platform where productivity meets simplicity.</p>
+<p><strong>AllAppsFree – All Tools and Games, Free Forever.</strong></p>`
     },
     tools: {}
   });
