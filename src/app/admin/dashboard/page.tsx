@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { seoConfig } from '@/config/seo';
 import { getAllTools } from '@/utils/tools';
+import SEOEditor from '@/components/admin/SEOEditor';
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -108,10 +109,8 @@ export default function AdminDashboard() {
         {/* SEO & Analytics Tab */}
         {activeTab === 'seo' && (
           <div className="space-y-6">
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-              <h2 className="text-3xl font-bold mb-2">SEO Configuration</h2>
-              <p className="text-blue-100">Manage your search engine optimization settings</p>
-            </div>
+            {/* SEO Editor Component */}
+            <SEOEditor />
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
