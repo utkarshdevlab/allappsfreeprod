@@ -187,16 +187,19 @@ export default function Tetris() {
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
+      // Prevent default for arrow keys and space
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
+        e.preventDefault();
+      }
+
       if (!gameStarted) {
         if (e.key === ' ') {
-          e.preventDefault();
           startGame();
         }
         return;
       }
 
       if (e.key === ' ') {
-        e.preventDefault();
         setIsPaused(prev => !prev);
         return;
       }

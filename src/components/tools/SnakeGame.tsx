@@ -96,36 +96,42 @@ export default function SnakeGame() {
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
+      // Prevent default for arrow keys and space
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
+        e.preventDefault();
+      }
+
       if (!gameStarted) {
         if (e.key === ' ') {
-          e.preventDefault();
           startGame();
         }
         return;
       }
 
-      if (e.key === ' ') {
-        e.preventDefault();
-        setIsPaused(prev => !prev);
-        return;
-      }
+      if (gameOver || isPaused) return;
 
-      const newDirection = 
-        e.key === 'ArrowUp' && directionRef.current !== 'DOWN' ? 'UP' :
-        e.key === 'ArrowDown' && directionRef.current !== 'UP' ? 'DOWN' :
-        e.key === 'ArrowLeft' && directionRef.current !== 'RIGHT' ? 'LEFT' :
-        e.key === 'ArrowRight' && directionRef.current !== 'LEFT' ? 'RIGHT' :
-        directionRef.current;
-
-      if (newDirection !== directionRef.current) {
-        directionRef.current = newDirection;
-        setDirection(newDirection);
+      switch (e.key) {
+        case 'ArrowUp':
+          if (directionRef.current !== 'DOWN') setDirection('UP');
+          break;
+        case 'ArrowDown':
+          if (directionRef.current !== 'UP') setDirection('DOWN');
+          break;
+        case 'ArrowLeft':
+          if (directionRef.current !== 'RIGHT') setDirection('LEFT');
+          break;
+        case 'ArrowRight':
+          if (directionRef.current !== 'LEFT') setDirection('RIGHT');
+          break;
+        case ' ':
+          setIsPaused(p => !p);
+          break;
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [gameStarted]);
+  }, [gameStarted, gameOver, isPaused, startGame]);
 
   const startGame = () => {
     setSnake([{ x: 10, y: 10 }]);
