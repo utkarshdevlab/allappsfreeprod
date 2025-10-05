@@ -45,12 +45,13 @@ export default function TempEmailGenerator() {
     try {
       const [login, domain] = email.split('@');
       const response = await fetch(
-        `https://www.1secmail.com/api/v1/?action=getMessages&login=${login}&domain=${domain}`
+        `/api/temp-email?action=getMessages&login=${login}&domain=${domain}`
       );
       const messages = await response.json();
-      setInbox(messages || []);
+      setInbox(Array.isArray(messages) ? messages : []);
     } catch (error) {
       console.error('Error fetching inbox:', error);
+      setInbox([]);
     } finally {
       setLoading(false);
     }
@@ -63,7 +64,7 @@ export default function TempEmailGenerator() {
     const [login, domain] = email.split('@');
     try {
       const response = await fetch(
-        `https://www.1secmail.com/api/v1/?action=readMessage&login=${login}&domain=${domain}&id=${emailId}`
+        `/api/temp-email?action=readMessage&login=${login}&domain=${domain}&id=${emailId}`
       );
       const content = await response.json();
       setSelectedEmail(content);
