@@ -196,6 +196,19 @@
       "usageCount": 3200
     },
     {
+      "id": "speed-test",
+      "title": "Internet Speed Test - Test WiFi & Broadband Speed",
+      "category": "Utility",
+      "type": "app",
+      "description": "Test your internet speed instantly. Measure download speed, upload speed, and ping. Free online speed test for WiFi, broadband, fiber, 4G, 5G. No app needed!",
+      "popularity": 99,
+      "slug": "speed-test",
+      "image": "/images/speed-test.png",
+      "tags": ["speed test", "internet speed", "wifi test", "broadband", "download speed", "upload speed", "ping test"],
+      "lastUsed": "2024-01-19",
+      "usageCount": 8500
+    },
+    {
       "id": "emi-calculator",
       "title": "EMI Calculator",
       "category": "Finance",
