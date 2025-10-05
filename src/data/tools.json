@@ -131,6 +131,58 @@
       "usageCount": 1400
     },
     {
+      "id": "echomind",
+      "title": "EchoMind",
+      "category": "Puzzle",
+      "type": "game",
+      "description": "Time-bending puzzle where your past actions replay as echoes - avoid your past self to reach the goal",
+      "popularity": 92,
+      "slug": "echomind",
+      "image": "/images/echomind.png",
+      "tags": ["puzzle", "time", "echo", "strategy", "mind-bending"],
+      "lastUsed": "2024-01-15",
+      "usageCount": 850
+    },
+    {
+      "id": "cipherspace",
+      "title": "CipherSpace",
+      "category": "Puzzle",
+      "type": "game",
+      "description": "Learn a logic language without text - decode mysterious symbols through pure pattern recognition",
+      "popularity": 90,
+      "slug": "cipherspace",
+      "image": "/images/cipherspace.png",
+      "tags": ["puzzle", "logic", "symbols", "pattern", "discovery"],
+      "lastUsed": "2024-01-14",
+      "usageCount": 720
+    },
+    {
+      "id": "reflection-game",
+      "title": "Reflection.exe",
+      "category": "Puzzle",
+      "type": "game",
+      "description": "Control your reflection in a mirror world that disobeys you - synchronize both to escape",
+      "popularity": 91,
+      "slug": "reflection-game",
+      "image": "/images/reflection.png",
+      "tags": ["puzzle", "mirror", "reflection", "strategy", "dual-control"],
+      "lastUsed": "2024-01-13",
+      "usageCount": 680
+    },
+    {
+      "id": "neurolink",
+      "title": "NeuroLink",
+      "category": "Puzzle",
+      "type": "game",
+      "description": "Balance signal flow in a neural network - connect neurons to achieve stable brain activity",
+      "popularity": 93,
+      "slug": "neurolink",
+      "image": "/images/neurolink.png",
+      "tags": ["puzzle", "neural", "network", "brain", "balance"],
+      "lastUsed": "2024-01-16",
+      "usageCount": 920
+    },
+    {
       "id": "resume-checker",
       "title": "Resume Score Checker",
       "category": "Career",

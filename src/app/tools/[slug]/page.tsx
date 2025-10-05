@@ -19,6 +19,10 @@ import Tetris from '@/components/tools/Tetris';
 import MemoryGame from '@/components/tools/MemoryGame';
 import TicTacToe from '@/components/tools/TicTacToe';
 import Sudoku from '@/components/tools/Sudoku';
+import EchoMind from '@/components/tools/EchoMind';
+import CipherSpace from '@/components/tools/CipherSpace';
+import ReflectionGame from '@/components/tools/ReflectionGame';
+import NeuroLink from '@/components/tools/NeuroLink';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -182,6 +186,14 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <TicTacToe />
           ) : tool.id === 'sudoku' ? (
             <Sudoku />
+          ) : tool.id === 'echomind' ? (
+            <EchoMind />
+          ) : tool.id === 'cipherspace' ? (
+            <CipherSpace />
+          ) : tool.id === 'reflection-game' ? (
+            <ReflectionGame />
+          ) : tool.id === 'neurolink' ? (
+            <NeuroLink />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">
