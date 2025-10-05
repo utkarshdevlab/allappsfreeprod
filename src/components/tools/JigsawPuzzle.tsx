@@ -460,25 +460,64 @@ export default function JigsawPuzzle() {
         </div>
       </div>
 
-      {/* Game Canvas */}
-      <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
-        <canvas
-          ref={canvasRef}
-          width={600}
-          height={600}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          className="border-4 border-gray-800 rounded-lg mx-auto cursor-grab active:cursor-grabbing"
-        />
-        <div className="mt-4 text-center text-sm text-gray-600">
-          <p className="font-medium">
-            🖱️ Drag and drop puzzle pieces to their correct positions
-          </p>
-          <p className="text-xs text-gray-500 mt-1">
-            Pieces will snap into place when you&apos;re close to the right spot
-          </p>
+      {/* Game Area with Reference Image */}
+      <div className="grid lg:grid-cols-4 gap-6">
+        {/* Reference Image Panel */}
+        <div className="lg:col-span-1">
+          <div className="bg-white rounded-xl p-4 border-2 border-gray-200 sticky top-4">
+            <h3 className="font-bold text-gray-900 mb-3 text-sm">📷 Reference Image</h3>
+            <img 
+              src={selectedPuzzle.imageUrl} 
+              alt={selectedPuzzle.name}
+              className="w-full aspect-video object-cover rounded-lg border-2 border-gray-300 shadow-md mb-3"
+            />
+            <div className="space-y-2 text-xs text-gray-600">
+              <div className="flex justify-between">
+                <span className="font-medium">Puzzle:</span>
+                <span>{selectedPuzzle.name}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Pieces:</span>
+                <span>{selectedPuzzle.pieces}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Difficulty:</span>
+                <span className="capitalize">{selectedPuzzle.difficulty}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Category:</span>
+                <span>{selectedPuzzle.category}</span>
+              </div>
+            </div>
+            <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+              <p className="text-xs text-blue-800 font-medium">💡 Tip</p>
+              <p className="text-xs text-blue-700 mt-1">
+                Use this reference image to help you place the pieces correctly!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Game Canvas */}
+        <div className="lg:col-span-3 bg-white rounded-xl p-6 border-2 border-gray-200">
+          <canvas
+            ref={canvasRef}
+            width={600}
+            height={600}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            className="border-4 border-gray-800 rounded-lg mx-auto cursor-grab active:cursor-grabbing"
+          />
+          <div className="mt-4 text-center text-sm text-gray-600">
+            <p className="font-medium">
+              🖱️ Drag and drop puzzle pieces to their correct positions
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              Pieces will snap into place when you&apos;re close to the right spot
+            </p>
+          </div>
         </div>
       </div>
 
