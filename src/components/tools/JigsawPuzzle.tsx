@@ -76,6 +76,8 @@ export default function JigsawPuzzle() {
   const [selectedPuzzle, setSelectedPuzzle] = useState<Puzzle | null>(null);
   const [pieces, setPieces] = useState<PuzzlePiece[]>([]);
   const [selectedPiece, setSelectedPiece] = useState<number | null>(null);
+  const [draggedPiece, setDraggedPiece] = useState<number | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [completedPieces, setCompletedPieces] = useState(0);
   const [gameWon, setGameWon] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -124,13 +126,7 @@ export default function JigsawPuzzle() {
     setPieces(newPieces);
   };
 
-  const handlePieceClick = (pieceId: number) => {
-    setSelectedPiece(pieceId);
-  };
-
-  const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!selectedPiece && selectedPiece !== 0) return;
-    
+  const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     
@@ -138,22 +134,70 @@ export default function JigsawPuzzle() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
+    // Find clicked piece
+    const clickedPiece = pieces.find(p => {
+      if (p.isPlaced) return false;
+      const gridSize = Math.sqrt(selectedPuzzle?.pieces || 9);
+      const pieceWidth = 600 / gridSize;
+      const pieceHeight = 600 / gridSize;
+      return (
+        x >= p.currentX &&
+        x <= p.currentX + pieceWidth * 0.8 &&
+        y >= p.currentY &&
+        y <= p.currentY + pieceHeight * 0.8
+      );
+    });
+    
+    if (clickedPiece) {
+      setDraggedPiece(clickedPiece.id);
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    setMousePos({ x, y });
+    
+    if (draggedPiece !== null) {
+      const gridSize = Math.sqrt(selectedPuzzle?.pieces || 9);
+      const pieceWidth = 600 / gridSize;
+      const pieceHeight = 600 / gridSize;
+      
+      setPieces(prev => prev.map(piece => {
+        if (piece.id === draggedPiece) {
+          return { ...piece, currentX: x - (pieceWidth * 0.4), currentY: y - (pieceHeight * 0.4) };
+        }
+        return piece;
+      }));
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (draggedPiece === null) return;
+    
     setPieces(prev => prev.map(piece => {
-      if (piece.id === selectedPiece) {
+      if (piece.id === draggedPiece) {
+        const gridSize = Math.sqrt(selectedPuzzle?.pieces || 9);
+        const pieceWidth = 600 / gridSize;
         const distance = Math.sqrt(
-          Math.pow(piece.correctX - x, 2) + Math.pow(piece.correctY - y, 2)
+          Math.pow(piece.correctX + pieceWidth / 2 - piece.currentX - pieceWidth * 0.4, 2) +
+          Math.pow(piece.correctY + pieceWidth / 2 - piece.currentY - pieceWidth * 0.4, 2)
         );
         
-        if (distance < 30 && !piece.isPlaced) {
+        if (distance < 50 && !piece.isPlaced) {
           setCompletedPieces(c => c + 1);
           return { ...piece, currentX: piece.correctX, currentY: piece.correctY, isPlaced: true };
         }
-        return { ...piece, currentX: x, currentY: y };
       }
       return piece;
     }));
     
-    setSelectedPiece(null);
+    setDraggedPiece(null);
   };
 
   useEffect(() => {
@@ -228,11 +272,24 @@ export default function JigsawPuzzle() {
             piece.currentX, piece.currentY, pieceWidth * 0.8, pieceHeight * 0.8
           );
           
-          // Highlight selected piece
-          if (selectedPiece === piece.id) {
+          // Highlight dragged piece
+          if (draggedPiece === piece.id) {
             ctx.strokeStyle = '#3b82f6';
             ctx.lineWidth = 4;
             ctx.strokeRect(piece.currentX, piece.currentY, pieceWidth * 0.8, pieceHeight * 0.8);
+            
+            // Draw snap guide when close to correct position
+            const distance = Math.sqrt(
+              Math.pow(piece.correctX + pieceWidth / 2 - piece.currentX - pieceWidth * 0.4, 2) +
+              Math.pow(piece.correctY + pieceWidth / 2 - piece.currentY - pieceWidth * 0.4, 2)
+            );
+            if (distance < 50) {
+              ctx.strokeStyle = '#10b981';
+              ctx.lineWidth = 3;
+              ctx.setLineDash([5, 5]);
+              ctx.strokeRect(piece.correctX, piece.correctY, pieceWidth, pieceHeight);
+              ctx.setLineDash([]);
+            }
           }
         }
         
@@ -246,7 +303,7 @@ export default function JigsawPuzzle() {
         ctx.globalAlpha = 1;
       }
     };
-  }, [selectedPuzzle, pieces, selectedPiece, showPreview]);
+  }, [selectedPuzzle, pieces, draggedPiece, showPreview]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -396,50 +453,25 @@ export default function JigsawPuzzle() {
         </div>
       </div>
 
-      {/* Game Area */}
-      <div className="grid md:grid-cols-3 gap-6">
-        {/* Puzzle Pieces Panel */}
-        <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
-          <h3 className="font-bold text-gray-900 mb-4">Puzzle Pieces</h3>
-          <div className="grid grid-cols-2 gap-2 max-h-[600px] overflow-y-auto">
-            {pieces.filter(p => !p.isPlaced).map(piece => (
-              <button
-                key={piece.id}
-                onClick={() => handlePieceClick(piece.id)}
-                className={`aspect-square rounded-lg border-2 transition-all ${
-                  selectedPiece === piece.id
-                    ? 'border-blue-500 bg-blue-50 scale-95'
-                    : 'border-gray-300 hover:border-blue-300 hover:scale-105'
-                }`}
-              >
-                <div className="text-xs font-bold text-gray-600">#{piece.id + 1}</div>
-              </button>
-            ))}
-          </div>
-          {pieces.filter(p => !p.isPlaced).length === 0 && (
-            <div className="text-center text-gray-500 py-8">
-              <div className="text-4xl mb-2">🎉</div>
-              <p>All pieces placed!</p>
-            </div>
-          )}
-        </div>
-
-        {/* Game Canvas */}
-        <div className="md:col-span-2 bg-white rounded-xl p-6 border-2 border-gray-200">
-          <canvas
-            ref={canvasRef}
-            width={600}
-            height={600}
-            onClick={handleCanvasClick}
-            className="border-4 border-gray-800 rounded-lg mx-auto cursor-crosshair"
-          />
-          <div className="mt-4 text-center text-sm text-gray-600">
-            {selectedPiece !== null ? (
-              <p className="text-blue-600 font-medium">Click on the canvas to place piece #{selectedPiece + 1}</p>
-            ) : (
-              <p>Select a piece from the left panel, then click where it belongs</p>
-            )}
-          </div>
+      {/* Game Canvas */}
+      <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
+        <canvas
+          ref={canvasRef}
+          width={600}
+          height={600}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          className="border-4 border-gray-800 rounded-lg mx-auto cursor-grab active:cursor-grabbing"
+        />
+        <div className="mt-4 text-center text-sm text-gray-600">
+          <p className="font-medium">
+            🖱️ Drag and drop puzzle pieces to their correct positions
+          </p>
+          <p className="text-xs text-gray-500 mt-1">
+            Pieces will snap into place when you&apos;re close to the right spot
+          </p>
         </div>
       </div>
 
