@@ -120,6 +120,12 @@ export default function SnakeGame() {
         return;
       }
 
+      // Handle pause with space
+      if (e.key === ' ') {
+        setIsPaused(p => !p);
+        return;
+      }
+
       if (gameOver || isPaused) return;
 
       switch (e.key) {
@@ -134,9 +140,6 @@ export default function SnakeGame() {
           break;
         case 'ArrowRight':
           if (directionRef.current !== 'LEFT') setDirection('RIGHT');
-          break;
-        case ' ':
-          setIsPaused(p => !p);
           break;
       }
     };
