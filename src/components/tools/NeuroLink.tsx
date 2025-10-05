@@ -27,7 +27,6 @@ export default function NeuroLink() {
   const [signalLoad, setSignalLoad] = useState(0);
   const [isStable, setIsStable] = useState(false);
   const [level, setLevel] = useState(1);
-  const [dragging, setDragging] = useState<number | null>(null);
   const [connecting, setConnecting] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const animationRef = useRef<number>();
@@ -148,7 +147,7 @@ export default function NeuroLink() {
       // Draw connections
       ctx.strokeStyle = '#3b82f6';
       ctx.lineWidth = 2;
-      connections.forEach((conn, idx) => {
+      connections.forEach((conn) => {
         const from = neurons.find(n => n.id === conn.from);
         const to = neurons.find(n => n.id === conn.to);
         

@@ -15,7 +15,6 @@ interface Action {
 const GRID_SIZE = 15;
 const CELL_SIZE = 30;
 const ECHO_DELAY = 5000; // 5 seconds
-const MOVE_SPEED = CELL_SIZE;
 
 export default function EchoMind() {
   const canvasRef = useRef<HTMLCanvasElement>(null);

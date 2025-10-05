@@ -46,9 +46,9 @@ export default function ReflectionGame() {
     return obstacles.current.some(obs => obs.x === pos.x && obs.y === pos.y);
   }, []);
 
-  const moveReflection = useCallback((direction: string, immediate = false) => {
+  const moveReflection = useCallback((direction: string) => {
     setReflectionPos(prev => {
-      let newPos = { ...prev };
+      const newPos = { ...prev };
 
       if (reflectionMode === 'mirror') {
         // Mirror movement
@@ -111,7 +111,7 @@ export default function ReflectionGame() {
       if (reflectionMode === 'delayed') {
         setDelayedMoves(prev => [...prev, direction]);
       } else {
-        moveReflection(direction, true);
+        moveReflection(direction);
       }
 
       return newPos;
@@ -123,7 +123,7 @@ export default function ReflectionGame() {
     if (reflectionMode === 'delayed' && delayedMoves.length > 0) {
       const timer = setTimeout(() => {
         const nextMove = delayedMoves[0];
-        moveReflection(nextMove, true);
+        moveReflection(nextMove);
         setDelayedMoves(prev => prev.slice(1));
       }, 500);
 
