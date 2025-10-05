@@ -277,8 +277,27 @@ export default function JigsawPuzzle() {
         ctx.stroke();
       }
       
-      // Draw pieces
-      pieces.forEach((piece) => {
+      // Draw placed pieces first (background layer)
+      pieces.filter(p => p.isPlaced).forEach((piece) => {
+        const sx = cropX + (piece.id % gridSize) * (imgSize / gridSize);
+        const sy = cropY + Math.floor(piece.id / gridSize) * (imgSize / gridSize);
+        const sWidth = imgSize / gridSize;
+        const sHeight = imgSize / gridSize;
+        
+        ctx.save();
+        ctx.drawImage(
+          img,
+          sx, sy, sWidth, sHeight,
+          piece.correctX, piece.correctY, pieceWidth, pieceHeight
+        );
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(piece.correctX, piece.correctY, pieceWidth, pieceHeight);
+        ctx.restore();
+      });
+      
+      // Draw unplaced pieces on top (foreground layer)
+      pieces.filter(p => !p.isPlaced).forEach((piece) => {
         const sx = cropX + (piece.id % gridSize) * (imgSize / gridSize);
         const sy = cropY + Math.floor(piece.id / gridSize) * (imgSize / gridSize);
         const sWidth = imgSize / gridSize;
@@ -286,53 +305,41 @@ export default function JigsawPuzzle() {
         
         ctx.save();
         
-        if (piece.isPlaced) {
-          // Draw placed pieces
-          ctx.drawImage(
-            img,
-            sx, sy, sWidth, sHeight,
-            piece.correctX, piece.correctY, pieceWidth, pieceHeight
-          );
-          ctx.strokeStyle = '#10b981';
-          ctx.lineWidth = 3;
-          ctx.strokeRect(piece.correctX, piece.correctY, pieceWidth, pieceHeight);
-        } else {
-          // Draw unplaced pieces with shadow
-          ctx.shadowColor = 'rgba(0,0,0,0.3)';
-          ctx.shadowBlur = 10;
-          ctx.shadowOffsetX = 2;
-          ctx.shadowOffsetY = 2;
+        // Draw unplaced pieces with shadow
+        ctx.shadowColor = 'rgba(0,0,0,0.3)';
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
+        
+        ctx.drawImage(
+          img,
+          sx, sy, sWidth, sHeight,
+          piece.currentX, piece.currentY, pieceWidth * 0.8, pieceHeight * 0.8
+        );
+        
+        // Highlight dragged piece
+        if (draggedPiece === piece.id) {
+          ctx.strokeStyle = '#3b82f6';
+          ctx.lineWidth = 4;
+          ctx.strokeRect(piece.currentX, piece.currentY, pieceWidth * 0.8, pieceHeight * 0.8);
           
-          ctx.drawImage(
-            img,
-            sx, sy, sWidth, sHeight,
-            piece.currentX, piece.currentY, pieceWidth * 0.8, pieceHeight * 0.8
+          // Draw snap guide when close to correct position
+          const pieceCenterX = piece.currentX + (pieceWidth * 0.8) / 2;
+          const pieceCenterY = piece.currentY + (pieceHeight * 0.8) / 2;
+          const correctCenterX = piece.correctX + pieceWidth / 2;
+          const correctCenterY = piece.correctY + pieceHeight / 2;
+          const distance = Math.sqrt(
+            Math.pow(correctCenterX - pieceCenterX, 2) +
+            Math.pow(correctCenterY - pieceCenterY, 2)
           );
+          const snapThreshold = Math.min(pieceWidth, pieceHeight) * 0.4;
           
-          // Highlight dragged piece
-          if (draggedPiece === piece.id) {
-            ctx.strokeStyle = '#3b82f6';
-            ctx.lineWidth = 4;
-            ctx.strokeRect(piece.currentX, piece.currentY, pieceWidth * 0.8, pieceHeight * 0.8);
-            
-            // Draw snap guide when close to correct position
-            const pieceCenterX = piece.currentX + (pieceWidth * 0.8) / 2;
-            const pieceCenterY = piece.currentY + (pieceHeight * 0.8) / 2;
-            const correctCenterX = piece.correctX + pieceWidth / 2;
-            const correctCenterY = piece.correctY + pieceHeight / 2;
-            const distance = Math.sqrt(
-              Math.pow(correctCenterX - pieceCenterX, 2) +
-              Math.pow(correctCenterY - pieceCenterY, 2)
-            );
-            const snapThreshold = Math.min(pieceWidth, pieceHeight) * 0.4;
-            
-            if (distance < snapThreshold) {
-              ctx.strokeStyle = '#10b981';
-              ctx.lineWidth = 3;
-              ctx.setLineDash([5, 5]);
-              ctx.strokeRect(piece.correctX, piece.correctY, pieceWidth, pieceHeight);
-              ctx.setLineDash([]);
-            }
+          if (distance < snapThreshold) {
+            ctx.strokeStyle = '#10b981';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([5, 5]);
+            ctx.strokeRect(piece.correctX, piece.correctY, pieceWidth, pieceHeight);
+            ctx.setLineDash([]);
           }
         }
         
@@ -865,11 +872,17 @@ export default function JigsawPuzzle() {
         </p>
       </div>
 
-      {/* Win Modal */}
+      {/* Win Modal - Non-blocking */}
       {gameWon && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fadeIn">
-          <div className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-8 max-w-md text-center shadow-2xl border-4 border-purple-300 animate-scaleIn">
-            <div className="text-7xl mb-4 animate-bounce">🎉</div>
+        <div className="fixed bottom-4 right-4 z-50 animate-fadeIn">
+          <div className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-6 max-w-sm text-center shadow-2xl border-4 border-purple-300 animate-scaleIn relative">
+            <button
+              onClick={() => setGameWon(false)}
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl leading-none"
+            >
+              ×
+            </button>
+            <div className="text-6xl mb-3 animate-bounce">🎉</div>
             <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">
               Puzzle Complete!
             </h2>
