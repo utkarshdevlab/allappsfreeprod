@@ -860,25 +860,47 @@ export default function JigsawPuzzle() {
 
       {/* Win Modal */}
       {gameWon && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-2xl p-8 max-w-md text-center">
-            <div className="text-6xl mb-4">🎉</div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Puzzle Complete!</h2>
-            <p className="text-gray-600 mb-4">You finished in {formatTime(timer)}</p>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fadeIn">
+          <div className="bg-gradient-to-br from-white to-purple-50 rounded-2xl p-8 max-w-md text-center shadow-2xl border-4 border-purple-300 animate-scaleIn">
+            <div className="text-7xl mb-4 animate-bounce">🎉</div>
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">
+              Puzzle Complete!
+            </h2>
+            <div className="bg-white rounded-xl p-4 mb-4 border-2 border-purple-200">
+              <div className="text-sm text-gray-600 mb-1">Completion Time</div>
+              <div className="text-3xl font-bold text-purple-600">{formatTime(timer)}</div>
+            </div>
+            <div className="grid grid-cols-3 gap-2 mb-6 text-xs">
+              <div className="bg-blue-50 rounded-lg p-2 border border-blue-200">
+                <div className="font-bold text-blue-900">{selectedPuzzle.pieces}</div>
+                <div className="text-blue-600">Pieces</div>
+              </div>
+              <div className="bg-green-50 rounded-lg p-2 border border-green-200">
+                <div className="font-bold text-green-900 capitalize">{selectedPuzzle.difficulty}</div>
+                <div className="text-green-600">Level</div>
+              </div>
+              <div className="bg-orange-50 rounded-lg p-2 border border-orange-200">
+                <div className="font-bold text-orange-900">{selectedPuzzle.category}</div>
+                <div className="text-orange-600">Category</div>
+              </div>
+            </div>
             <div className="flex gap-3">
               <button
                 onClick={() => setSelectedPuzzle(null)}
-                className="flex-1 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-bold"
+                className="flex-1 px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg hover:from-purple-700 hover:to-purple-800 font-bold shadow-lg transform hover:scale-105 transition-all"
               >
-                Choose Another
+                🎯 Choose Another
               </button>
               <button
                 onClick={() => startPuzzle(selectedPuzzle)}
-                className="flex-1 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-bold"
+                className="flex-1 px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 font-bold shadow-lg transform hover:scale-105 transition-all"
               >
-                Play Again
+                🔄 Play Again
               </button>
             </div>
+            <p className="text-xs text-gray-500 mt-4">
+              Great job! Try a harder difficulty or different category next!
+            </p>
           </div>
         </div>
       )}
