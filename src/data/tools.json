@@ -183,6 +183,45 @@
       "usageCount": 920
     },
     {
+      "id": "emi-calculator",
+      "title": "EMI Calculator",
+      "category": "Finance",
+      "type": "app",
+      "description": "Calculate EMI for home loans, car loans, personal loans with detailed breakup of principal and interest. Free online EMI calculator India 2025",
+      "popularity": 98,
+      "slug": "emi-calculator",
+      "image": "/images/emi-calculator.png",
+      "tags": ["emi", "loan", "calculator", "home loan", "car loan", "personal loan", "finance", "interest"],
+      "lastUsed": "2024-01-17",
+      "usageCount": 5200
+    },
+    {
+      "id": "sip-calculator",
+      "title": "SIP Calculator",
+      "category": "Investment",
+      "type": "app",
+      "description": "Calculate mutual fund SIP returns with our free SIP calculator. Plan your systematic investment and see wealth growth through compounding",
+      "popularity": 97,
+      "slug": "sip-calculator",
+      "image": "/images/sip-calculator.png",
+      "tags": ["sip", "mutual fund", "investment", "calculator", "wealth", "compounding", "returns"],
+      "lastUsed": "2024-01-17",
+      "usageCount": 4800
+    },
+    {
+      "id": "gst-calculator",
+      "title": "GST Calculator",
+      "category": "Tax",
+      "type": "app",
+      "description": "Free GST calculator India 2025. Add or remove GST, calculate CGST, SGST, IGST instantly. Perfect for invoicing and tax filing",
+      "popularity": 96,
+      "slug": "gst-calculator",
+      "image": "/images/gst-calculator.png",
+      "tags": ["gst", "tax", "calculator", "cgst", "sgst", "igst", "invoice", "india"],
+      "lastUsed": "2024-01-17",
+      "usageCount": 4500
+    },
+    {
       "id": "resume-checker",
       "title": "Resume Score Checker",
       "category": "Career",
