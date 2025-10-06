@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 
 // Admin password hash
-const ADMIN_PASSWORD_HASH = 
+const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || 
   'fdb1113f03da1d7f522aa82aa5e8c7bea955f2171dd9d4c533ae2dee670ebba3';
 
 export async function POST(request: NextRequest) {
