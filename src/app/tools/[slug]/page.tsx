@@ -4,6 +4,7 @@ import ToolSection from '@/components/ToolSection';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import ParaphraseTool from '@/components/tools/ParaphraseTool';
 import QRCodeGenerator from '@/components/tools/QRCodeGenerator';
 import ImageConverter from '@/components/tools/ImageConverter';
@@ -233,7 +234,16 @@ export default async function ToolPage({ params }: ToolPageProps) {
           ) : tool.id === 'csv-to-json' ? (
             <CsvToJsonConverter />
           ) : tool.id === 'blackboard' ? (
-            <Blackboard />
+            <Suspense
+              fallback={
+                <div className="min-h-[400px] flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl border border-slate-700 text-white">
+                  <div className="text-4xl">🧠</div>
+                  <p className="text-sm font-medium">Loading collaborative blackboard…</p>
+                </div>
+              }
+            >
+              <Blackboard />
+            </Suspense>
           ) : tool.id === 'ai-directory' ? (
             <AIDirectory />
           ) : (
