@@ -34,6 +34,8 @@ import Random4DigitGenerator from '@/components/tools/Random4DigitGenerator';
 import Random3DigitGenerator from '@/components/tools/Random3DigitGenerator';
 import JsonToCsvConverter from '@/components/tools/JsonToCsvConverter';
 import CsvToJsonConverter from '@/components/tools/CsvToJsonConverter';
+import Blackboard from '@/components/tools/Blackboard';
+import AIDirectory from '@/components/tools/AIDirectory';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -80,87 +82,90 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
 
 export default async function ToolPage({ params }: ToolPageProps) {
   const { slug } = await params;
-  const tool = getToolBySlug(slug);
+  const toolLookup = getToolBySlug(slug);
   
-  if (!tool) {
+  if (!toolLookup) {
     notFound();
+    return null;
   }
 
-  const relatedTools = getToolsByType(tool.type).filter(t => t.id !== tool.id).slice(0, 4);
+  const tool = toolLookup;
+
+  const relatedTools = getToolsByType(tool.type).filter((t) => t.id !== tool.id).slice(0, 4);
 
   const thumbnailUrl = getToolThumbnail(tool.id);
 
+  const showHero = tool.id !== 'blackboard';
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      {/* Hero Header with Thumbnail */}
-      <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
-        }}></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* Breadcrumb */}
-          <nav className="flex items-center space-x-2 text-sm text-white/80 mb-6">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span>→</span>
-            <Link href="/tools" className="hover:text-white transition-colors">Tools</Link>
-            <span>→</span>
-            <span className="text-white font-medium">{tool.title}</span>
-          </nav>
+      {showHero && (
+        <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 overflow-hidden">
+          <div className="absolute inset-0 bg-black opacity-10"></div>
+          <div className="absolute inset-0" style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
+          }}></div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-            {/* Tool Info */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
-                <span className={`px-4 py-2 text-sm font-bold rounded-full backdrop-blur-sm shadow-lg ${
-                  tool.type === 'game' 
-                    ? 'bg-purple-600 text-white border-2 border-purple-400' 
-                    : 'bg-blue-600 text-white border-2 border-blue-400'
-                }`}>
-                  {tool.type === 'game' ? '🎮 GAME' : '⚙️ APP'}
-                </span>
-                <span className="px-4 py-2 text-sm font-bold bg-gray-800 text-white rounded-full backdrop-blur-sm border-2 border-gray-600 shadow-lg">
-                  {tool.category}
-                </span>
-              </div>
-              
-              <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight drop-shadow-lg">
-                {tool.title}
-              </h1>
-              <p className="text-xl text-white mb-6 leading-relaxed drop-shadow-md">
-                {tool.description}
-              </p>
-              
-              <div className="flex flex-wrap items-center gap-4">
-                <div className="flex items-center space-x-2 bg-gray-800/90 backdrop-blur-sm px-4 py-2 rounded-full border-2 border-gray-600 shadow-lg">
-                  <span className="text-2xl">⭐</span>
-                  <span className="text-white font-bold">{tool.popularity}% Popular</span>
-                </div>
-                <div className="flex items-center space-x-2 bg-gray-800/90 backdrop-blur-sm px-4 py-2 rounded-full border-2 border-gray-600 shadow-lg">
-                  <span className="text-2xl">👥</span>
-                  <span className="text-white font-bold">{tool.usageCount.toLocaleString()} uses</span>
-                </div>
-              </div>
-            </div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <nav className="flex items-center space-x-2 text-sm text-white/80 mb-6">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span>→</span>
+              <Link href="/tools" className="hover:text-white transition-colors">Tools</Link>
+              <span>→</span>
+              <span className="text-white font-medium">{tool.title}</span>
+            </nav>
             
-            {/* Thumbnail */}
-            <div className="lg:col-span-1">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                <Image 
-                  src={thumbnailUrl} 
-                  alt={tool.title}
-                  width={400}
-                  height={300}
-                  className="relative w-full h-48 object-cover rounded-2xl shadow-2xl border-4 border-white/20"
-                  unoptimized
-                />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+              <div className="lg:col-span-2">
+                <div className="flex items-center space-x-3 mb-4">
+                  <span className={`px-4 py-2 text-sm font-bold rounded-full backdrop-blur-sm shadow-lg ${
+                    tool.type === 'game' 
+                      ? 'bg-purple-600 text-white border-2 border-purple-400' 
+                      : 'bg-blue-600 text-white border-2 border-blue-400'
+                  }`}>
+                    {tool.type === 'game' ? '🎮 GAME' : '⚙️ APP'}
+                  </span>
+                  <span className="px-4 py-2 text-sm font-bold bg-gray-800 text-white rounded-full backdrop-blur-sm border-2 border-gray-600 shadow-lg">
+                    {tool.category}
+                  </span>
+                </div>
+                
+                <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight drop-shadow-lg">
+                  {tool.title}
+                </h1>
+                <p className="text-xl text-white mb-6 leading-relaxed drop-shadow-md">
+                  {tool.description}
+                </p>
+                
+                <div className="flex flex-wrap items-center gap-4">
+                  <div className="flex items-center space-x-2 bg-gray-800/90 backdrop-blur-sm px-4 py-2 rounded-full border-2 border-gray-600 shadow-lg">
+                    <span className="text-2xl">⭐</span>
+                    <span className="text-white font-bold">{tool.popularity}% Popular</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-gray-800/90 backdrop-blur-sm px-4 py-2 rounded-full border-2 border-gray-600 shadow-lg">
+                    <span className="text-2xl">👥</span>
+                    <span className="text-white font-bold">{tool.usageCount.toLocaleString()} uses</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="lg:col-span-1">
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+                  <Image 
+                    src={thumbnailUrl} 
+                    alt={tool.title}
+                    width={400}
+                    height={300}
+                    className="relative w-full h-48 object-cover rounded-2xl shadow-2xl border-4 border-white/20"
+                    unoptimized
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -227,6 +232,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <JsonToCsvConverter />
           ) : tool.id === 'csv-to-json' ? (
             <CsvToJsonConverter />
+          ) : tool.id === 'blackboard' ? (
+            <Blackboard />
+          ) : tool.id === 'ai-directory' ? (
+            <AIDirectory />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">

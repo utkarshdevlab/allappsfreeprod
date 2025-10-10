@@ -287,6 +287,19 @@
       "usageCount": 3950
     },
     {
+      "id": "blackboard",
+      "title": "Collaborative Blackboard",
+      "category": "Productivity",
+      "type": "app",
+      "description": "Sketch, ideate, and share ideas on a live WebRTC blackboard with instant room links and smooth drawing controls.",
+      "popularity": 88,
+      "slug": "collaborative-blackboard",
+      "image": "/images/collaborative-blackboard.png",
+      "tags": ["blackboard", "collaboration", "drawing", "whiteboard", "team", "brainstorm"],
+      "lastUsed": "2024-01-19",
+      "usageCount": 2560
+    },
+    {
       "id": "emi-calculator",
       "title": "EMI Calculator",
       "category": "Finance",
@@ -376,6 +389,19 @@
       "tags": ["base64", "encoder", "developer"],
       "lastUsed": "2024-01-09",
       "usageCount": 420
+    },
+    {
+      "id": "ai-directory",
+      "title": "AI Tool Directory",
+      "category": "AI",
+      "type": "app",
+      "description": "Curated directory of AI-powered tools for product managers, designers, developers, and more—filter by role and discover free or paid options instantly.",
+      "popularity": 88,
+      "slug": "ai-tool-directory",
+      "image": "/images/ai-directory.png",
+      "tags": ["ai", "directory", "product", "design", "developer"],
+      "lastUsed": "2024-01-20",
+      "usageCount": 2780
     }
   ]
 }

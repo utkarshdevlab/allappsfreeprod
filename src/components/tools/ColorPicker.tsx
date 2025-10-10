@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface ColorInfo {
   hex: string;
@@ -95,23 +95,34 @@ export default function ColorPicker() {
 
     const reader = new FileReader();
     reader.onload = (event) => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-
-        ctx.drawImage(img, 0, 0);
-        setUploadedImage(event.target?.result as string);
-      };
-      img.src = event.target?.result as string;
+      const result = event.target?.result as string | undefined;
+      if (!result) return;
+      setUploadedImage(result);
     };
     reader.readAsDataURL(file);
   };
+
+  useEffect(() => {
+    if (!uploadedImage) return;
+
+    const img = new Image();
+    img.onload = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.drawImage(img, 0, 0);
+    };
+    img.src = uploadedImage;
+
+    return () => {
+      img.onload = null;
+    };
+  }, [uploadedImage]);
 
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
