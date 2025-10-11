@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import * as Y from 'yjs';
 import { WebrtcProvider } from 'y-webrtc';
+import { WebsocketProvider } from 'y-websocket';
 
 type ToolMode = 'pen' | 'eraser';
 
@@ -19,6 +20,7 @@ type StrokeMap = Y.Map<unknown> & {
 
 const COLORS = ['#ffffff', '#ffd166', '#ff6b6b', '#70f2b0', '#38bdf8', '#c084fc'];
 const SIGNALING = ['wss://signaling.yjs.dev', 'wss://y-webrtc-signaling-us.fly.dev'];
+const WEBSOCKET_ENDPOINT = 'wss://demos.yjs.dev';
 const ROOM_PREFIX = 'aaf-blackboard-';
 
 const createRoomId = () => `bb-${Math.random().toString(36).slice(2, 8)}-${Date.now().toString(36)}`;
@@ -28,6 +30,7 @@ export default function Blackboard() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const docRef = useRef<Y.Doc | null>(null);
   const providerRef = useRef<WebrtcProvider | null>(null);
+  const websocketProviderRef = useRef<WebsocketProvider | null>(null);
   const strokesRef = useRef<Y.Array<StrokeMap> | null>(null);
   const currentStrokeRef = useRef<StrokeMap | null>(null);
   const drawingRef = useRef(false);
@@ -232,13 +235,22 @@ export default function Blackboard() {
   useEffect(() => {
     if (!roomId) return;
     const doc = new Y.Doc();
-    const provider = new WebrtcProvider(`${ROOM_PREFIX}${roomId}`, doc, {
+    const webrtcProvider = new WebrtcProvider(`${ROOM_PREFIX}${roomId}`, doc, {
       signaling: SIGNALING,
     });
+    const websocketProvider = new WebsocketProvider(
+      WEBSOCKET_ENDPOINT,
+      `${ROOM_PREFIX}${roomId}`,
+      doc,
+      {
+        awareness: webrtcProvider.awareness,
+      }
+    );
     const strokes = doc.getArray<StrokeMap>('strokes');
 
     docRef.current = doc;
-    providerRef.current = provider;
+    providerRef.current = webrtcProvider;
+    websocketProviderRef.current = websocketProvider;
     strokesRef.current = strokes;
     setIsRealtimeReady(true);
 
@@ -247,21 +259,24 @@ export default function Blackboard() {
     resizeCanvas();
     renderCanvas();
 
-    const updateCount = () => setParticipants(provider.awareness.getStates().size);
-    provider.awareness.setLocalStateField('name', `user-${Math.random().toString(36).slice(2, 5)}`);
+    const awareness = webrtcProvider.awareness;
+    const updateCount = () => setParticipants(awareness.getStates().size);
+    awareness.setLocalStateField('name', `user-${Math.random().toString(36).slice(2, 5)}`);
     updateCount();
-    provider.awareness.on('change', updateCount);
+    awareness.on('change', updateCount);
 
     window.addEventListener('resize', resizeCanvas);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       strokes.unobserveDeep(observer);
-      provider.awareness.off('change', updateCount);
-      provider.destroy();
+      awareness.off('change', updateCount);
+      webrtcProvider.destroy();
+      websocketProvider.destroy();
       doc.destroy();
       docRef.current = null;
       providerRef.current = null;
+      websocketProviderRef.current = null;
       strokesRef.current = null;
       setIsRealtimeReady(false);
     };
@@ -552,8 +567,8 @@ export default function Blackboard() {
           >
             <canvas ref={canvasRef} className="w-full h-full cursor-crosshair touch-none" />
 
-            <div className="absolute inset-x-0 top-0 flex flex-wrap items-center gap-4 bg-black/50 backdrop-blur-sm rounded-t-2xl px-4 py-3 border-b border-white/10">
-              <div className="flex items-center gap-4">
+            <div className="absolute inset-x-0 top-0 flex flex-wrap items-center gap-4 bg-black/50 backdrop-blur-sm rounded-t-2xl px-4 py-3 border-b border-white/10 pointer-events-none">
+              <div className="flex items-center gap-4 pointer-events-auto">
                 {toolbarItems.map((item) => (
                   <button
                     key={item.id}
@@ -580,7 +595,7 @@ export default function Blackboard() {
                   <span className="text-xs text-slate-300 w-8 text-right">{brush}px</span>
                 </label>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 pointer-events-auto">
                   {COLORS.map((paletteColor) => (
                     <button
                       key={paletteColor}
@@ -593,7 +608,7 @@ export default function Blackboard() {
                   ))}
                 </div>
 
-                <div className="ml-auto flex items-center gap-2">
+                <div className="ml-auto flex items-center gap-2 pointer-events-auto">
                   <button
                     onClick={handleToggleFullscreen}
                     className="px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white/10 text-white border border-white/20 hover:bg-white/20"
