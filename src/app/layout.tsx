@@ -17,7 +17,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const metadataBase = new URL(process.env.NEXT_PUBLIC_CANONICAL_BASE_URL ?? "https://www.allappsfree.com");
+
 export const metadata: Metadata = {
+  metadataBase,
   title: "All Apps Free - Games & Tools",
   description: "Discover amazing games and useful tools. Everything you need, completely free. Play games, use utilities, and explore our collection of free online tools.",
   keywords: ["free games", "online tools", "utilities", "apps", "games", "free software"],
@@ -38,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://allappsfree.com",
+    url: metadataBase.toString(),
     title: "All Apps Free - Games & Tools",
     description: "Discover amazing games and useful tools. Everything you need, completely free.",
     siteName: "All Apps Free",
@@ -47,10 +50,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "All Apps Free - Games & Tools",
     description: "Discover amazing games and useful tools. Everything you need, completely free.",
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
   },
 };
 
@@ -63,6 +62,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <StructuredData type="website" />
+        <link rel="canonical" href={metadataBase.toString()} />
         {seoConfig.verification.google && (
           <meta name="google-site-verification" content={seoConfig.verification.google} />
         )}

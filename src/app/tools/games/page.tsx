@@ -1,5 +1,22 @@
 import { getToolsByType, getTopCategories, getRecentlyUsed, getMostUsed } from '@/utils/tools';
 import ToolSection from '@/components/ToolSection';
+import Link from 'next/link';
+import type { Metadata } from 'next';
+
+const canonicalBase = process.env.NEXT_PUBLIC_CANONICAL_BASE_URL ?? 'https://www.allappsfree.com';
+
+export const metadata: Metadata = {
+  title: 'Games - All Apps Free',
+  description: 'Play free online games available on All Apps Free.',
+  alternates: {
+    canonical: '/tools/games',
+  },
+  openGraph: {
+    title: 'Games - All Apps Free',
+    description: 'Play free online games available on All Apps Free.',
+    url: `${canonicalBase}/tools/games`,
+  },
+};
 
 export const dynamic = 'force-static';
 
@@ -61,7 +78,7 @@ export default function GamesPage() {
         />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {topCategories.map((category) => (
-            <a
+            <Link
               key={category.name}
               href={`/tools/category/${encodeURIComponent(category.name.toLowerCase())}`}
               className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow text-center"
@@ -76,7 +93,7 @@ export default function GamesPage() {
               </div>
               <h3 className="font-semibold text-sm text-gray-900">{category.name}</h3>
               <p className="text-xs text-gray-500">{category.count} tools</p>
-            </a>
+            </Link>
           ))}
         </div>
       </main>

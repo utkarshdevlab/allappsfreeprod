@@ -52,6 +52,8 @@ export async function generateStaticParams() {
   }));
 }
 
+const canonicalBase = process.env.NEXT_PUBLIC_CANONICAL_BASE_URL ?? 'https://www.allappsfree.com';
+
 export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
   const { slug } = await params;
   const tool = getToolBySlug(slug);
@@ -63,15 +65,20 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
     };
   }
 
+  const canonicalPath = `/tools/${tool.slug}`;
+
   return {
     title: `${tool.title} - All Apps Free`,
     description: tool.description,
     keywords: [...tool.tags, tool.category, tool.type, 'free', 'online'],
+    alternates: {
+      canonical: canonicalPath,
+    },
     openGraph: {
       title: `${tool.title} - All Apps Free`,
       description: tool.description,
       type: 'website',
-      url: `https://allappsfree.com/tools/${tool.slug}`,
+      url: `${canonicalBase}${canonicalPath}`,
     },
     twitter: {
       card: 'summary_large_image',
