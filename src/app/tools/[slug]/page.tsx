@@ -33,6 +33,7 @@ import Random6DigitGenerator from '@/components/tools/Random6DigitGenerator';
 import Random5DigitGenerator from '@/components/tools/Random5DigitGenerator';
 import Random4DigitGenerator from '@/components/tools/Random4DigitGenerator';
 import Random3DigitGenerator from '@/components/tools/Random3DigitGenerator';
+import RandomAlphanumericGenerator from '@/components/tools/RandomAlphanumericGenerator';
 import JsonToCsvConverter from '@/components/tools/JsonToCsvConverter';
 import CsvToJsonConverter from '@/components/tools/CsvToJsonConverter';
 import Blackboard from '@/components/tools/Blackboard';
@@ -236,6 +237,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <Random4DigitGenerator />
           ) : tool.id === 'random-3-digit' ? (
             <Random3DigitGenerator />
+          ) : tool.id === 'random-alphanumeric' ? (
+            <RandomAlphanumericGenerator />
           ) : tool.id === 'json-to-csv' ? (
             <JsonToCsvConverter />
           ) : tool.id === 'csv-to-json' ? (

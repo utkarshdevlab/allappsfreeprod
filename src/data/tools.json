@@ -261,6 +261,19 @@
       "usageCount": 3400
     },
     {
+      "id": "random-alphanumeric",
+      "title": "Random Alphanumeric String Generator",
+      "category": "Utility",
+      "type": "app",
+      "description": "Generate secure alphanumeric strings with customizable length, prefixes, suffixes, uniqueness controls, and instant CSV/JSON/TXT export.",
+      "popularity": 89,
+      "slug": "random-alphanumeric-generator",
+      "image": "/images/random-alphanumeric.png",
+      "tags": ["random", "string generator", "alphanumeric", "codes", "token", "coupon"],
+      "lastUsed": "2024-01-19",
+      "usageCount": 3650
+    },
+    {
       "id": "json-to-csv",
       "title": "JSON to CSV Converter",
       "category": "Utility",
