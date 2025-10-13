@@ -209,7 +209,7 @@ export default function RandomAlphanumericGenerator() {
           <div className="bg-purple-50 border border-purple-100 rounded-2xl px-6 py-4 text-center">
             <div className="text-purple-500 text-sm uppercase tracking-widest">String Length</div>
             <div className="text-4xl font-bold text-purple-700 mt-1">{length}</div>
-            <div className="text-xs text-purple-400 mt-1">Prefix "{prefix || "—"}" · Suffix "{suffix || "—"}"</div>
+            <div className="text-xs text-purple-400 mt-1">Prefix &ldquo;{prefix || "—"}&rdquo; · Suffix &ldquo;{suffix || "—"}&rdquo;</div>
           </div>
         </div>
 
