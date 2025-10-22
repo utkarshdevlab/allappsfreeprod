@@ -1,6 +1,19 @@
 {
   "tools": [
     {
+      "id": "us-phone-generator",
+      "title": "US Phone Number Generator",
+      "category": "Utility",
+      "type": "app",
+      "description": "Generate valid US phone numbers with state-specific area codes for testing and development",
+      "popularity": 94,
+      "slug": "us-phone-generator",
+      "image": "/images/phone-icon.png",
+      "tags": ["phone", "generator", "testing", "development", "us", "validation"],
+      "lastUsed": "2024-10-22",
+      "usageCount": 0
+    },
+    {
       "id": "password-generator",
       "title": "Password Generator",
       "category": "Security",
