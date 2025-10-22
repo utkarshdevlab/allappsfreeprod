@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Download, ChevronDown, RefreshCw } from 'lucide-react';
+import { Copy, Download, RefreshCw } from 'lucide-react';
 import { useState, useCallback, useEffect } from 'react';
 
 // US state to area code mapping
@@ -150,7 +150,7 @@ const SEOSection = () => (
           <div>
             <h4 className="font-semibold text-gray-800">What formats are supported?</h4>
             <p className="text-gray-700">
-              The tool supports multiple formats including (XXX) XXX-XXXX, XXX-XXX-XXXX, and international +1 XXX-XXX-XXXX. You can customize the output to match your application's requirements.
+              The tool supports multiple formats including (XXX) XXX-XXXX, XXX-XXX-XXXX, and international +1 XXX-XXX-XXXX. You can customize the output to match your application&apos;s requirements.
             </p>
           </div>
           <div>
