@@ -2,7 +2,14 @@ import { getAllTools } from '@/utils/tools';
 
 export const dynamic = 'force-static';
 
-const canonicalBase = process.env.NEXT_PUBLIC_CANONICAL_BASE_URL ?? 'https://www.allappsfree.com';
+// Force www as canonical
+const canonicalBase = 'https://www.allappsfree.com';
+
+// Ensure the environment variable matches our canonical base URL
+if (process.env.NEXT_PUBLIC_CANONICAL_BASE_URL && 
+    process.env.NEXT_PUBLIC_CANONICAL_BASE_URL !== canonicalBase) {
+  console.warn(`NEXT_PUBLIC_CANONICAL_BASE_URL should be set to ${canonicalBase}`);
+}
 
 export default function sitemap() {
   const tools = getAllTools();
