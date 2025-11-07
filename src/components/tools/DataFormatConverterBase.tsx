@@ -321,7 +321,7 @@ export default function DataFormatConverterBase({
   });
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const noticeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const noticeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const modeOptions = useMemo(
     () => [
@@ -361,13 +361,26 @@ export default function DataFormatConverterBase({
   );
 
   const showNotice = useCallback((message: string) => {
-    if (noticeTimeoutRef.current) {
-      clearTimeout(noticeTimeoutRef.current);
+    const currentNoticeTimeoutRef = noticeTimeoutRef;
+    
+    if (currentNoticeTimeoutRef.current) {
+      clearTimeout(currentNoticeTimeoutRef.current);
     }
+    
     setNotice(message);
-    noticeTimeoutRef.current = setTimeout(() => setNotice(null), 2600);
+    
+    currentNoticeTimeoutRef.current = setTimeout(() => {
+      setNotice(null);
+    }, 2600) as unknown as NodeJS.Timeout;
+    
+    return () => {
+      if (currentNoticeTimeoutRef.current) {
+        clearTimeout(currentNoticeTimeoutRef.current);
+      }
+    };
   }, []);
-
+  
+  // Cleanup on unmount
   useEffect(() => {
     return () => {
       if (noticeTimeoutRef.current) {
