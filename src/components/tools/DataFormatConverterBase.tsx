@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type ReactNode } from 'react';
+import { Copy, Check } from 'lucide-react';
 
 const MAX_HISTORY = 6;
 
@@ -46,7 +47,19 @@ type PreviewTable = {
 
 function escapeCsvValue(value: unknown, wrap: boolean) {
   if (value === null || value === undefined) return '';
-  const stringValue = String(value);
+  
+  // Handle nested objects and arrays by stringifying them
+  let stringValue: string;
+  if (typeof value === 'object') {
+    try {
+      stringValue = JSON.stringify(value);
+    } catch {
+      stringValue = String(value);
+    }
+  } else {
+    stringValue = String(value);
+  }
+  
   const containsSpecial = /[\",\n\r;]/.test(stringValue);
   if (!wrap && !containsSpecial) {
     return stringValue;
@@ -140,6 +153,25 @@ function parseCsv(content: string, delimiter: CsvDelimiter): string[][] {
   return rows.filter((row) => row.length > 0 && row.some((cell) => cell.trim().length > 0));
 }
 
+function flattenObject(obj: Record<string, any>, prefix = ''): Record<string, any> {
+  return Object.keys(obj).reduce((acc, k) => {
+    const pre = prefix.length ? `${prefix}.` : '';
+    if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
+      Object.assign(acc, flattenObject(obj[k], pre + k));
+    } else if (Array.isArray(obj[k])) {
+      // Handle arrays by joining them with semicolons
+      acc[pre + k] = obj[k].map((item: any) => 
+        typeof item === 'object' && item !== null 
+          ? JSON.stringify(item) 
+          : String(item)
+      ).join('; ');
+    } else {
+      acc[pre + k] = obj[k];
+    }
+    return acc;
+  }, {} as Record<string, any>);
+}
+
 function convertJsonToCsv(
   input: string,
   options: JsonToCsvOptions
@@ -159,10 +191,14 @@ function convertJsonToCsv(
     return { error: 'JSON must be an object or an array of objects with at least one entry.' };
   }
 
-  const rows = asArray as Record<string, unknown>[];
+  // Flatten nested objects in each row
+  const flattenedRows = asArray.map(row => 
+    typeof row === 'object' && row !== null ? flattenObject(row) : { value: row }
+  ) as Record<string, unknown>[];
 
+  // Get all unique headers from all rows
   const headers = Array.from(
-    rows.reduce((set, row) => {
+    flattenedRows.reduce((set, row) => {
       Object.keys(row).forEach((key) => set.add(key));
       return set;
     }, new Set<string>())
@@ -174,6 +210,7 @@ function convertJsonToCsv(
 
   const csvRows: string[] = [];
 
+  // Add header row if needed
   if (options.includeHeaders) {
     const headerRow = headers
       .map((header) => escapeCsvValue(header, true))
@@ -181,14 +218,22 @@ function convertJsonToCsv(
     csvRows.push(headerRow);
   }
 
-  rows.forEach((row) => {
+  // Add data rows
+  flattenedRows.forEach((row) => {
     const csvRow = headers
       .map((header) => escapeCsvValue(row[header], options.wrapValuesInQuotes))
       .join(options.delimiter);
     csvRows.push(csvRow);
   });
 
-  const previewRows = rows.slice(0, 6).map((row) => headers.map((header) => String(row[header] ?? '')));
+  // Prepare preview data (first 6 rows)
+  const previewRows = flattenedRows.slice(0, 6).map((row) => 
+    headers.map((header) => {
+      const value = row[header];
+      if (value === null || value === undefined) return '';
+      return String(value);
+    })
+  );
 
   return {
     csv: csvRows.join('\n'),
@@ -261,6 +306,7 @@ export default function DataFormatConverterBase({
   const [preview, setPreview] = useState<PreviewTable | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const [csvToJsonOptions, setCsvToJsonOptions] = useState<CsvToJsonOptions>({
     delimiter: ',',
@@ -383,11 +429,77 @@ export default function DataFormatConverterBase({
     }, 120);
   }, [csvToJsonOptions, inputText, jsonToCsvOptions, mode, showNotice]);
 
-  const handleCopy = async (text: string, label: string) => {
-    if (!text) return;
-    await navigator.clipboard.writeText(text);
-    showNotice(`${label} copied to clipboard.`);
+  // Fallback copy method for older browsers
+  const fallbackCopyToClipboard = (text: string) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      const successful = document.execCommand('copy');
+      if (!successful) {
+        throw new Error('Fallback copy failed');
+      }
+      return Promise.resolve();
+    } catch (err) {
+      console.error('Fallback copy failed:', err);
+      return Promise.reject(err);
+    } finally {
+      document.body.removeChild(textArea);
+    }
   };
+
+  const safeCopyToClipboard = async (text: string) => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        await fallbackCopyToClipboard(text);
+      }
+      return true;
+    } catch (err) {
+      console.error('Failed to copy:', err);
+      showNotice('Failed to copy to clipboard. Please try again.');
+      return false;
+    }
+  };
+
+  const handleCopy = useCallback(async (text: string, message: string) => {
+    const success = await safeCopyToClipboard(text);
+    if (success) {
+      showNotice(`${message} copied to clipboard!`);
+    }
+  }, [showNotice]);
+
+  const copyTableToClipboard = useCallback(async () => {
+    if (!preview) return;
+    
+    // Create TSV (tab-separated values) for better compatibility with spreadsheets
+    let tsvContent = '';
+    
+    // Add headers
+    tsvContent += preview.headers.join('\t') + '\n';
+    
+    // Add rows
+    preview.rows.forEach(row => {
+      tsvContent += row.map(cell => 
+        // Replace any existing tabs in cell content with spaces
+        String(cell || '').replace(/\t/g, ' ')
+      ).join('\t') + '\n';
+    });
+    
+    // Copy to clipboard
+    const success = await safeCopyToClipboard(tsvContent);
+    if (success) {
+      setCopied(true);
+      showNotice('Table copied to clipboard!');
+      setTimeout(() => setCopied(false), 2000);
+    }
+  }, [preview, showNotice]);
 
   const handleDownload = (content: string, extension: 'csv' | 'json') => {
     if (!content) return;
@@ -610,7 +722,26 @@ export default function DataFormatConverterBase({
 
             {preview && (
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">Preview ({preview.rows.length} rows)</h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900">Preview ({preview.rows.length} rows)</h3>
+                  <button
+                    onClick={copyTableToClipboard}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
+                    title="Copy table to clipboard"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-4 h-4" />
+                        <span>Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4" />
+                        <span>Copy Table</span>
+                      </>
+                    )}
+                  </button>
+                </div>
                 <div className="overflow-x-auto border border-gray-200 rounded-2xl">
                   <table className="min-w-full divide-y divide-gray-200 text-sm">
                     <thead className="bg-gray-50">
