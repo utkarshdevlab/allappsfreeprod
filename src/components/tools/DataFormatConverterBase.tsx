@@ -323,8 +323,6 @@ export default function DataFormatConverterBase({
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const noticeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const currentOptions = mode === 'json-to-csv' ? jsonToCsvOptions : csvToJsonOptions;
-
   const modeOptions = useMemo(
     () => [
       {
@@ -430,30 +428,32 @@ export default function DataFormatConverterBase({
   }, [csvToJsonOptions, inputText, jsonToCsvOptions, mode, showNotice]);
 
   // Fallback copy method for older browsers
-  const fallbackCopyToClipboard = (text: string) => {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.position = 'fixed';
-    textArea.style.opacity = '0';
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    
-    try {
-      const successful = document.execCommand('copy');
-      if (!successful) {
-        throw new Error('Fallback copy failed');
+  const fallbackCopyToClipboard = (text: string): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        if (!successful) {
+          throw new Error('Fallback copy failed');
+        }
+        resolve();
+      } catch (err) {
+        console.error('Fallback copy failed:', err);
+        reject(err);
       }
-      return Promise.resolve();
-    } catch (err) {
-      console.error('Fallback copy failed:', err);
-      return Promise.reject(err);
-    } finally {
-      document.body.removeChild(textArea);
-    }
+    });
   };
 
-  const safeCopyToClipboard = async (text: string) => {
+  const safeCopyToClipboard = useCallback(async (text: string): Promise<boolean> => {
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(text);
@@ -466,14 +466,14 @@ export default function DataFormatConverterBase({
       showNotice('Failed to copy to clipboard. Please try again.');
       return false;
     }
-  };
+  }, [showNotice]);
 
   const handleCopy = useCallback(async (text: string, message: string) => {
     const success = await safeCopyToClipboard(text);
     if (success) {
       showNotice(`${message} copied to clipboard!`);
     }
-  }, [showNotice]);
+  }, [showNotice, safeCopyToClipboard]);
 
   const copyTableToClipboard = useCallback(async () => {
     if (!preview) return;
@@ -499,7 +499,7 @@ export default function DataFormatConverterBase({
       showNotice('Table copied to clipboard!');
       setTimeout(() => setCopied(false), 2000);
     }
-  }, [preview, showNotice]);
+  }, [preview, showNotice, safeCopyToClipboard]);
 
   const handleDownload = (content: string, extension: 'csv' | 'json') => {
     if (!content) return;
