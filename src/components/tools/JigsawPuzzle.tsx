@@ -75,9 +75,7 @@ const PUZZLE_LIBRARY: Puzzle[] = [
 export default function JigsawPuzzle() {
   const [selectedPuzzle, setSelectedPuzzle] = useState<Puzzle | null>(null);
   const [pieces, setPieces] = useState<PuzzlePiece[]>([]);
-  const [selectedPiece, setSelectedPiece] = useState<number | null>(null);
   const [draggedPiece, setDraggedPiece] = useState<number | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [completedPieces, setCompletedPieces] = useState(0);
   const [gameWon, setGameWon] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -164,29 +162,25 @@ export default function JigsawPuzzle() {
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || draggedPiece === null) return;
     
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
-    setMousePos({ x, y });
+    const gridSize = Math.sqrt(selectedPuzzle?.pieces || 9);
+    const pieceWidth = 600 / gridSize;
+    const pieceHeight = 600 / gridSize;
     
-    if (draggedPiece !== null) {
-      const gridSize = Math.sqrt(selectedPuzzle?.pieces || 9);
-      const pieceWidth = 600 / gridSize;
-      const pieceHeight = 600 / gridSize;
-      
-      setPieces(prev => prev.map(piece => {
-        if (piece.id === draggedPiece) {
-          return { ...piece, currentX: x - (pieceWidth * 0.4), currentY: y - (pieceHeight * 0.4) };
-        }
-        return piece;
-      }));
-    }
-  };
+    setPieces(prev => prev.map(piece => {
+      if (piece.id === draggedPiece) {
+        return { ...piece, currentX: x - (pieceWidth * 0.4), currentY: y - (pieceHeight * 0.4) };
+      }
+      return piece;
+    }));
+  }, [draggedPiece, selectedPuzzle]);
 
   const handleMouseUp = () => {
     if (draggedPiece === null) return;

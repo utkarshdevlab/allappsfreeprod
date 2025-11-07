@@ -153,23 +153,25 @@ function parseCsv(content: string, delimiter: CsvDelimiter): string[][] {
   return rows.filter((row) => row.length > 0 && row.some((cell) => cell.trim().length > 0));
 }
 
-function flattenObject(obj: Record<string, any>, prefix = ''): Record<string, any> {
+function flattenObject(obj: Record<string, unknown>, prefix = ''): Record<string, unknown> {
   return Object.keys(obj).reduce((acc, k) => {
     const pre = prefix.length ? `${prefix}.` : '';
-    if (typeof obj[k] === 'object' && obj[k] !== null && !Array.isArray(obj[k])) {
-      Object.assign(acc, flattenObject(obj[k], pre + k));
-    } else if (Array.isArray(obj[k])) {
+    const value = obj[k];
+    
+    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      Object.assign(acc, flattenObject(value as Record<string, unknown>, pre + k));
+    } else if (Array.isArray(value)) {
       // Handle arrays by joining them with semicolons
-      acc[pre + k] = obj[k].map((item: any) => 
+      (acc as Record<string, unknown>)[pre + k] = value.map((item: unknown) => 
         typeof item === 'object' && item !== null 
           ? JSON.stringify(item) 
           : String(item)
       ).join('; ');
     } else {
-      acc[pre + k] = obj[k];
+      (acc as Record<string, unknown>)[pre + k] = value;
     }
     return acc;
-  }, {} as Record<string, any>);
+  }, {} as Record<string, unknown>);
 }
 
 function convertJsonToCsv(
@@ -361,30 +363,25 @@ export default function DataFormatConverterBase({
   );
 
   const showNotice = useCallback((message: string) => {
-    const currentNoticeTimeoutRef = noticeTimeoutRef;
+    const currentTimeout = noticeTimeoutRef.current;
     
-    if (currentNoticeTimeoutRef.current) {
-      clearTimeout(currentNoticeTimeoutRef.current);
+    if (currentTimeout) {
+      clearTimeout(currentTimeout);
     }
     
     setNotice(message);
     
-    currentNoticeTimeoutRef.current = setTimeout(() => {
+    noticeTimeoutRef.current = window.setTimeout(() => {
       setNotice(null);
     }, 2600) as unknown as NodeJS.Timeout;
-    
-    return () => {
-      if (currentNoticeTimeoutRef.current) {
-        clearTimeout(currentNoticeTimeoutRef.current);
-      }
-    };
   }, []);
   
   // Cleanup on unmount
   useEffect(() => {
+    const timeout = noticeTimeoutRef.current;
     return () => {
-      if (noticeTimeoutRef.current) {
-        clearTimeout(noticeTimeoutRef.current);
+      if (timeout) {
+        clearTimeout(timeout);
       }
     };
   }, []);
