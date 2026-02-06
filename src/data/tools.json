@@ -1,6 +1,19 @@
 {
   "tools": [
     {
+      "id": "fake-credit-card-generator",
+      "title": "Fake Credit Card Generator",
+      "category": "Security",
+      "type": "app",
+      "description": "Generate Luhn-validated fake credit card numbers for testing. Support Visa, Mastercard, Amex, Discover, JCB, Diners Club, UnionPay with CVV and expiry dates",
+      "popularity": 92,
+      "slug": "fake-credit-card-generator",
+      "image": "/images/credit-card-icon.svg",
+      "tags": ["credit card", "generator", "testing", "development", "luhn", "payment", "qa", "validation"],
+      "lastUsed": "2024-01-15",
+      "usageCount": 850
+    },
+    {
       "id": "us-phone-generator",
       "title": "US Phone Number Generator",
       "category": "Utility",

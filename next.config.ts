@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const isProduction = process.env.NODE_ENV === 'production';
-const canonicalBase = process.env.NEXT_PUBLIC_CANONICAL_BASE_URL || 'https://www.allappsfree.com';
 
 const nextConfig: NextConfig = {
   trailingSlash: false,
