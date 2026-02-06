@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#F3F4F6"/>
+  <rect x="50" y="50" width="700" height="500" rx="20" fill="white" stroke="#E5E7EB" stroke-width="2"/>
+  <rect x="100" y="100" width="600" height="300" fill="#E5E7EB"/>
+  <path d="M100 100L350 300L450 200L700 400V100H100Z" fill="#3B82F6" fill-opacity="0.2"/>
+  <path d="M700 400L450 200L600 100" stroke="#3B82F6" stroke-width="2"/>
+  <path d="M450 200L350 300" stroke="#3B82F6" stroke-width="2"/>
+  <path d="M350 300L100 100" stroke="#3B82F6" stroke-width="2"/>
+  <circle cx="200" cy="200" r="30" fill="#EC4899" fill-opacity="0.2" stroke="#EC4899" stroke-width="2"/>
+  <circle cx="600" cy="250" r="40" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="2"/>
+  <rect x="200" y="450" width="400" height="20" rx="10" fill="#E5E7EB"/>
+  <rect x="200" y="430" width="300" height="20" rx="10" fill="#E5E7EB"/>
+  <rect x="200" y="410" width="350" height="20" rx="10" fill="#E5E7EB"/>
+  <rect x="200" y="390" width="250" height="20" rx="10" fill="#3B82F6" fill-opacity="0.5"/>
+  <rect x="200" y="370" width="400" height="20" rx="10" fill="#3B82F6"/>
+  <text x="400" y="120" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#1F2937">Random Image Generator</text>
+  <text x="400" y="160" font-family="Arial" font-size="16" text-anchor="middle" fill="#6B7280">Customizable size • Multiple aspect ratios • Free stock photos</text>
+</svg>

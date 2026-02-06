@@ -421,13 +421,26 @@
       "title": "AI Tool Directory",
       "category": "AI",
       "type": "app",
-      "description": "Curated directory of AI-powered tools for product managers, designers, developers, and more—filter by role and discover free or paid options instantly.",
+      "description": "Curated directory of AI-powered tools for product managers, designers, developers, and more",
       "popularity": 88,
       "slug": "ai-tool-directory",
       "image": "/images/ai-directory.png",
       "tags": ["ai", "directory", "product", "design", "developer"],
       "lastUsed": "2024-01-20",
       "usageCount": 2780
+    },
+    {
+      "id": "random-image-generator",
+      "title": "Random Image Generator",
+      "category": "Media",
+      "type": "app",
+      "description": "Generate random high-quality images with customizable size and aspect ratio using free stock photos",
+      "popularity": 90,
+      "slug": "random-image-generator",
+      "image": "/images/random-image.png",
+      "tags": ["image", "generator", "stock photos", "design", "media"],
+      "lastUsed": "2024-01-16",
+      "usageCount": 0
     }
   ]
 }

@@ -1,6 +1,9 @@
 User-agent: *
-Disallow: /tools?
-Disallow: /search
 Allow: /
+Disallow: /api/*
+Disallow: /_next/*
+Disallow: /*.json
+Disallow: /*?*
 
+# Sitemaps
 Sitemap: https://www.allappsfree.com/sitemap.xml

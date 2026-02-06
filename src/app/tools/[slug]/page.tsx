@@ -39,6 +39,7 @@ import CsvToJsonConverter from '@/components/tools/CsvToJsonConverter';
 import Blackboard from '@/components/tools/Blackboard';
 import AIDirectory from '@/components/tools/AIDirectory';
 import PhoneNumberGenerator from '@/components/tools/PhoneNumberGenerator';
+import RandomImageGenerator from '@/components/tools/RandomImageGenerator';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -255,10 +256,14 @@ export default async function ToolPage({ params }: ToolPageProps) {
             >
               <Blackboard />
             </Suspense>
-) : tool.id === 'ai-directory' ? (
+          ) : tool.id === 'ai-directory' ? (
             <AIDirectory />
-          ) : tool.id === 'us-phone-generator' ? (
+          ) : tool.slug === 'phone-number-generator' ? (
             <PhoneNumberGenerator />
+          ) : tool.slug === 'ai-tool-directory' ? (
+            <AIDirectory />
+          ) : tool.slug === 'random-image-generator' ? (
+            <RandomImageGenerator />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">
