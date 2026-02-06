@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 type AspectRatio = '1:1' | '4:3' | '16:9' | '9:16' | '3:4';
 
@@ -278,15 +279,15 @@ export default function RandomImageGenerator() {
                 {imageUrl ? (
                   <>
                     <div className="relative w-full max-w-2xl overflow-hidden rounded-lg border border-gray-200">
-                      <img
-                        src={imageUrl}
-                        alt="Generated content"
-                        className="w-full h-auto"
-                        style={{
-                          aspectRatio: `${width}/${height}`,
-                          objectFit: 'cover',
-                        }}
-                      />
+                      <div className="relative w-full" style={{ aspectRatio: `${width}/${height}` }}>
+                        <Image
+                          src={imageUrl}
+                          alt="Generated content"
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
+                      </div>
                     </div>
                     <div className="flex flex-wrap gap-2 w-full justify-center">
                       <button 
@@ -332,7 +333,7 @@ export default function RandomImageGenerator() {
                     }}
                   >
                     <p className="text-gray-500 text-center">
-                      Click "Generate Image" to create your first image
+                      Click &quot;Generate Image&quot; to create your first image
                     </p>
                   </div>
                 )}

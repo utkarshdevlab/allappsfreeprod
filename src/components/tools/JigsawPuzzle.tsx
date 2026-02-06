@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
 
 interface PuzzlePiece {
   id: number;
@@ -241,7 +242,7 @@ export default function JigsawPuzzle() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const img = new Image();
+    const img = new window.Image();
     img.crossOrigin = 'anonymous';
     img.src = selectedPuzzle.imageUrl;
     
@@ -420,10 +421,11 @@ export default function JigsawPuzzle() {
               onClick={() => startPuzzle(puzzle)}
             >
               <div className="relative aspect-square overflow-hidden">
-                <img
+                <Image
                   src={puzzle.imageUrl}
                   alt={puzzle.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform"
                 />
                 <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs font-bold">
                   {puzzle.pieces} pieces
@@ -602,10 +604,12 @@ export default function JigsawPuzzle() {
       <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-4">
-            <img 
+            <Image 
               src={selectedPuzzle.imageUrl} 
               alt={selectedPuzzle.name}
-              className="w-20 h-20 object-cover rounded-lg border-2 border-gray-300 shadow-md"
+              width={80}
+              height={80}
+              className="object-cover rounded-lg border-2 border-gray-300 shadow-md"
             />
             <div>
               <h2 className="text-2xl font-bold text-gray-900">{selectedPuzzle.name}</h2>
@@ -652,10 +656,12 @@ export default function JigsawPuzzle() {
         <div className="lg:col-span-1">
           <div className="bg-white rounded-xl p-4 border-2 border-gray-200 sticky top-4">
             <h3 className="font-bold text-gray-900 mb-3 text-sm">📷 Reference Image</h3>
-            <img 
+            <Image 
               src={selectedPuzzle.imageUrl} 
               alt={selectedPuzzle.name}
-              className="w-full aspect-video object-cover rounded-lg border-2 border-gray-300 shadow-md mb-3"
+              width={400}
+              height={225}
+              className="object-cover rounded-lg border-2 border-gray-300 shadow-md mb-3"
             />
             <div className="space-y-2 text-xs text-gray-600">
               <div className="flex justify-between">

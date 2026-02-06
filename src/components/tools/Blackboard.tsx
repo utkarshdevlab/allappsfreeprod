@@ -76,24 +76,6 @@ export default function Blackboard() {
     setShareLink(`${window.location.origin}${pathname}?${params.toString()}`);
   }, [pathname, roomId]);
 
-  const resizeCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    const wrapper = containerRef.current;
-    if (!canvas || !wrapper) return;
-    const rect = wrapper.getBoundingClientRect();
-    const ratio = window.devicePixelRatio || 1;
-    canvas.width = rect.width * ratio;
-    canvas.height = rect.height * ratio;
-    canvas.style.width = `${rect.width}px`;
-    canvas.style.height = `${rect.height}px`;
-    const ctx = canvas.getContext('2d');
-    if (ctx) {
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(ratio, ratio);
-    }
-    renderCanvas();
-  }, []);
-
   const normalizePoint = useCallback((raw: unknown): Point | null => {
     if (!raw) return null;
     if (typeof raw === 'object') {
@@ -223,6 +205,27 @@ export default function Blackboard() {
     ctx.drawImage(bufferCanvas, 0, 0, width, height);
   }, [drawStroke]);
 
+  const handleResize = useCallback(() => {
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const ratio = window.devicePixelRatio || 1;
+    canvas.width = rect.width * ratio;
+    canvas.height = rect.height * ratio;
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(ratio, ratio);
+    }
+    renderCanvas();
+  }, [renderCanvas]);
+
+  const resizeCanvas = useCallback(() => {
+    handleResize();
+  }, [handleResize]);
+
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(Boolean(document.fullscreenElement));
@@ -348,7 +351,7 @@ export default function Blackboard() {
       setIsDrawing(false);
       try {
         canvas.releasePointerCapture(event.pointerId);
-      } catch (error) {
+      } catch {
         // ignore
       }
       renderCanvas();
@@ -377,7 +380,7 @@ export default function Blackboard() {
     try {
       await navigator.clipboard.writeText(shareLink);
       showToast('Share link copied. Send it to collaborators.');
-    } catch (error) {
+    } catch {
       showToast('Unable to copy automatically. Please copy manually.');
     }
   };

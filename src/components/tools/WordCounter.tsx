@@ -173,7 +173,7 @@ export default function WordCounter() {
         <div className="bg-white rounded-2xl p-6 border-2 border-gray-200">
           <h3 className="text-lg font-bold text-gray-900 mb-4">🔤 Most Frequent Words</h3>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-            {stats.topWords.map(([word, count], index) => (
+            {stats.topWords.map(([word, count]) => (
               <div key={word} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 text-center">
                 <div className="text-2xl font-bold text-gray-900">{count}</div>
                 <div className="text-sm text-gray-600 truncate">{word}</div>

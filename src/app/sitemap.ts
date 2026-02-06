@@ -1,4 +1,5 @@
 import { getAllTools } from '@/utils/tools';
+import { MetadataRoute } from 'next';
 
 export const dynamic = 'force-static';
 
@@ -11,7 +12,7 @@ if (process.env.NEXT_PUBLIC_CANONICAL_BASE_URL &&
   console.warn(`NEXT_PUBLIC_CANONICAL_BASE_URL should be set to ${canonicalBase}`);
 }
 
-export default function sitemap() {
+export default function sitemap(): MetadataRoute.Sitemap {
   const tools = getAllTools();
 
   const toolUrls = tools.map((tool) => ({

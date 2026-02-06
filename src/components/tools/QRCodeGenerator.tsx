@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import QRCodeStyling, { 
   Options as QRCodeOptions,
@@ -131,7 +131,7 @@ export default function QRCodeGenerator() {
   const qrCodeRef = useRef<QRCodeStyling | null>(null);
 
   // Generate QR content based on type
-  const generateQRContent = (): string => {
+  const generateQRContent = useCallback((): string => {
     switch (qrType) {
       case 'url':
         return qrData.url || '';
@@ -166,7 +166,7 @@ export default function QRCodeGenerator() {
       default:
         return qrData.content || '';
     }
-  };
+  }, [qrType, qrData]);
 
   // Initialize QR Code
   useEffect(() => {
@@ -219,7 +219,7 @@ export default function QRCodeGenerator() {
       qrCodeRef.current = new QRCodeStyling(options);
       qrCodeRef.current.append(qrRef.current);
     }
-  }, [qrType, qrData, qrStyle, logoPreview]);
+  }, [qrType, qrData, qrStyle, logoPreview, generateQRContent]);
 
   // Handle logo upload
   const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

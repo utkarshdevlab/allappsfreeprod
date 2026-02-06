@@ -3,6 +3,51 @@ import ToolSection from '@/components/ToolSection';
 import Hero from '@/components/Hero';
 import SearchBar from '@/components/SearchBar';
 import ToolCard from '@/components/ToolCard';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "AllAppsFree – All Tools and Games, Completely Free with Premium Features",
+  description: "AllAppsFree is a web platform where every online tool and game is completely free to use — with all premium features unlocked. No signups, no ads, and no hidden costs. Generate passwords, compress images, play games, and more.",
+  keywords: [
+    "free online tools",
+    "ad-free games", 
+    "password generator",
+    "image compressor",
+    "QR code generator",
+    "text to speech",
+    "color picker",
+    "word counter",
+    "AI paraphraser",
+    "base64 encoder",
+    "online games",
+    "productivity tools",
+    "no signup tools",
+    "privacy-focused tools"
+  ],
+  openGraph: {
+    title: "AllAppsFree – All Tools and Games, Completely Free",
+    description: "Professional-grade web tools and games, 100% free with no ads or signups. Premium features unlocked for everyone.",
+    type: "website",
+    url: "https://www.allappsfree.com",
+    images: [
+      {
+        url: "https://www.allappsfree.com/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "AllAppsFree - Free Tools and Games",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AllAppsFree – All Tools and Games, Completely Free",
+    description: "Professional-grade web tools and games, 100% free with no ads or signups.",
+    images: ["https://www.allappsfree.com/logo.png"],
+  },
+  alternates: {
+    canonical: "https://www.allappsfree.com",
+  },
+};
 
 export default function Home() {
   const games = getToolsByType('game');

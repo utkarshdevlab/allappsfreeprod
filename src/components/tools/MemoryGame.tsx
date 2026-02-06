@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 interface Card {
   id: number;
@@ -22,11 +22,11 @@ export default function MemoryGame() {
   const [bestTime, setBestTime] = useState<number | null>(null);
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
 
-  const difficultySettings = {
+  const difficultySettings = useMemo(() => ({
     easy: { pairs: 6, cols: 4 },
     medium: { pairs: 8, cols: 4 },
     hard: { pairs: 12, cols: 6 }
-  };
+  }), []);
 
   useEffect(() => {
     const saved = localStorage.getItem(`memoryBestTime_${difficulty}`);
@@ -50,7 +50,7 @@ export default function MemoryGame() {
         localStorage.setItem(`memoryBestTime_${difficulty}`, time.toString());
       }
     }
-  }, [matches, difficulty, gameStarted, time, bestTime]);
+  }, [matches, difficulty, gameStarted, time, bestTime, difficultySettings]);
 
   const initializeGame = () => {
     const { pairs } = difficultySettings[difficulty];

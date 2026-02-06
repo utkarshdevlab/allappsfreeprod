@@ -1,6 +1,8 @@
+import { MetadataRoute } from 'next';
+
 export const dynamic = 'force-static';
 
-export default function robots() {
+export default function robots(): MetadataRoute.Robots {
   const sitemapBase = process.env.NEXT_PUBLIC_CANONICAL_BASE_URL ?? 'https://www.allappsfree.com';
 
   return {
@@ -8,7 +10,7 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/tools?', '/search'],
+        disallow: ['/api/', '/_next/', '/admin/'],
       },
     ],
     sitemap: `${sitemapBase}/sitemap.xml`,
