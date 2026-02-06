@@ -10,6 +10,7 @@ interface CreditCard {
   expiry: string;
   brand: string;
   color: string;
+  gradient: string;
 }
 
 interface CardType {
@@ -18,6 +19,7 @@ interface CardType {
   lengths: number[];
   cvvLength: number;
   color: string;
+  gradient: string;
   brand: string;
 }
 
@@ -27,15 +29,17 @@ const cardTypes: CardType[] = [
     prefixes: ['4'], 
     lengths: [13, 16], 
     cvvLength: 3,
-    color: 'from-blue-600 to-blue-800',
+    color: 'text-blue-600',
+    gradient: 'from-blue-500 to-blue-700',
     brand: 'VISA'
   },
   { 
     name: 'Mastercard', 
-    prefixes: ['51', '52', '53', '54', '55', '2221', '2222', '2223', '2224', '2225', '2226', '2227', '2228', '2229', '223', '224', '225', '226', '227', '228', '229', '23', '24', '25', '26', '271', '2720', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39'], 
+    prefixes: ['51', '52', '53', '54', '55'], 
     lengths: [16], 
     cvvLength: 3,
-    color: 'from-red-600 to-red-800',
+    color: 'text-orange-600',
+    gradient: 'from-orange-500 to-orange-700',
     brand: 'MASTERCARD'
   },
   { 
@@ -43,39 +47,44 @@ const cardTypes: CardType[] = [
     prefixes: ['34', '37'], 
     lengths: [15], 
     cvvLength: 4,
-    color: 'from-green-600 to-green-800',
+    color: 'text-green-600',
+    gradient: 'from-green-500 to-green-700',
     brand: 'AMEX'
   },
   { 
     name: 'Discover', 
-    prefixes: ['6011', '622126', '622127', '622128', '622129', '622130', '622131', '622132', '622133', '622134', '622135', '622136', '622137', '622138', '622139', '62214', '62215', '62216', '62217', '62218', '62219', '6222', '6223', '6224', '6225', '6226', '6227', '6228', '6229', '62290', '62291', '62292', '62293', '62294', '62295', '62296', '62297', '62298', '62299', '623', '624', '625', '626', '627', '628', '629', '630', '631', '632', '633', '634', '635', '636', '637', '638', '639', '640', '641', '642', '643', '644', '645', '646', '647', '648', '649', '650', '651', '652', '653', '654', '655', '656', '657', '658', '659', '660', '661', '662', '663', '664', '665', '666', '667', '668', '669', '670', '671', '672', '673', '674', '675', '676', '677', '678', '679', '680', '681', '682', '683', '684', '685', '686', '687', '688', '689', '690', '691', '692', '693', '694', '695', '696', '697', '698', '699', '700', '701', '702', '703', '704', '705', '706', '707', '708', '709', '710', '711', '712', '713', '714', '715', '716', '717', '718', '719', '720', '721'], 
-    lengths: [16, 17, 18, 19], 
+    prefixes: ['6011', '65'], 
+    lengths: [16], 
     cvvLength: 3,
-    color: 'from-purple-600 to-purple-800',
+    color: 'text-purple-600',
+    gradient: 'from-purple-500 to-purple-700',
     brand: 'DISCOVER'
   },
   { 
     name: 'JCB', 
-    prefixes: ['3528', '3529', '3530', '3531', '3532', '3533', '3534', '3535', '3536', '3537', '3538', '3539', '3540', '3541', '3542', '3543', '3544', '3545', '3546', '3547', '3548', '3549', '3550', '3551', '3552', '3553', '3554', '3555', '3556', '3557', '3558', '3589', '3590', '3591', '3592', '3593', '3594', '3595', '3596', '3597', '3598', '3599'], 
-    lengths: [16, 17, 18, 19], 
+    prefixes: ['35'], 
+    lengths: [16], 
     cvvLength: 3,
-    color: 'from-pink-600 to-pink-800',
+    color: 'text-pink-600',
+    gradient: 'from-pink-500 to-pink-700',
     brand: 'JCB'
   },
   { 
     name: 'Diners Club', 
-    prefixes: ['300', '301', '302', '303', '304', '305', '36', '38', '39'], 
-    lengths: [14, 15, 16], 
+    prefixes: ['300', '305', '36', '38', '39'], 
+    lengths: [14], 
     cvvLength: 3,
-    color: 'from-orange-600 to-orange-800',
+    color: 'text-yellow-600',
+    gradient: 'from-yellow-500 to-yellow-700',
     brand: 'DINERS'
   },
   { 
     name: 'UnionPay', 
     prefixes: ['62'], 
-    lengths: [16, 17, 18, 19], 
+    lengths: [16], 
     cvvLength: 3,
-    color: 'from-red-700 to-red-900',
+    color: 'text-red-600',
+    gradient: 'from-red-500 to-red-700',
     brand: 'UNIONPAY'
   }
 ];
@@ -143,7 +152,10 @@ export default function FakeCreditCardGenerator() {
     const newCards: CreditCard[] = [];
     
     for (let i = 0; i < quantity; i++) {
-      const cardType = cardTypes.find(type => selectedTypes.includes(type.name));
+      const randomTypeIndex = Math.floor(Math.random() * selectedTypes.length);
+      const selectedTypeName = selectedTypes[randomTypeIndex];
+      const cardType = cardTypes.find(type => type.name === selectedTypeName);
+      
       if (!cardType) continue;
       
       const card: CreditCard = {
@@ -153,7 +165,8 @@ export default function FakeCreditCardGenerator() {
         cvv: generateCVV(cardType.cvvLength),
         expiry: generateExpiry(),
         brand: cardType.brand,
-        color: cardType.color
+        color: cardType.color,
+        gradient: cardType.gradient
       };
       
       newCards.push(card);
