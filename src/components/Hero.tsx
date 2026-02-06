@@ -5,22 +5,18 @@ import Link from 'next/link';
 export default function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-violet-50 to-white" />
-
-      {/* Glow blobs */}
-      <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-violet-400/30 blur-3xl" />
-      <div className="absolute -bottom-16 -right-16 h-72 w-72 rounded-full bg-fuchsia-400/20 blur-3xl" />
+      {/* Clean white background */}
+      <div className="absolute inset-0 bg-white" />
 
       {/* Subtle noise overlay */}
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-[0.07] [background-image:radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
         <div className="text-center">
-          <span className="inline-flex items-center rounded-full bg-white/70 backdrop-blur px-3 py-1 text-xs font-semibold text-violet-700 ring-1 ring-violet-200 shadow-sm">New • Fresh tools every week</span>
+          <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 ring-1 ring-gray-200 shadow-sm">New • Fresh tools every week</span>
 
           <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-gray-900">
-            Your Toolkit for <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-500 bg-clip-text text-transparent">Everything</span>
+            Your Toolkit for <span className="bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text text-transparent">Everything</span>
           </h1>
           <p className="mt-5 mx-auto max-w-3xl text-lg md:text-xl text-gray-600">
             Discover powerful apps and engaging games. No installs, no sign‑ups — just instant access to the tools you need.
@@ -29,7 +25,7 @@ export default function Hero() {
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/tools/apps"
-              className="group inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3 text-white font-semibold shadow-lg shadow-violet-600/20 transition hover:-translate-y-0.5 hover:bg-violet-700"
+              className="group inline-flex items-center gap-2 rounded-xl bg-gray-600 px-6 py-3 text-white font-semibold shadow-lg transition hover:-translate-y-0.5 hover:bg-gray-700"
             >
               Explore Apps
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
