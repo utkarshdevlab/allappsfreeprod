@@ -9,8 +9,6 @@ interface CreditCard {
   cvv: string;
   expiry: string;
   brand: string;
-  color: string;
-  gradient: string;
 }
 
 interface CardType {
@@ -18,8 +16,6 @@ interface CardType {
   prefixes: string[];
   lengths: number[];
   cvvLength: number;
-  color: string;
-  gradient: string;
   brand: string;
 }
 
@@ -29,8 +25,6 @@ const cardTypes: CardType[] = [
     prefixes: ['4'], 
     lengths: [13, 16], 
     cvvLength: 3,
-    color: 'text-blue-600',
-    gradient: 'from-blue-500 to-blue-700',
     brand: 'VISA'
   },
   { 
@@ -38,8 +32,6 @@ const cardTypes: CardType[] = [
     prefixes: ['51', '52', '53', '54', '55'], 
     lengths: [16], 
     cvvLength: 3,
-    color: 'text-orange-600',
-    gradient: 'from-orange-500 to-orange-700',
     brand: 'MASTERCARD'
   },
   { 
@@ -47,8 +39,6 @@ const cardTypes: CardType[] = [
     prefixes: ['34', '37'], 
     lengths: [15], 
     cvvLength: 4,
-    color: 'text-green-600',
-    gradient: 'from-green-500 to-green-700',
     brand: 'AMEX'
   },
   { 
@@ -56,8 +46,6 @@ const cardTypes: CardType[] = [
     prefixes: ['6011', '65'], 
     lengths: [16], 
     cvvLength: 3,
-    color: 'text-purple-600',
-    gradient: 'from-purple-500 to-purple-700',
     brand: 'DISCOVER'
   },
   { 
@@ -65,17 +53,13 @@ const cardTypes: CardType[] = [
     prefixes: ['35'], 
     lengths: [16], 
     cvvLength: 3,
-    color: 'text-pink-600',
-    gradient: 'from-pink-500 to-pink-700',
     brand: 'JCB'
   },
   { 
     name: 'Diners Club', 
     prefixes: ['300', '305', '36', '38', '39'], 
-    lengths: [14], 
+    lengths: [14, 15, 16], 
     cvvLength: 3,
-    color: 'text-yellow-600',
-    gradient: 'from-yellow-500 to-yellow-700',
     brand: 'DINERS'
   },
   { 
@@ -83,8 +67,6 @@ const cardTypes: CardType[] = [
     prefixes: ['62'], 
     lengths: [16], 
     cvvLength: 3,
-    color: 'text-red-600',
-    gradient: 'from-red-500 to-red-700',
     brand: 'UNIONPAY'
   }
 ];
@@ -164,9 +146,7 @@ export default function FakeCreditCardGenerator() {
         number: generateCardNumber(cardType),
         cvv: generateCVV(cardType.cvvLength),
         expiry: generateExpiry(),
-        brand: cardType.brand,
-        color: cardType.color,
-        gradient: cardType.gradient
+        brand: cardType.brand
       };
       
       newCards.push(card);
@@ -323,7 +303,7 @@ export default function FakeCreditCardGenerator() {
         {cards.length > 0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cards.map(card => (
-              <div key={card.id} className={`relative bg-gradient-to-br ${card.color} p-6 rounded-xl shadow-lg text-white`}>
+              <div key={card.id} className="relative bg-gradient-to-br from-blue-500 to-blue-700 p-6 rounded-xl shadow-lg text-white">
                 <div className="absolute top-4 right-4">
                   <span className="text-xs font-bold opacity-80">{card.brand}</span>
                 </div>
