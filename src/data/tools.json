@@ -1,6 +1,19 @@
 {
   "tools": [
     {
+      "id": "5-digit-random-number-generator",
+      "title": "5 Digit Random Number Generator",
+      "category": "Utility",
+      "type": "app",
+      "description": "Generate secure 5-digit random numbers instantly. Perfect for verification codes, PIN codes, lottery numbers, and testing applications. Free, unlimited, and private.",
+      "popularity": 93,
+      "slug": "5-digit-random-number-generator",
+      "image": "/images/5-digit-random-number-generator.svg",
+      "tags": ["5 digit", "random number", "generator", "verification code", "PIN", "lottery", "security", "testing"],
+      "lastUsed": "2024-01-20",
+      "usageCount": 1200
+    },
+    {
       "id": "fake-credit-card-generator",
       "title": "Fake Credit Card Generator",
       "category": "Security",
