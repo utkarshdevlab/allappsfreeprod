@@ -272,6 +272,137 @@ export default function ImageCompressor() {
           </li>
         </ul>
       </div>
+
+      {/* SEO Content */}
+      <div className="mt-16 prose prose-lg max-w-none">
+        <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">About Image Compressor</h2>
+          
+          <p className="text-gray-700 mb-6">
+            Our Image Compressor is a powerful and efficient tool for reducing image file sizes without compromising quality. 
+            Perfect for web optimization, faster loading times, and bandwidth savings. All compression happens 
+            directly in your browser with complete privacy and security.
+          </p>
+
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Use Image Compression?</h3>
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="space-y-4">
+              <div className="flex items-start">
+                <span className="text-green-600 font-bold mr-3">✓</span>
+                <div>
+                  <strong>Faster Loading</strong>
+                  <p className="text-gray-600 text-sm">Smaller images load faster, improving user experience and SEO rankings</p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <span className="text-green-600 font-bold mr-3">✓</span>
+                <div>
+                  <strong>Bandwidth Savings</strong>
+                  <p className="text-gray-600 text-sm">Reduce hosting costs and data usage for your visitors</p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <span className="text-green-600 font-bold mr-3">✓</span>
+                <div>
+                  <strong>SEO Benefits</strong>
+                  <p className="text-gray-600 text-sm">Page speed is a key ranking factor for search engines</p>
+                </div>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-start">
+                <span className="text-green-600 font-bold mr-3">✓</span>
+                <div>
+                  <strong>Mobile Optimization</strong>
+                  <p className="text-gray-600 text-sm">Compressed images perform better on mobile devices</p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <span className="text-green-600 font-bold mr-3">✓</span>
+                <div>
+                  <strong>Storage Efficiency</strong>
+                  <p className="text-gray-600 text-sm">Store more images with the same storage space</p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <span className="text-green-600 font-bold mr-3">✓</span>
+                <div>
+                  <strong>Privacy Protected</strong>
+                  <p className="text-gray-600 text-sm">All processing happens in your browser, no uploads to servers</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Advanced Image Processing</h3>
+          <p className="text-gray-700 mb-6">
+            For more advanced image processing needs including format conversion, batch operations, AI enhancement, 
+            and professional editing tools, you can also try our comprehensive 
+            <a 
+              href="https://www.stilest.com/tools/all-in-one-image-processor" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 underline font-medium"
+            >
+              All-in-One Image Processor
+            </a>
+            {' '}which offers professional-grade features for complete image workflow management.
+          </p>
+
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Supported Formats</h3>
+          <div className="bg-gray-50 rounded-lg p-6 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="text-center">
+                <div className="text-2xl mb-2">🖼️</div>
+                <div className="font-semibold text-gray-900">JPEG</div>
+                <div className="text-sm text-gray-600">Best for photos</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl mb-2">🎨</div>
+                <div className="font-semibold text-gray-900">PNG</div>
+                <div className="text-sm text-gray-600">Best for graphics</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl mb-2">🌐</div>
+                <div className="font-semibold text-gray-900">WebP</div>
+                <div className="text-sm text-gray-600">Modern web format</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl mb-2">📱</div>
+                <div className="font-semibold text-gray-900">GIF</div>
+                <div className="text-sm text-gray-600">Animated images</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h3>
+          <div className="space-y-6 mb-8">
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">How much can I compress images?</h4>
+              <p className="text-gray-600">Compression varies by image content and quality settings. Typical savings range from 20-80% depending on the original image complexity and your quality requirements.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">Is image compression safe?</h4>
+              <p className="text-gray-600">Yes, our compression is completely safe. All processing happens in your browser using standard web APIs. No images are uploaded to external servers.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-2">What quality setting should I use?</h4>
+              <p className="text-gray-600">For web use, 70-85% quality provides good balance. For photos, use 80-90%. For graphics and logos, 60-80% works well.</p>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h4 className="text-lg font-semibold text-blue-800 mb-2">💡 Pro Tips</h4>
+            <ul className="list-disc list-inside text-blue-700 space-y-2">
+              <li>Start with 80% quality and adjust based on your needs</li>
+              <li>Compress images before uploading to websites or sending via email</li>
+              <li>Use WebP format for better compression ratios</li>
+              <li>Batch process multiple images for consistent results</li>
+              <li>Check compressed images before final use to ensure quality meets requirements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
