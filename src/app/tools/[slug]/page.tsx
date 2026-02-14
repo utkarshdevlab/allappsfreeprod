@@ -45,6 +45,13 @@ import FiveDigitRandomNumberGenerator from '@/components/tools/FiveDigitRandomNu
 import Md5Generator from '@/components/tools/Md5Generator';
 import CaseConverter from '@/components/tools/CaseConverter';
 import LoremIpsumGenerator from '@/components/tools/LoremIpsumGenerator';
+import MortgageCalculator from '@/components/tools/MortgageCalculator';
+import RetirementCalculator from '@/components/tools/RetirementCalculator';
+import RentVsBuyCalculator from '@/components/tools/RentVsBuyCalculator';
+import StudentLoanCalculator from '@/components/tools/StudentLoanCalculator';
+import FreelanceRateCalculator from '@/components/tools/FreelanceRateCalculator';
+import XmlValidator from '@/components/tools/XmlValidator';
+import JsonBeautifier from '@/components/tools/JsonBeautifier';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -278,6 +285,20 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <CaseConverter />
           ) : tool.id === 'lorem-ipsum-generator' ? (
             <LoremIpsumGenerator />
+          ) : tool.id === 'mortgage-calculator' ? (
+            <MortgageCalculator />
+          ) : tool.id === '401k-calculator' ? (
+            <RetirementCalculator />
+          ) : tool.id === 'rent-vs-buy-calculator' ? (
+            <RentVsBuyCalculator />
+          ) : tool.id === 'student-loan-calculator' ? (
+            <StudentLoanCalculator />
+          ) : tool.id === 'freelance-rate-calculator' ? (
+            <FreelanceRateCalculator />
+          ) : tool.id === 'xml-validator' ? (
+            <XmlValidator />
+          ) : tool.id === 'json-beautifier' ? (
+            <JsonBeautifier />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">

@@ -11,10 +11,12 @@
   "dependencies": {
     "@huggingface/inference": "^4.11.0",
     "@vercel/analytics": "^1.5.0",
+    "chart.js": "^4.5.1",
     "lucide-react": "^0.546.0",
     "next": "15.5.9",
     "qr-code-styling": "^1.9.2",
     "react": "19.1.0",
+    "react-chartjs-2": "^5.3.1",
     "react-dom": "19.1.0",
     "y-webrtc": "^10.3.0",
     "y-websocket": "^1.5.4",

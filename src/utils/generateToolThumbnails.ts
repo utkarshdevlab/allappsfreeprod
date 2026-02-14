@@ -53,7 +53,14 @@ export const toolThumbnails: Record<string, { emoji: string; gradient: string[] 
   'lorem-ipsum-generator': { emoji: '📄', gradient: ['#f093fb', '#f5576c'] },
   'fake-credit-card-generator': { emoji: '💳', gradient: ['#ff9a9e', '#fecfef'] },
   '5-digit-random-number-generator': { emoji: '🔢', gradient: ['#43e97b', '#38f9d7'] },
-  'us-phone-generator': { emoji: '📞', gradient: ['#4facfe', '#00f2fe'] }
+  'us-phone-generator': { emoji: '📞', gradient: ['#4facfe', '#00f2fe'] },
+  'mortgage-calculator': { emoji: '🏠', gradient: ['#10b981', '#3b82f6'] },
+  '401k-calculator': { emoji: '💰', gradient: ['#f59e0b', '#10b981'] },
+  'rent-vs-buy-calculator': { emoji: '🔑', gradient: ['#f97316', '#3b82f6'] },
+  'student-loan-calculator': { emoji: '🎓', gradient: ['#3b82f6', '#6366f1'] },
+  'freelance-rate-calculator': { emoji: '💼', gradient: ['#8b5cf6', '#ec4899'] },
+  'xml-validator': { emoji: '📜', gradient: ['#f59e0b', '#fbbf24'] },
+  'json-beautifier': { emoji: '🧬', gradient: ['#06b6d4', '#3b82f6'] }
 };
 
 export function getToolThumbnail(toolId: string): string {

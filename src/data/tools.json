@@ -1,6 +1,132 @@
 {
   "tools": [
     {
+      "id": "mortgage-calculator",
+      "title": "Mortgage Calculator",
+      "category": "Finance",
+      "type": "app",
+      "description": "Calculate your monthly mortgage payment, see amortization, and visualize principal vs interest split.",
+      "popularity": 96,
+      "slug": "mortgage-calculator",
+      "tags": [
+        "finance",
+        "mortgage",
+        "loan",
+        "home",
+        "real estate"
+      ],
+      "lastUsed": "2024-03-20",
+      "usageCount": 1250
+    },
+    {
+      "id": "401k-calculator",
+      "title": "401(k) Calculator",
+      "category": "Finance",
+      "type": "app",
+      "description": "Plan your retirement by estimating future 401(k) balance based on contributions, employer match, and growth.",
+      "popularity": 92,
+      "slug": "401k-calculator",
+      "tags": [
+        "finance",
+        "retirement",
+        "investing",
+        "401k",
+        "savings"
+      ],
+      "lastUsed": "2024-03-19",
+      "usageCount": 980
+    },
+    {
+      "id": "rent-vs-buy-calculator",
+      "title": "Rent vs. Buy Calculator",
+      "category": "Finance",
+      "type": "app",
+      "description": "Compare the total cost of renting vs buying a home over time to make the best financial decision.",
+      "popularity": 89,
+      "slug": "rent-vs-buy-calculator",
+      "tags": [
+        "finance",
+        "real estate",
+        "renting",
+        "buying",
+        "home"
+      ],
+      "lastUsed": "2024-03-18",
+      "usageCount": 850
+    },
+    {
+      "id": "student-loan-calculator",
+      "title": "Student Loan Calculator",
+      "category": "Finance",
+      "type": "app",
+      "description": "Calculate student loan payoff time and interest savings with extra monthly payments.",
+      "popularity": 94,
+      "slug": "student-loan-calculator",
+      "tags": [
+        "finance",
+        "student loan",
+        "debt",
+        "payoff",
+        "education"
+      ],
+      "lastUsed": "2024-03-19",
+      "usageCount": 1100
+    },
+    {
+      "id": "freelance-rate-calculator",
+      "title": "Freelance Rate Calculator",
+      "category": "Finance",
+      "type": "app",
+      "description": "Calculate your required hourly or daily rate based on your desired annual income and expenses.",
+      "popularity": 88,
+      "slug": "freelance-rate-calculator",
+      "tags": [
+        "finance",
+        "freelance",
+        "business",
+        "rate",
+        "income"
+      ],
+      "lastUsed": "2024-03-15",
+      "usageCount": 600
+    },
+    {
+      "id": "xml-validator",
+      "title": "XML Validator",
+      "category": "Developer",
+      "type": "app",
+      "description": "Validate, format (beautify), and minify XML code instantly directly in your browser.",
+      "popularity": 90,
+      "slug": "xml-validator",
+      "tags": [
+        "developer",
+        "xml",
+        "validator",
+        "formatter",
+        "code"
+      ],
+      "lastUsed": "2024-03-20",
+      "usageCount": 1500
+    },
+    {
+      "id": "json-beautifier",
+      "title": "JSON Beautifier",
+      "category": "Developer",
+      "type": "app",
+      "description": "Format, validate, and minify JSON data. Essential tool for developers working with APIs.",
+      "popularity": 98,
+      "slug": "json-beautifier",
+      "tags": [
+        "developer",
+        "json",
+        "formatter",
+        "validator",
+        "parser"
+      ],
+      "lastUsed": "2024-03-21",
+      "usageCount": 2100
+    },
+    {
       "id": "5-digit-random-number-generator",
       "title": "5 Digit Random Number Generator",
       "category": "Utility",
