@@ -9,7 +9,16 @@
       "popularity": 93,
       "slug": "5-digit-random-number-generator",
       "image": "/images/5-digit-random-number-generator.svg",
-      "tags": ["5 digit", "random number", "generator", "verification code", "PIN", "lottery", "security", "testing"],
+      "tags": [
+        "5 digit",
+        "random number",
+        "generator",
+        "verification code",
+        "PIN",
+        "lottery",
+        "security",
+        "testing"
+      ],
       "lastUsed": "2024-01-20",
       "usageCount": 1200
     },
@@ -22,7 +31,16 @@
       "popularity": 92,
       "slug": "fake-credit-card-generator",
       "image": "/images/credit-card-icon.svg",
-      "tags": ["credit card", "generator", "testing", "development", "luhn", "payment", "qa", "validation"],
+      "tags": [
+        "credit card",
+        "generator",
+        "testing",
+        "development",
+        "luhn",
+        "payment",
+        "qa",
+        "validation"
+      ],
       "lastUsed": "2024-01-15",
       "usageCount": 850
     },
@@ -34,8 +52,14 @@
       "description": "Generate valid US phone numbers with state-specific area codes for testing and development",
       "popularity": 94,
       "slug": "us-phone-generator",
-      "image": "/images/phone-icon.png",
-      "tags": ["phone", "generator", "testing", "development", "us", "validation"],
+      "tags": [
+        "phone",
+        "generator",
+        "testing",
+        "development",
+        "us",
+        "validation"
+      ],
       "lastUsed": "2024-10-22",
       "usageCount": 0
     },
@@ -48,7 +72,11 @@
       "popularity": 95,
       "slug": "password-generator",
       "image": "/images/password-generator.png",
-      "tags": ["security", "password", "generator"],
+      "tags": [
+        "security",
+        "password",
+        "generator"
+      ],
       "lastUsed": "2024-01-15",
       "usageCount": 1250
     },
@@ -61,7 +89,15 @@
       "popularity": 95,
       "slug": "qr-code-generator",
       "image": "/images/qr-generator.png",
-      "tags": ["qr", "generator", "utility", "dynamic", "analytics", "bulk", "customization"],
+      "tags": [
+        "qr",
+        "generator",
+        "utility",
+        "dynamic",
+        "analytics",
+        "bulk",
+        "customization"
+      ],
       "lastUsed": "2024-01-15",
       "usageCount": 2450
     },
@@ -74,7 +110,11 @@
       "popularity": 82,
       "slug": "color-picker",
       "image": "/images/color-picker.png",
-      "tags": ["color", "design", "picker"],
+      "tags": [
+        "color",
+        "design",
+        "picker"
+      ],
       "lastUsed": "2024-01-13",
       "usageCount": 750
     },
@@ -87,7 +127,11 @@
       "popularity": 76,
       "slug": "text-to-speech",
       "image": "/images/tts.png",
-      "tags": ["audio", "speech", "text"],
+      "tags": [
+        "audio",
+        "speech",
+        "text"
+      ],
       "lastUsed": "2024-01-12",
       "usageCount": 650
     },
@@ -100,7 +144,11 @@
       "popularity": 71,
       "slug": "word-counter",
       "image": "/images/word-counter.png",
-      "tags": ["writing", "counter", "text"],
+      "tags": [
+        "writing",
+        "counter",
+        "text"
+      ],
       "lastUsed": "2024-01-11",
       "usageCount": 580
     },
@@ -113,7 +161,11 @@
       "popularity": 92,
       "slug": "snake-game",
       "image": "/images/snake-game.png",
-      "tags": ["arcade", "snake", "classic"],
+      "tags": [
+        "arcade",
+        "snake",
+        "classic"
+      ],
       "lastUsed": "2024-01-15",
       "usageCount": 2100
     },
@@ -126,7 +178,11 @@
       "popularity": 89,
       "slug": "tetris",
       "image": "/images/tetris.png",
-      "tags": ["puzzle", "tetris", "blocks"],
+      "tags": [
+        "puzzle",
+        "tetris",
+        "blocks"
+      ],
       "lastUsed": "2024-01-14",
       "usageCount": 1850
     },
@@ -139,7 +195,11 @@
       "popularity": 85,
       "slug": "memory-game",
       "image": "/images/memory-game.png",
-      "tags": ["memory", "puzzle", "cards"],
+      "tags": [
+        "memory",
+        "puzzle",
+        "cards"
+      ],
       "lastUsed": "2024-01-13",
       "usageCount": 1200
     },
@@ -152,7 +212,11 @@
       "popularity": 78,
       "slug": "tic-tac-toe",
       "image": "/images/tic-tac-toe.png",
-      "tags": ["strategy", "tic-tac-toe", "ai"],
+      "tags": [
+        "strategy",
+        "tic-tac-toe",
+        "ai"
+      ],
       "lastUsed": "2024-01-12",
       "usageCount": 950
     },
@@ -165,7 +229,11 @@
       "popularity": 87,
       "slug": "sudoku",
       "image": "/images/sudoku.png",
-      "tags": ["puzzle", "sudoku", "numbers"],
+      "tags": [
+        "puzzle",
+        "sudoku",
+        "numbers"
+      ],
       "lastUsed": "2024-01-11",
       "usageCount": 1400
     },
@@ -178,7 +246,13 @@
       "popularity": 92,
       "slug": "echomind",
       "image": "/images/echomind.png",
-      "tags": ["puzzle", "time", "echo", "strategy", "mind-bending"],
+      "tags": [
+        "puzzle",
+        "time",
+        "echo",
+        "strategy",
+        "mind-bending"
+      ],
       "lastUsed": "2024-01-15",
       "usageCount": 850
     },
@@ -191,7 +265,13 @@
       "popularity": 90,
       "slug": "cipherspace",
       "image": "/images/cipherspace.png",
-      "tags": ["puzzle", "logic", "symbols", "pattern", "discovery"],
+      "tags": [
+        "puzzle",
+        "logic",
+        "symbols",
+        "pattern",
+        "discovery"
+      ],
       "lastUsed": "2024-01-14",
       "usageCount": 720
     },
@@ -204,7 +284,13 @@
       "popularity": 91,
       "slug": "reflection-game",
       "image": "/images/reflection.png",
-      "tags": ["puzzle", "mirror", "reflection", "strategy", "dual-control"],
+      "tags": [
+        "puzzle",
+        "mirror",
+        "reflection",
+        "strategy",
+        "dual-control"
+      ],
       "lastUsed": "2024-01-13",
       "usageCount": 680
     },
@@ -217,7 +303,13 @@
       "popularity": 93,
       "slug": "neurolink",
       "image": "/images/neurolink.png",
-      "tags": ["puzzle", "neural", "network", "brain", "balance"],
+      "tags": [
+        "puzzle",
+        "neural",
+        "network",
+        "brain",
+        "balance"
+      ],
       "lastUsed": "2024-01-16",
       "usageCount": 920
     },
@@ -230,7 +322,15 @@
       "popularity": 95,
       "slug": "jigsaw-puzzle",
       "image": "/images/jigsaw-puzzle.png",
-      "tags": ["puzzle", "jigsaw", "brain games", "relaxing", "free puzzles", "online games", "no download"],
+      "tags": [
+        "puzzle",
+        "jigsaw",
+        "brain games",
+        "relaxing",
+        "free puzzles",
+        "online games",
+        "no download"
+      ],
       "lastUsed": "2024-01-18",
       "usageCount": 3200
     },
@@ -243,7 +343,15 @@
       "popularity": 99,
       "slug": "speed-test",
       "image": "/images/speed-test.png",
-      "tags": ["speed test", "internet speed", "wifi test", "broadband", "download speed", "upload speed", "ping test"],
+      "tags": [
+        "speed test",
+        "internet speed",
+        "wifi test",
+        "broadband",
+        "download speed",
+        "upload speed",
+        "ping test"
+      ],
       "lastUsed": "2024-01-19",
       "usageCount": 8500
     },
@@ -256,7 +364,14 @@
       "popularity": 92,
       "slug": "random-6-digit-generator",
       "image": "/images/random-6-digit.png",
-      "tags": ["random", "number generator", "6 digit", "otp", "coupon", "bulk"],
+      "tags": [
+        "random",
+        "number generator",
+        "6 digit",
+        "otp",
+        "coupon",
+        "bulk"
+      ],
       "lastUsed": "2024-01-19",
       "usageCount": 4200
     },
@@ -269,7 +384,14 @@
       "popularity": 90,
       "slug": "random-5-digit-generator",
       "image": "/images/random-5-digit.png",
-      "tags": ["random", "number generator", "5 digit", "coupon", "raffle", "bulk"],
+      "tags": [
+        "random",
+        "number generator",
+        "5 digit",
+        "coupon",
+        "raffle",
+        "bulk"
+      ],
       "lastUsed": "2024-01-19",
       "usageCount": 3800
     },
@@ -282,7 +404,14 @@
       "popularity": 88,
       "slug": "random-4-digit-generator",
       "image": "/images/random-4-digit.png",
-      "tags": ["random", "number generator", "4 digit", "ticket", "queue", "bulk"],
+      "tags": [
+        "random",
+        "number generator",
+        "4 digit",
+        "ticket",
+        "queue",
+        "bulk"
+      ],
       "lastUsed": "2024-01-19",
       "usageCount": 3600
     },
@@ -295,7 +424,14 @@
       "popularity": 87,
       "slug": "random-3-digit-generator",
       "image": "/images/random-3-digit.png",
-      "tags": ["random", "number generator", "3 digit", "raffle", "queue", "bulk"],
+      "tags": [
+        "random",
+        "number generator",
+        "3 digit",
+        "raffle",
+        "queue",
+        "bulk"
+      ],
       "lastUsed": "2024-01-19",
       "usageCount": 3400
     },
@@ -308,7 +444,14 @@
       "popularity": 89,
       "slug": "random-alphanumeric-generator",
       "image": "/images/random-alphanumeric.png",
-      "tags": ["random", "string generator", "alphanumeric", "codes", "token", "coupon"],
+      "tags": [
+        "random",
+        "string generator",
+        "alphanumeric",
+        "codes",
+        "token",
+        "coupon"
+      ],
       "lastUsed": "2024-01-19",
       "usageCount": 3650
     },
@@ -321,7 +464,14 @@
       "popularity": 91,
       "slug": "json-to-csv-converter",
       "image": "/images/json-to-csv.png",
-      "tags": ["json", "csv", "converter", "data", "export", "spreadsheet"],
+      "tags": [
+        "json",
+        "csv",
+        "converter",
+        "data",
+        "export",
+        "spreadsheet"
+      ],
       "lastUsed": "2024-01-19",
       "usageCount": 4100
     },
@@ -334,7 +484,14 @@
       "popularity": 90,
       "slug": "csv-to-json-converter",
       "image": "/images/csv-to-json.png",
-      "tags": ["csv", "json", "converter", "api", "data", "import"],
+      "tags": [
+        "csv",
+        "json",
+        "converter",
+        "api",
+        "data",
+        "import"
+      ],
       "lastUsed": "2024-01-19",
       "usageCount": 3950
     },
@@ -347,7 +504,14 @@
       "popularity": 88,
       "slug": "collaborative-blackboard",
       "image": "/images/collaborative-blackboard.png",
-      "tags": ["blackboard", "collaboration", "drawing", "whiteboard", "team", "brainstorm"],
+      "tags": [
+        "blackboard",
+        "collaboration",
+        "drawing",
+        "whiteboard",
+        "team",
+        "brainstorm"
+      ],
       "lastUsed": "2024-01-19",
       "usageCount": 2560
     },
@@ -360,7 +524,16 @@
       "popularity": 98,
       "slug": "emi-calculator",
       "image": "/images/emi-calculator.png",
-      "tags": ["emi", "loan", "calculator", "home loan", "car loan", "personal loan", "finance", "interest"],
+      "tags": [
+        "emi",
+        "loan",
+        "calculator",
+        "home loan",
+        "car loan",
+        "personal loan",
+        "finance",
+        "interest"
+      ],
       "lastUsed": "2024-01-17",
       "usageCount": 5200
     },
@@ -373,7 +546,15 @@
       "popularity": 97,
       "slug": "sip-calculator",
       "image": "/images/sip-calculator.png",
-      "tags": ["sip", "mutual fund", "investment", "calculator", "wealth", "compounding", "returns"],
+      "tags": [
+        "sip",
+        "mutual fund",
+        "investment",
+        "calculator",
+        "wealth",
+        "compounding",
+        "returns"
+      ],
       "lastUsed": "2024-01-17",
       "usageCount": 4800
     },
@@ -386,7 +567,16 @@
       "popularity": 96,
       "slug": "gst-calculator",
       "image": "/images/gst-calculator.png",
-      "tags": ["gst", "tax", "calculator", "cgst", "sgst", "igst", "invoice", "india"],
+      "tags": [
+        "gst",
+        "tax",
+        "calculator",
+        "cgst",
+        "sgst",
+        "igst",
+        "invoice",
+        "india"
+      ],
       "lastUsed": "2024-01-17",
       "usageCount": 4500
     },
@@ -399,7 +589,16 @@
       "popularity": 96,
       "slug": "resume-checker",
       "image": "/images/resume-checker.png",
-      "tags": ["resume", "ats", "career", "job", "cv", "analyzer", "keywords", "optimization"],
+      "tags": [
+        "resume",
+        "ats",
+        "career",
+        "job",
+        "cv",
+        "analyzer",
+        "keywords",
+        "optimization"
+      ],
       "lastUsed": "2024-01-15",
       "usageCount": 4100
     },
@@ -412,7 +611,17 @@
       "popularity": 94,
       "slug": "image-converter",
       "image": "/images/image-converter.png",
-      "tags": ["image", "converter", "batch", "ai", "compression", "editing", "webp", "avif", "heic"],
+      "tags": [
+        "image",
+        "converter",
+        "batch",
+        "ai",
+        "compression",
+        "editing",
+        "webp",
+        "avif",
+        "heic"
+      ],
       "lastUsed": "2024-01-15",
       "usageCount": 3200
     },
@@ -425,7 +634,11 @@
       "popularity": 83,
       "slug": "image-compressor",
       "image": "/images/image-compressor.png",
-      "tags": ["image", "compression", "media"],
+      "tags": [
+        "image",
+        "compression",
+        "media"
+      ],
       "lastUsed": "2024-01-10",
       "usageCount": 720
     },
@@ -438,7 +651,11 @@
       "popularity": 69,
       "slug": "base64-encoder",
       "image": "/images/base64.png",
-      "tags": ["base64", "encoder", "developer"],
+      "tags": [
+        "base64",
+        "encoder",
+        "developer"
+      ],
       "lastUsed": "2024-01-09",
       "usageCount": 420
     },
@@ -451,7 +668,13 @@
       "popularity": 88,
       "slug": "ai-tool-directory",
       "image": "/images/ai-directory.png",
-      "tags": ["ai", "directory", "product", "design", "developer"],
+      "tags": [
+        "ai",
+        "directory",
+        "product",
+        "design",
+        "developer"
+      ],
       "lastUsed": "2024-01-20",
       "usageCount": 2780
     },
@@ -464,8 +687,74 @@
       "popularity": 90,
       "slug": "random-image-generator",
       "image": "/images/random-image.png",
-      "tags": ["image", "generator", "stock photos", "design", "media"],
+      "tags": [
+        "image",
+        "generator",
+        "stock photos",
+        "design",
+        "media"
+      ],
       "lastUsed": "2024-01-16",
+      "usageCount": 0
+    },
+    {
+      "id": "md5-generator",
+      "title": "MD5 Hash Generator",
+      "category": "Security",
+      "type": "app",
+      "description": "Generate MD5 hashes from any text string. Fast, secure client-side hashing for passwords, verification, and data integrity.",
+      "popularity": 88,
+      "slug": "md5-generator",
+      "tags": [
+        "md5",
+        "hash",
+        "generator",
+        "security",
+        "encryption",
+        "development"
+      ],
+      "lastUsed": "2024-02-14",
+      "usageCount": 0
+    },
+    {
+      "id": "case-converter",
+      "title": "Case Converter",
+      "category": "Writing",
+      "type": "app",
+      "description": "Convert text between specific cases: uppercase, lowercase, title case, sentence case, camelCase, and pascalCase instantly.",
+      "popularity": 92,
+      "slug": "case-converter",
+      "tags": [
+        "case",
+        "converter",
+        "text",
+        "uppercase",
+        "lowercase",
+        "camelcase",
+        "writing",
+        "developer"
+      ],
+      "lastUsed": "2024-02-14",
+      "usageCount": 0
+    },
+    {
+      "id": "lorem-ipsum-generator",
+      "title": "Lorem Ipsum Generator",
+      "category": "Developer",
+      "type": "app",
+      "description": "Generate placeholder text (Lorem Ipsum) for web design, mockups, and typography. Customize paragraphs, words, or lists.",
+      "popularity": 95,
+      "slug": "lorem-ipsum-generator",
+      "tags": [
+        "lorem ipsum",
+        "generator",
+        "placeholder",
+        "text",
+        "design",
+        "mockup",
+        "developer"
+      ],
+      "lastUsed": "2024-02-14",
       "usageCount": 0
     }
   ]

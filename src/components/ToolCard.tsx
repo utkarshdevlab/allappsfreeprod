@@ -13,7 +13,7 @@ interface ToolCardProps {
 export default function ToolCard({ tool, variant = 'default' }: ToolCardProps) {
   const thumbnailUrl = getToolThumbnail(tool.id);
   const baseClasses = "group relative overflow-hidden rounded-2xl bg-white border-2 border-gray-100 shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-300";
-  
+
   const variantClasses = {
     default: "",
     compact: "",
@@ -25,8 +25,8 @@ export default function ToolCard({ tool, variant = 'default' }: ToolCardProps) {
       <div className={`${baseClasses} ${variantClasses[variant]}`}>
         {/* Thumbnail Image */}
         <div className="relative h-48 w-full overflow-hidden">
-          <Image 
-            src={thumbnailUrl} 
+          <Image
+            src={thumbnailUrl}
             alt={tool.title}
             width={400}
             height={300}
@@ -34,18 +34,17 @@ export default function ToolCard({ tool, variant = 'default' }: ToolCardProps) {
             unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          
+
           {/* Floating Badges */}
           <div className="absolute top-3 left-3 flex gap-2">
-            <span className={`px-3 py-1.5 text-xs font-bold rounded-full backdrop-blur-md shadow-lg ${
-              tool.type === 'game' 
-                ? 'bg-purple-500/90 text-white' 
-                : 'bg-blue-500/90 text-white'
-            }`}>
+            <span className={`px-3 py-1.5 text-xs font-bold rounded-full backdrop-blur-md shadow-lg ${tool.type === 'game'
+              ? 'bg-purple-500/90 text-white'
+              : 'bg-blue-500/90 text-white'
+              }`}>
               {tool.type === 'game' ? '🎮 GAME' : '⚙️ APP'}
             </span>
           </div>
-          
+
           <div className="absolute top-3 right-3">
             <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-green-500/90 text-white backdrop-blur-md shadow-lg">
               ⭐ {tool.popularity}%

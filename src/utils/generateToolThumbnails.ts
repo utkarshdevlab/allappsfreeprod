@@ -1,7 +1,7 @@
 // Utility to generate modern gradient SVG thumbnails for tools
 export function generateToolThumbnail(toolId: string, emoji: string, gradient: string[]): string {
   const [color1, color2] = gradient;
-  
+
   return `data:image/svg+xml,${encodeURIComponent(`
     <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -47,7 +47,13 @@ export const toolThumbnails: Record<string, { emoji: string; gradient: string[] 
   'image-converter': { emoji: '🖼️', gradient: ['#a18cd1', '#fbc2eb'] },
   'image-compressor': { emoji: '🗜️', gradient: ['#fad0c4', '#ffd1ff'] },
   'base64-encoder': { emoji: '💻', gradient: ['#6a11cb', '#2575fc'] },
-  'ai-paraphrase': { emoji: '✨', gradient: ['#f857a6', '#ff5858'] }
+  'ai-paraphrase': { emoji: '✨', gradient: ['#f857a6', '#ff5858'] },
+  'md5-generator': { emoji: '🔐', gradient: ['#667eea', '#764ba2'] },
+  'case-converter': { emoji: '🔤', gradient: ['#4facfe', '#00f2fe'] },
+  'lorem-ipsum-generator': { emoji: '📄', gradient: ['#f093fb', '#f5576c'] },
+  'fake-credit-card-generator': { emoji: '💳', gradient: ['#ff9a9e', '#fecfef'] },
+  '5-digit-random-number-generator': { emoji: '🔢', gradient: ['#43e97b', '#38f9d7'] },
+  'us-phone-generator': { emoji: '📞', gradient: ['#4facfe', '#00f2fe'] }
 };
 
 export function getToolThumbnail(toolId: string): string {

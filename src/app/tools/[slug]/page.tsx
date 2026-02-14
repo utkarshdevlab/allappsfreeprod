@@ -42,6 +42,9 @@ import PhoneNumberGenerator from '@/components/tools/PhoneNumberGenerator';
 import RandomImageGenerator from '@/components/tools/RandomImageGenerator';
 import FakeCreditCardGenerator from '@/components/tools/FakeCreditCardGenerator';
 import FiveDigitRandomNumberGenerator from '@/components/tools/FiveDigitRandomNumberGenerator';
+import Md5Generator from '@/components/tools/Md5Generator';
+import CaseConverter from '@/components/tools/CaseConverter';
+import LoremIpsumGenerator from '@/components/tools/LoremIpsumGenerator';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -62,7 +65,7 @@ const canonicalBase = process.env.NEXT_PUBLIC_CANONICAL_BASE_URL ?? 'https://www
 export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
   const { slug } = await params;
   const tool = getToolBySlug(slug);
-  
+
   if (!tool) {
     return {
       title: 'Tool Not Found',
@@ -96,7 +99,7 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
 export default async function ToolPage({ params }: ToolPageProps) {
   const { slug } = await params;
   const toolLookup = getToolBySlug(slug);
-  
+
   if (!toolLookup) {
     notFound();
     return null;
@@ -118,7 +121,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
           <div className="absolute inset-0" style={{
             backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
           }}></div>
-          
+
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <nav className="flex items-center space-x-2 text-sm text-white/80 mb-6">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -127,29 +130,28 @@ export default async function ToolPage({ params }: ToolPageProps) {
               <span>→</span>
               <span className="text-white font-medium">{tool.title}</span>
             </nav>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
               <div className="lg:col-span-2">
                 <div className="flex items-center space-x-3 mb-4">
-                  <span className={`px-4 py-2 text-sm font-bold rounded-full backdrop-blur-sm shadow-lg ${
-                    tool.type === 'game' 
-                      ? 'bg-purple-600 text-white border-2 border-purple-400' 
-                      : 'bg-blue-600 text-white border-2 border-blue-400'
-                  }`}>
+                  <span className={`px-4 py-2 text-sm font-bold rounded-full backdrop-blur-sm shadow-lg ${tool.type === 'game'
+                    ? 'bg-purple-600 text-white border-2 border-purple-400'
+                    : 'bg-blue-600 text-white border-2 border-blue-400'
+                    }`}>
                     {tool.type === 'game' ? '🎮 GAME' : '⚙️ APP'}
                   </span>
                   <span className="px-4 py-2 text-sm font-bold bg-gray-800 text-white rounded-full backdrop-blur-sm border-2 border-gray-600 shadow-lg">
                     {tool.category}
                   </span>
                 </div>
-                
+
                 <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight drop-shadow-lg">
                   {tool.title}
                 </h1>
                 <p className="text-xl text-white mb-6 leading-relaxed drop-shadow-md">
                   {tool.description}
                 </p>
-                
+
                 <div className="flex flex-wrap items-center gap-4">
                   <div className="flex items-center space-x-2 bg-gray-800/90 backdrop-blur-sm px-4 py-2 rounded-full border-2 border-gray-600 shadow-lg">
                     <span className="text-2xl">⭐</span>
@@ -161,12 +163,12 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   </div>
                 </div>
               </div>
-              
+
               <div className="lg:col-span-1">
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                  <Image 
-                    src={thumbnailUrl} 
+                  <Image
+                    src={thumbnailUrl}
                     alt={tool.title}
                     width={400}
                     height={300}
@@ -260,7 +262,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
             </Suspense>
           ) : tool.id === 'ai-directory' ? (
             <AIDirectory />
-          ) : tool.slug === 'phone-number-generator' ? (
+          ) : tool.id === 'us-phone-generator' ? (
             <PhoneNumberGenerator />
           ) : tool.slug === 'ai-tool-directory' ? (
             <AIDirectory />
@@ -270,6 +272,12 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <FakeCreditCardGenerator />
           ) : tool.id === '5-digit-random-number-generator' ? (
             <FiveDigitRandomNumberGenerator />
+          ) : tool.id === 'md5-generator' ? (
+            <Md5Generator />
+          ) : tool.id === 'case-converter' ? (
+            <CaseConverter />
+          ) : tool.id === 'lorem-ipsum-generator' ? (
+            <LoremIpsumGenerator />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">
@@ -339,22 +347,22 @@ export default async function ToolPage({ params }: ToolPageProps) {
               <span className="text-3xl">🚀</span>
             </div>
             <div className="space-y-2">
-              <Link 
-                href="/tools?type=game" 
+              <Link
+                href="/tools?type=game"
                 className="flex items-center space-x-2 px-4 py-2 bg-white text-pink-700 rounded-lg hover:bg-pink-50 transition-colors font-medium shadow-sm border border-pink-200"
               >
                 <span>🎮</span>
                 <span>All Games</span>
               </Link>
-              <Link 
-                href="/tools?type=app" 
+              <Link
+                href="/tools?type=app"
                 className="flex items-center space-x-2 px-4 py-2 bg-white text-pink-700 rounded-lg hover:bg-pink-50 transition-colors font-medium shadow-sm border border-pink-200"
               >
                 <span>⚙️</span>
                 <span>All Apps</span>
               </Link>
-              <Link 
-                href={`/tools?category=${encodeURIComponent(tool.category)}`} 
+              <Link
+                href={`/tools?category=${encodeURIComponent(tool.category)}`}
                 className="flex items-center space-x-2 px-4 py-2 bg-white text-pink-700 rounded-lg hover:bg-pink-50 transition-colors font-medium shadow-sm border border-pink-200"
               >
                 <span>📂</span>
@@ -367,9 +375,9 @@ export default async function ToolPage({ params }: ToolPageProps) {
         {/* Related Tools */}
         {relatedTools.length > 0 && (
           <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200">
-            <ToolSection 
-              title="Related Tools" 
-              tools={relatedTools} 
+            <ToolSection
+              title="Related Tools"
+              tools={relatedTools}
               showViewAll={false}
               maxItems={4}
             />
