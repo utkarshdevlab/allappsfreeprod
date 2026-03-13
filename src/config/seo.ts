@@ -3,15 +3,15 @@ export const seoConfig = {
   // Site Information
   siteName: 'All Apps Free',
   siteUrl: 'https://allappsfree.com',
-  siteDescription: 'Discover amazing games and useful tools. Everything you need, completely free. Play games, use utilities, and explore our collection of free online tools.',
-  
+  siteDescription: 'Explore a vast collection of free online tools and games with All Apps Free. Enjoy premium features, no ads, and no signups for productivity, design, and entertainment.',
+
   // Social Media
   social: {
     twitter: '@allappsfree',
     facebook: 'allappsfree',
     instagram: 'allappsfree',
   },
-  
+
   // Analytics IDs (Replace with your actual IDs)
   analytics: {
     googleAnalyticsId: 'G-VSX8VZ7GTM', // Replace with your GA4 ID
@@ -19,11 +19,11 @@ export const seoConfig = {
     microsoftClarityId: '', // Optional: Microsoft Clarity
     hotjarId: '', // Optional: Hotjar
   },
-  
+
   // Default SEO Tags
   defaultSEO: {
     title: 'All Apps Free - Games & Tools',
-    description: 'Discover amazing games and useful tools. Everything you need, completely free.',
+    description: 'Access 50+ free online tools and games with All Apps Free. From mortgage calculators to QR generators, enjoy premium features with no ads and no signups required.',
     keywords: [
       'free games',
       'online tools',
@@ -42,7 +42,7 @@ export const seoConfig = {
     language: 'en',
     locale: 'en_US',
   },
-  
+
   // Open Graph
   openGraph: {
     type: 'website',
@@ -56,14 +56,14 @@ export const seoConfig = {
       },
     ],
   },
-  
+
   // Twitter Card
   twitter: {
     cardType: 'summary_large_image',
     site: '@allappsfree',
     creator: '@allappsfree',
   },
-  
+
   // Structured Data
   organization: {
     '@context': 'https://schema.org',
@@ -78,13 +78,14 @@ export const seoConfig = {
       'https://instagram.com/allappsfree',
     ],
   },
-  
+
   // Verification Codes
   verification: {
     google: '', // Google Search Console verification code
     bing: '', // Bing Webmaster verification code
     yandex: '', // Yandex verification code
     pinterest: '', // Pinterest verification code
+    indexNow: 'd352e47c0e5b4b1a8f9c1d2e3f4a5b6c', // IndexNow API Key
   },
 };
 
@@ -98,10 +99,10 @@ export function generatePageSEO(page: {
   type?: string;
 }) {
   const baseUrl = seoConfig.siteUrl;
-  const fullTitle = page.title 
-    ? `${page.title} | ${seoConfig.siteName}` 
+  const fullTitle = page.title
+    ? `${page.title} | ${seoConfig.siteName}`
     : seoConfig.defaultSEO.title;
-  
+
   return {
     title: fullTitle,
     description: page.description || seoConfig.defaultSEO.description,

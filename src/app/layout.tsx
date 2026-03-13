@@ -62,7 +62,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <StructuredData type="website" />
-        <link rel="canonical" href={metadataBase.toString()} />
         {seoConfig.verification.google && (
           <meta name="google-site-verification" content={seoConfig.verification.google} />
         )}

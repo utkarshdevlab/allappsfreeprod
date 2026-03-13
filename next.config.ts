@@ -9,18 +9,12 @@ const nextConfig: NextConfig = {
   },
   basePath: isProduction ? '' : '',
   assetPrefix: isProduction ? '' : '',
-  
+
   // Handle redirects
   async redirects() {
     if (!isProduction) return [];
-    
+
     return [
-      // Remove trailing slashes
-      {
-        source: '/:path+/',
-        destination: '/:path+',
-        permanent: true,
-      },
       // Redirect non-www to www
       {
         source: '/:path*',
@@ -35,7 +29,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  
+
   // Add proper headers
   async headers() {
     return [

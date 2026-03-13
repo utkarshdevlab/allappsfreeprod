@@ -7,10 +7,10 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "AllAppsFree – All Tools and Games, Completely Free with Premium Features",
-  description: "AllAppsFree is a web platform where every online tool and game is completely free to use — with all premium features unlocked. No signups, no ads, and no hidden costs. Generate passwords, compress images, play games, and more.",
+  description: "AllAppsFree offers a comprehensive collection of precise online tools and addictive games. Access premium features for free with no ads, no signups, and zero hidden costs. Perfect for productivity and fun.",
   keywords: [
     "free online tools",
-    "ad-free games", 
+    "ad-free games",
     "password generator",
     "image compressor",
     "QR code generator",
@@ -93,9 +93,9 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Recently Used */}
         {recentlyUsed.length > 0 && (
-          <ToolSection 
-            title="Recently Used" 
-            tools={recentlyUsed} 
+          <ToolSection
+            title="Recently Used"
+            tools={recentlyUsed}
             variant="carousel"
             showViewAll={false}
             maxItems={12}
@@ -104,9 +104,9 @@ export default function Home() {
 
         {/* Most Used */}
         {mostUsed.length > 0 && (
-          <ToolSection 
-            title="Most Popular" 
-            tools={mostUsed} 
+          <ToolSection
+            title="Most Popular"
+            tools={mostUsed}
             variant="carousel"
             showViewAll={false}
             maxItems={12}
@@ -118,9 +118,9 @@ export default function Home() {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">Apps</h2>
           <p className="text-gray-500">Powerful productivity tools and utilities at your fingertips</p>
         </div>
-        <ToolSection 
+        <ToolSection
           title=""
-          tools={apps} 
+          tools={apps}
           viewAllHref="/tools/apps"
         />
 
@@ -129,9 +129,9 @@ export default function Home() {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">Games</h2>
           <p className="text-gray-500">Pick‑up‑and‑play games to relax and have fun</p>
         </div>
-        <ToolSection 
+        <ToolSection
           title=""
-          tools={games} 
+          tools={games}
           viewAllHref="/tools/games"
           maxItems={12}
         />
@@ -145,12 +145,12 @@ export default function Home() {
             <div key={category.name} className="bg-white rounded-xl p-4 ring-1 ring-gray-200 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-center">
                 <div className="text-2xl mb-2">
-                  {category.name === 'Puzzle' ? '🧩' : 
-                   category.name === 'Arcade' ? '🎮' : 
-                   category.name === 'Security' ? '🔒' : 
-                   category.name === 'Utility' ? '🔧' : 
-                   category.name === 'Design' ? '🎨' : 
-                   category.name === 'Audio' ? '🎵' : '⚙️'}
+                  {category.name === 'Puzzle' ? '🧩' :
+                    category.name === 'Arcade' ? '🎮' :
+                      category.name === 'Security' ? '🔒' :
+                        category.name === 'Utility' ? '🔧' :
+                          category.name === 'Design' ? '🎨' :
+                            category.name === 'Audio' ? '🎵' : '⚙️'}
                 </div>
                 <h3 className="font-semibold text-sm text-gray-900">{category.name}</h3>
                 <p className="text-xs text-gray-500">{category.count} tools</p>
