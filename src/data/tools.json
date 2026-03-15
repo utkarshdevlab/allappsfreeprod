@@ -882,6 +882,27 @@
       ],
       "lastUsed": "2024-02-14",
       "usageCount": 0
+    },
+    {
+      "id": "da-arrear-calculator",
+      "title": "India DA Arrear Calculator",
+      "category": "Finance",
+      "type": "app",
+      "description": "Calculate India DA arrears for central and state government employees based on 7th Pay Commission rates. Includes Jan 2025 rates and HRA conversion logic.",
+      "popularity": 97,
+      "slug": "da-arrear-calculator",
+      "tags": [
+        "da arrear",
+        "india da calculator",
+        "7th pay commission",
+        "central government",
+        "salary calculator",
+        "salary",
+        "finance",
+        "hra arrear"
+      ],
+      "lastUsed": "2024-03-16",
+      "usageCount": 0
     }
   ]
 }
