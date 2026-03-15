@@ -61,6 +61,10 @@ export default function ListingClient({
                 icon={icon}
                 gradient={gradient}
                 breadcrumbs={breadcrumbs}
+                stats={[
+                    { label: 'Collection', value: `${initialTools.length} Free`, icon: '⭐' },
+                    { label: 'Tools', value: 'Verified', icon: '👥' }
+                ]}
             />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
