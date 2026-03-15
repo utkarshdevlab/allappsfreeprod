@@ -13,10 +13,10 @@ interface ToolSectionProps {
   maxItems?: number;
 }
 
-export default function ToolSection({ 
-  title, 
-  tools, 
-  showViewAll = true, 
+export default function ToolSection({
+  title,
+  tools,
+  showViewAll = true,
   viewAllHref = '/tools',
   variant = 'grid',
   maxItems = 6
@@ -24,21 +24,25 @@ export default function ToolSection({
   const displayTools = tools.slice(0, maxItems);
 
   return (
-    <section className="mb-12">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+    <section id={title.toLowerCase().replace(/\s+/g, '-')} className="mb-16 scroll-mt-24">
+      <div className="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-2 h-8 bg-blue-600 rounded-full" />
+          <h2 className="text-3xl font-black text-gray-900 tracking-tight">{title}</h2>
+        </div>
         {showViewAll && (
-          <Link 
+          <Link
             href={viewAllHref}
-            className="text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors"
+            className="group flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 transition-all font-bold text-sm shadow-sm"
           >
-            View All →
+            Explore More
+            <span className="group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         )}
       </div>
 
       {variant === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {displayTools.map((tool) => (
             <ToolCard key={tool.id} tool={tool} />
           ))}

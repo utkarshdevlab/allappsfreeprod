@@ -15,7 +15,7 @@ export function getToolBySlug(slug: string): Tool | undefined {
 
 export function getTopCategories(limit: number = 6): Category[] {
   const categoryMap = new Map<string, Tool[]>();
-  
+
   (toolsData.tools as Tool[]).forEach(tool => {
     if (!categoryMap.has(tool.category)) {
       categoryMap.set(tool.category, []);
@@ -88,6 +88,20 @@ function scoreTool(tool: Tool, tokens: string[], phrase: string) {
   score += Math.min(10, Math.round(tool.popularity / 10));
 
   return score;
+}
+
+export function getToolsByCategoryMap(type?: 'app' | 'game'): Map<string, Tool[]> {
+  const tools = type ? getToolsByType(type) : getAllTools();
+  const categoryMap = new Map<string, Tool[]>();
+
+  tools.forEach(tool => {
+    if (!categoryMap.has(tool.category)) {
+      categoryMap.set(tool.category, []);
+    }
+    categoryMap.get(tool.category)!.push(tool);
+  });
+
+  return categoryMap;
 }
 
 export function searchTools(query: string): Tool[] {
