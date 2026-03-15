@@ -52,6 +52,7 @@ import StudentLoanCalculator from '@/components/tools/StudentLoanCalculator';
 import FreelanceRateCalculator from '@/components/tools/FreelanceRateCalculator';
 import XmlValidator from '@/components/tools/XmlValidator';
 import JsonBeautifier from '@/components/tools/JsonBeautifier';
+import DAArrearCalculator from '@/components/tools/DAArrearCalculator';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -299,6 +300,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <XmlValidator />
           ) : tool.id === 'json-beautifier' ? (
             <JsonBeautifier />
+          ) : tool.id === 'da-arrear-calculator' ? (
+            <DAArrearCalculator />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">
