@@ -23,7 +23,7 @@ export default function ToolsPage() {
       title="All Tools & Apps"
       description={`Browse our collection of ${tools.length} professional-grade tools and utilities, completely free and unlocked.`}
       icon="🛠️"
-      gradient="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#3b82f6]"
+      gradient="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
     />
   );
 }

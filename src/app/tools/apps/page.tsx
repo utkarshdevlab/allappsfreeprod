@@ -23,7 +23,7 @@ export default function AppsPage() {
       title="Productivity Apps & Tools"
       description={`Master your workflow with ${apps.length} powerful utilities. From finance calculators to developer tools.`}
       icon="⚙️"
-      gradient="bg-gradient-to-br from-[#083344] via-[#0e7490] to-[#06b6d4]"
+      gradient="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
       type="app"
     />
   );

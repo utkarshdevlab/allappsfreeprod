@@ -1,65 +1,65 @@
 import React from 'react';
+import Link from 'next/link';
 
 interface ListingHeroProps {
     title: string;
     description: string;
     icon: string;
     gradient: string;
-    secondaryGradient?: string;
+    breadcrumbs: { label: string; href: string }[];
 }
 
-export default function ListingHero({ title, description, icon, gradient, secondaryGradient }: ListingHeroProps) {
+export default function ListingHero({ title, description, icon, gradient, breadcrumbs }: ListingHeroProps) {
     return (
-        <div className={`relative overflow-hidden ${gradient} py-20 md:py-32 rounded-b-[3rem] md:rounded-b-[5rem] shadow-2xl transition-all duration-700`}>
-            {/* Animated Mesh Gradients - Core Aesthetics */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className={`absolute -top-1/4 -left-1/4 w-1/2 h-1/2 ${secondaryGradient || 'bg-blue-400/20'} blur-[120px] rounded-full animate-blob`}></div>
-                <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-purple-400/20 blur-[120px] rounded-full animate-blob animation-delay-2000"></div>
-                <div className="absolute -bottom-1/4 left-1/4 w-1/2 h-1/2 bg-pink-400/20 blur-[120px] rounded-full animate-blob animation-delay-4000"></div>
-            </div>
+        <div className={`relative ${gradient} overflow-hidden shadow-2xl`}>
+            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="absolute inset-0" style={{
+                backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
+            }}></div>
 
-            {/* Floating Glassmorphism Shapes */}
-            <div className="absolute top-10 right-10 w-32 h-32 bg-white/5 backdrop-blur-3xl rounded-full border border-white/10 shadow-2xl animate-float pointer-events-none hidden md:block"></div>
-            <div className="absolute bottom-20 left-10 w-24 h-24 bg-white/5 backdrop-blur-2xl rounded-full border border-white/10 shadow-xl animate-float-delayed pointer-events-none hidden md:block"></div>
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                {/* Breadcrumbs */}
+                <nav className="flex items-center space-x-2 text-sm text-white/80 mb-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                    {breadcrumbs.map((crumb, index) => (
+                        <React.Fragment key={crumb.href}>
+                            <Link href={crumb.href} className="hover:text-white transition-colors">
+                                {crumb.label}
+                            </Link>
+                            {index < breadcrumbs.length - 1 && <span className="text-white/40">→</span>}
+                        </React.Fragment>
+                    ))}
+                </nav>
 
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div className="space-y-8">
-                    {/* Glowing Icon Container */}
-                    <div className="relative inline-block">
-                        <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full scale-150 animate-pulse"></div>
-                        <div className="relative inline-flex items-center justify-center w-24 h-24 md:w-32 md:h-32 bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/20 shadow-[0_0_50px_rgba(255,255,255,0.1)] group transition-transform duration-500 hover:scale-110">
-                            <span className="text-6xl md:text-7xl drop-shadow-2xl filter group-hover:brightness-110 transition-all">
-                                {icon}
-                            </span>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+                    <div className="lg:col-span-2 text-left space-y-6">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-md rounded-lg border border-white/10 text-white text-sm font-bold tracking-wide uppercase">
+                            <span className="text-lg">{icon}</span>
+                            Official Directory
                         </div>
-                    </div>
 
-                    <div className="space-y-6">
-                        <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-tight drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)]">
+                        <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-[1.1] drop-shadow-xl">
                             {title}
                         </h1>
-                        <p className="max-w-3xl mx-auto text-xl md:text-3xl text-white/80 font-medium leading-relaxed drop-shadow-md px-4">
+
+                        <p className="max-w-2xl text-xl md:text-2xl text-white/90 font-medium leading-relaxed drop-shadow-md">
                             {description}
                         </p>
                     </div>
 
-                    {/* Quick Stats or Vibes */}
-                    <div className="flex flex-wrap justify-center gap-4 pt-4">
-                        <span className="px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full text-white text-sm font-bold border border-white/10 shadow-lg">
-                            ✨ Premium Features
-                        </span>
-                        <span className="px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full text-white text-sm font-bold border border-white/10 shadow-lg">
-                            🚀 Ad-Free
-                        </span>
-                        <span className="px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full text-white text-sm font-bold border border-white/10 shadow-lg">
-                            🔒 100% Private
-                        </span>
+                    {/* Rigid Icon Card */}
+                    <div className="hidden lg:block lg:col-span-1">
+                        <div className="relative group">
+                            <div className="absolute -inset-1 bg-white/20 rounded-3xl blur opacity-25"></div>
+                            <div className="relative aspect-square flex items-center justify-center bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl">
+                                <span className="text-[120px] drop-shadow-2xl">{icon}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Aesthetic Highlight */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+            {/* Rigid Bottom Divider */}
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
         </div>
     );
 }

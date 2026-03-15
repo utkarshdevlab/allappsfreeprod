@@ -23,7 +23,7 @@ export default function GamesPage() {
       title="Free Online Games"
       description={`Discover ${games.length} amazing games to play directly in your browser. From classics to modern puzzles.`}
       icon="🎮"
-      gradient="bg-gradient-to-br from-[#2e1065] via-[#4c1d95] to-[#8b5cf6]"
+      gradient="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"
       type="game"
     />
   );

@@ -25,6 +25,14 @@ export default function ListingClient({
 }: ListingClientProps) {
     const [activeCategory, setActiveCategory] = useState('all');
 
+    const breadcrumbs = [
+        { label: 'Home', href: '/' },
+        { label: 'Tools', href: '/tools' },
+    ];
+
+    if (type === 'game') breadcrumbs.push({ label: 'Games', href: '/tools/games' });
+    if (type === 'app') breadcrumbs.push({ label: 'Apps', href: '/tools/apps' });
+
     const categories = useMemo(() => {
         const cats = new Set(initialTools.map(t => t.category));
         return Array.from(cats).sort();
@@ -52,10 +60,10 @@ export default function ListingClient({
                 description={description}
                 icon={icon}
                 gradient={gradient}
-                secondaryGradient={type === 'game' ? 'bg-purple-400/30' : type === 'app' ? 'bg-cyan-400/30' : 'bg-blue-400/30'}
+                breadcrumbs={breadcrumbs}
             />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="flex flex-col lg:flex-row gap-12">
                     {/* Sidebar */}
                     <div className="w-full lg:w-64 flex-shrink-0">
