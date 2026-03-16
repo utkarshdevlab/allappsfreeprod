@@ -903,6 +903,101 @@
       ],
       "lastUsed": "2024-03-16",
       "usageCount": 0
+    },
+    {
+      "id": "us-sales-tax-calculator",
+      "title": "US Sales Tax Calculator",
+      "category": "Tax",
+      "type": "app",
+      "description": "Calculate sales tax for any US state. Includes state-specific tax rates for 2024, support for zip code search, and add/remove tax functionality.",
+      "popularity": 98,
+      "slug": "us-sales-tax-calculator",
+      "tags": [
+        "tax",
+        "sales tax",
+        "us tax",
+        "finance",
+        "calculator",
+        "usa"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
+    },
+    {
+      "id": "tip-calculator",
+      "title": "Tip Calculator & Bill Splitter",
+      "category": "Utility",
+      "type": "app",
+      "description": "Quickly calculate tips and split bills among friends. Perfect for US dining etiquette, with customizable tip percentages and easy per-person breakdowns.",
+      "popularity": 96,
+      "slug": "tip-calculator",
+      "tags": [
+        "tip",
+        "gratuity",
+        "dining",
+        "bill splitter",
+        "restaurant",
+        "utility"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
+    },
+    {
+      "id": "bmi-calculator",
+      "title": "BMI Calculator (Imperial & Metric)",
+      "category": "Health",
+      "type": "app",
+      "description": "Calculate your Body Mass Index (BMI) using US Imperial (lbs/in) or Metric (kg/cm) units. Includes healthy weight range charts and fitness category analysis.",
+      "popularity": 99,
+      "slug": "bmi-calculator",
+      "tags": [
+        "health",
+        "fitness",
+        "bmi",
+        "body mass index",
+        "weight",
+        "wellness"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
+    },
+    {
+      "id": "compound-interest-calculator",
+      "title": "Compound Interest Calculator",
+      "category": "Finance",
+      "type": "app",
+      "description": "Calculate the power of compounding for your investments. Visualize future growth with monthly contributions and customizable compounding frequencies.",
+      "popularity": 95,
+      "slug": "compound-interest-calculator",
+      "tags": [
+        "finance",
+        "investing",
+        "savings",
+        "compound interest",
+        "wealth",
+        "growth"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
+    },
+    {
+      "id": "unit-converter",
+      "title": "Metric to Imperial Unit Converter",
+      "category": "Utility",
+      "type": "app",
+      "description": "Fast and accurate unit conversion system. Specialized focus on Metric to Imperial conversions for weight, height, volume, and temperature for US users.",
+      "popularity": 94,
+      "slug": "unit-converter",
+      "tags": [
+        "converter",
+        "unit conversion",
+        "metric",
+        "imperial",
+        "utility",
+        "measurement"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
     }
   ]
 }

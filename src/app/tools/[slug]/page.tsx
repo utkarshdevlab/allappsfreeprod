@@ -53,6 +53,11 @@ import FreelanceRateCalculator from '@/components/tools/FreelanceRateCalculator'
 import XmlValidator from '@/components/tools/XmlValidator';
 import JsonBeautifier from '@/components/tools/JsonBeautifier';
 import DAArrearCalculator from '@/components/tools/DAArrearCalculator';
+import SalesTaxCalculator from '@/components/tools/SalesTaxCalculator';
+import TipCalculator from '@/components/tools/TipCalculator';
+import BMICalculator from '@/components/tools/BMICalculator';
+import CompoundInterestCalculator from '@/components/tools/CompoundInterestCalculator';
+import UnitConverter from '@/components/tools/UnitConverter';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -302,6 +307,16 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <JsonBeautifier />
           ) : tool.id === 'da-arrear-calculator' ? (
             <DAArrearCalculator />
+          ) : tool.id === 'us-sales-tax-calculator' ? (
+            <SalesTaxCalculator />
+          ) : tool.id === 'tip-calculator' ? (
+            <TipCalculator />
+          ) : tool.id === 'bmi-calculator' ? (
+            <BMICalculator />
+          ) : tool.id === 'compound-interest-calculator' ? (
+            <CompoundInterestCalculator />
+          ) : tool.id === 'unit-converter' ? (
+            <UnitConverter />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">
