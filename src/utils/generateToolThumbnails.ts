@@ -60,7 +60,12 @@ export const toolThumbnails: Record<string, { emoji: string; gradient: string[] 
   'student-loan-calculator': { emoji: '🎓', gradient: ['#3b82f6', '#6366f1'] },
   'freelance-rate-calculator': { emoji: '💼', gradient: ['#8b5cf6', '#ec4899'] },
   'xml-validator': { emoji: '📜', gradient: ['#f59e0b', '#fbbf24'] },
-  'json-beautifier': { emoji: '🧬', gradient: ['#06b6d4', '#3b82f6'] }
+  'json-beautifier': { emoji: '🧬', gradient: ['#06b6d4', '#3b82f6'] },
+  'brain-dump': { emoji: '🧠', gradient: ['#6a11cb', '#2575fc'] },
+  'work-escape': { emoji: '🤫', gradient: ['#232526', '#414345'] },
+  'decision-helper': { emoji: '🎡', gradient: ['#f857a6', '#ff5858'] },
+  'vibe-generator': { emoji: '🌌', gradient: ['#00c6ff', '#0072ff'] },
+  'typezen': { emoji: '⌨️', gradient: ['#1e1e1e', '#434343'] }
 };
 
 export function getToolThumbnail(toolId: string): string {

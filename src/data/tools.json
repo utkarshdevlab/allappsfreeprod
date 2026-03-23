@@ -998,6 +998,96 @@
       ],
       "lastUsed": "2024-03-24",
       "usageCount": 0
+    },
+    {
+      "id": "brain-dump",
+      "title": "Aesthetic Brain Dump",
+      "category": "Productivity",
+      "type": "app",
+      "description": "Clear your mind instantly. Type your messy thoughts and watch them beautifully categorize into tasks, ideas, and notes with one click.",
+      "popularity": 97,
+      "slug": "brain-dump",
+      "tags": [
+        "productivity",
+        "notes",
+        "brain dump",
+        "organization",
+        "focus"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
+    },
+    {
+      "id": "work-escape",
+      "title": "I Don't Feel Like Working",
+      "category": "Entertainment",
+      "type": "app",
+      "description": "The ultimate 'Boss Key' tool. A realistic professional dashboard that hides a secret chill space for when you need a 5-minute mental break.",
+      "popularity": 98,
+      "slug": "i-dont-feel-like-working",
+      "tags": [
+        "entertainment",
+        "fun",
+        "workspace",
+        "break",
+        "secret"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
+    },
+    {
+      "id": "decision-helper",
+      "title": "Decision Architect",
+      "category": "Utility",
+      "type": "app",
+      "description": "Stop overthinking. Use our weighted decision wheel with premium animations to make choices based on custom probabilities and logic.",
+      "popularity": 96,
+      "slug": "decision-helper",
+      "tags": [
+        "decision maker",
+        "helper",
+        "utility",
+        "choices",
+        "luck"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
+    },
+    {
+      "id": "vibe-generator",
+      "title": "Vibe Master Soundscape",
+      "category": "Audio",
+      "type": "app",
+      "description": "Create your perfect focus environment. Layer rain, cafe, and lo-fi sounds with stunning generative visual backgrounds that react to your vibe.",
+      "popularity": 95,
+      "slug": "vibe-generator",
+      "tags": [
+        "audio",
+        "soundscape",
+        "focus",
+        "ambient",
+        "relaxation"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
+    },
+    {
+      "id": "typezen",
+      "title": "TypeZen",
+      "category": "Productivity",
+      "type": "app",
+      "description": "A premium minimalist typing experience. Master your flow with a clutter-free interface, keyboard-driven modes, and reactive micro-interactions designed for pros.",
+      "popularity": 99,
+      "slug": "typezen",
+      "tags": [
+        "typing",
+        "productivity",
+        "minimalist",
+        "zen",
+        "flow"
+      ],
+      "lastUsed": "2024-03-24",
+      "usageCount": 0
     }
   ]
 }

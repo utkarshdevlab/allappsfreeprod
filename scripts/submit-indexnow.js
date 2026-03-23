@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 async function submitToIndexNow() {
-    const siteUrl = 'https://www.allappsfree.com';
+    const siteUrl = 'https://allappsfree.com';
     const key = 'd352e47c0e5b4b1a8f9c1d2e3f4a5b6c';
     const toolsPath = path.join(process.cwd(), 'src/data/tools.json');
 
