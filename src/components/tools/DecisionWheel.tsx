@@ -126,7 +126,7 @@ const DecisionWheel = () => {
                 // We need to find which slice covers the 0 rad point.
                 // Since we rotated the wheel by `rotation`, a point originally at angle `a` is now at `a + rotation`.
                 // We want `a + rotation = 0` (mod 2pi), so `a = -rotation`.
-                let targetAngle = (2 * Math.PI - (finalRotation % (2 * Math.PI))) % (2 * Math.PI);
+                const targetAngle = (2 * Math.PI - (finalRotation % (2 * Math.PI))) % (2 * Math.PI);
                 let currentAngle = 0;
                 for (const option of options) {
                     const sliceAngle = (option.weight / totalWeight) * 2 * Math.PI;

@@ -435,7 +435,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-8">
                 <div>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Brain dumping is a proven cognitive technique to reduce "mental load." By externalizing your thoughts, you free up working memory, allowing for better focus and reduced anxiety. Our AI-powered engine takes this further by automatically organizing your stream-of-consciousness into actionable insights.
+                    Brain dumping is a proven cognitive technique to reduce &quot;mental load.&quot; By externalizing your thoughts, you free up working memory, allowing for better focus and reduced anxiety. Our AI-powered engine takes this further by automatically organizing your stream-of-consciousness into actionable insights.
                   </p>
                 </div>
                 <div>
@@ -443,7 +443,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                   <ul className="space-y-3">
                     <li className="flex items-start">
                       <span className="text-blue-500 mr-2">✓</span>
-                      <span className="text-gray-700">Reduces "Zeigarnik Effect" (preoccupation with unfinished tasks)</span>
+                      <span className="text-gray-700">Reduces &quot;Zeigarnik Effect&quot; (preoccupation with unfinished tasks)</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-blue-500 mr-2">✓</span>
@@ -471,7 +471,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                 <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
                   <span className="text-3xl font-black text-blue-200 block mb-2">02</span>
                   <h4 className="text-lg font-bold text-blue-900 mb-2">Type Freely</h4>
-                  <p className="text-sm text-gray-600">Don't worry about formatting. Just type every thought.</p>
+                  <p className="text-sm text-gray-600">Don&apos;t worry about formatting. Just type every thought.</p>
                 </div>
                 <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
                   <span className="text-3xl font-black text-blue-200 block mb-2">03</span>
@@ -491,11 +491,11 @@ export default async function ToolPage({ params }: ToolPageProps) {
         {tool.id === 'work-escape' && (
           <div className="mt-16 bg-white rounded-2xl shadow-xl p-8 mb-12 border border-slate-200">
             <div className="prose prose-slate max-w-none">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">The Psychology of the "Boss Screen"</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">The Psychology of the &quot;Boss Screen&quot;</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-8">
                 <div>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    In a high-pressure office environment, sometimes you just need a 60-second mental break without the stress of being judged. Our "Work Escape" tool (also known as a Boss Button) provides a hyper-realistic fake dashboard that mimics complex cloud architecture and system logs, giving you the perfect cover for a quick breath.
+                    In a high-pressure office environment, sometimes you just need a 60-second mental break without the stress of being judged. Our &quot;Work Escape&quot; tool (also known as a Boss Button) provides a hyper-realistic fake dashboard that mimics complex cloud architecture and system logs, giving you the perfect cover for a quick breath.
                   </p>
                 </div>
                 <div>
@@ -511,7 +511,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                     </li>
                     <li className="flex items-start">
                       <span className="text-slate-500 mr-2">✓</span>
-                      <span className="text-gray-700">Reduces "surveillance anxiety" in open offices</span>
+                      <span className="text-gray-700">Reduces &quot;surveillance anxiety&quot; in open offices</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-slate-500 mr-2">✓</span>
@@ -547,7 +547,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-8">
                 <div>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    "Analysis Paralysis" is a real productivity killer. When faced with too many small choices, our willpower depletes. The Decision Architect is designed to gamify minor dilemmas, allowing you to delegate choices to chance and focus your mental energy on high-impact decisions that actually matter.
+                    &quot;Analysis Paralysis&quot; is a real productivity killer. When faced with too many small choices, our willpower depletes. The Decision Architect is designed to gamify minor dilemmas, allowing you to delegate choices to chance and focus your mental energy on high-impact decisions that actually matter.
                   </p>
                 </div>
                 <div>
@@ -602,7 +602,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-8">
                 <div>
                   <p className="text-lg text-gray-700 leading-relaxed">
-                    Typing is more than just input; it's a bridge between thought and digital reality. TypeZen is designed to transform mundane practice into a meditative experience. By removing distractions and focusing on micro-interactions, we help you achieve a "Flow State" where your fingers move as fast as your ideas.
+                    Typing is more than just input; it&apos;s a bridge between thought and digital reality. TypeZen is designed to transform mundane practice into a meditative experience. By removing distractions and focusing on micro-interactions, we help you achieve a &quot;Flow State&quot; where your fingers move as fast as your ideas.
                   </p>
                 </div>
                 <div>
@@ -614,7 +614,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                     </li>
                     <li className="flex items-start">
                       <span className="text-purple-500 mr-2">✓</span>
-                      <span className="text-gray-700">Achieve "Flow State" with responsive visual feedback</span>
+                      <span className="text-gray-700">Achieve &quot;Flow State&quot; with responsive visual feedback</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-purple-500 mr-2">✓</span>
@@ -674,7 +674,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
                     </li>
                     <li className="flex items-start">
                       <span className="text-teal-500 mr-2">✓</span>
-                      <span className="text-gray-700">Trigger "Deep Work" state using rhythmic lofi layers</span>
+                      <span className="text-gray-700">Trigger &quot;Deep Work&quot; state using rhythmic lofi layers</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-teal-500 mr-2">✓</span>

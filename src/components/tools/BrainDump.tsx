@@ -5,8 +5,6 @@ import {
     Brain,
     Sparkles,
     CheckCircle2,
-    StickyNote,
-    HelpCircle,
     Trash2,
     Copy,
     Maximize,
@@ -102,7 +100,7 @@ const BrainDump = () => {
                     <p className={`max-w-2xl mx-auto leading-relaxed transition-all duration-500 ${isFullscreen ? 'text-sm text-indigo-200/60' : 'text-xl text-slate-500 font-medium'
                         }`}>
                         Empty your brain. Type everything as it comes—tasks, ideas, random thoughts.
-                        We'll organize it for you in real-time.
+                        We&apos;ll organize it for you in real-time.
                     </p>
                 </div>
             </div>

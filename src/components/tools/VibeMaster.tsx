@@ -182,7 +182,7 @@ const VibeMaster = () => {
                             ].map((p) => (
                                 <button
                                     key={p.id}
-                                    onClick={() => setPreset(p.id as any)}
+                                    onClick={() => setPreset(p.id as 'night' | 'day' | 'cyber')}
                                     className={`flex items-center gap-3 px-8 py-4 rounded-[1.5rem] font-black text-xs md:text-sm transition-all duration-500 ${preset === p.id
                                         ? 'bg-white text-slate-900 shadow-[0_20px_40px_-10px_rgba(255,255,255,0.3)] scale-105'
                                         : 'text-white/40 hover:text-white hover:bg-white/5'}`}

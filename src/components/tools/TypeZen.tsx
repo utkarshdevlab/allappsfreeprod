@@ -2,15 +2,11 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
-    Keyboard,
     Zap,
     Target,
     Timer,
     RotateCcw,
     Share2,
-    CheckCircle2,
-    Lock,
-    Unlock,
     Maximize2
 } from 'lucide-react';
 
@@ -31,16 +27,7 @@ const TypeZen = () => {
     const [wpm, setWpm] = useState(0);
     const [accuracy, setAccuracy] = useState(100);
     const [isFinished, setIsFinished] = useState(false);
-    const [isFullscreen, setIsFullscreen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const handleFullscreenChange = () => {
-            setIsFullscreen(!!document.fullscreenElement);
-        };
-        document.addEventListener('fullscreenchange', handleFullscreenChange);
-        return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-    }, []);
 
     const inputRef = useRef<HTMLInputElement>(null);
     const targetText = SAMPLE_TEXTS[mode];
@@ -53,7 +40,7 @@ const TypeZen = () => {
         setAccuracy(100);
         setIsFinished(false);
         if (inputRef.current) inputRef.current.focus();
-    }, [mode]);
+    }, []);
 
     useEffect(() => {
         reset();

@@ -2,7 +2,7 @@ import { getAllTools } from '@/utils/tools';
 import type { Metadata } from 'next';
 import ListingClient from '@/components/ListingClient';
 
-const canonicalBase = process.env.NEXT_PUBLIC_CANONICAL_BASE_URL ?? 'https://www.allappsfree.com';
+
 
 export const metadata: Metadata = {
   title: 'All Tools & Apps - All Apps Free Directory',
