@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { RotateCw, Plus, Trash2, Trophy, Target, PieChart, Maximize2 } from 'lucide-react';
+import { SEOContent, FeaturesSection, UseCasesSection } from './SEOContent';
 
 interface Option {
     id: string;
@@ -142,129 +143,130 @@ const DecisionWheel = () => {
     };
 
     return (
-        <div ref={containerRef} className="max-w-6xl mx-auto space-y-12 bg-white/50 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white shadow-2xl overflow-hidden">
-            <div className="flex justify-end pr-4">
-                <button
-                    onClick={() => {
-                        if (!document.fullscreenElement) {
-                            containerRef.current?.requestFullscreen();
-                        } else {
-                            document.exitFullscreen();
-                        }
-                    }}
-                    className="p-2 text-gray-400 hover:text-indigo-600 transition-colors"
-                    title="Toggle Fullscreen"
-                >
-                    <Maximize2 className="w-6 h-6" />
-                </button>
-            </div>
-            <div className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center p-3 bg-rose-100 rounded-2xl text-rose-600 mb-2">
-                    <Target className="w-10 h-10" />
-                </div>
-                <h2 className="text-3xl md:text-4xl font-black text-gray-900">Decision Architect</h2>
-                <p className="text-gray-500 max-w-xl mx-auto font-medium">
-                    Weighted probabilities meet premium mechanics. Add your options, adjust their importance, and let the wheel decide your next move.
-                </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                {/* Configuration */}
-                <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-xl space-y-6">
-                    <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-black text-gray-900 uppercase tracking-widest flex items-center gap-2">
-                            <PieChart className="w-5 h-5 text-indigo-500" /> Probability Matrix
-                        </h3>
-                        <button
-                            onClick={addOption}
-                            disabled={options.length >= 8}
-                            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
-                        >
-                            <Plus className="w-4 h-4" /> Add Option
-                        </button>
-                    </div>
-
-                    <div className="space-y-3 custom-scrollbar max-h-[400px] overflow-y-auto pr-2">
-                        {options.map((option) => (
-                            <div key={option.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border-2 border-transparent focus-within:border-indigo-100 focus-within:bg-white transition-all group">
-                                <div className="w-4 h-4 rounded-full flex-shrink-0" style={{ backgroundColor: option.color }} />
-                                <input
-                                    type="text"
-                                    value={option.text}
-                                    onChange={(e) => updateOption(option.id, { text: e.target.value })}
-                                    className="flex-grow bg-transparent font-bold text-gray-700 outline-none"
-                                />
-                                <div className="flex items-center gap-3">
-                                    <div className="flex flex-col">
-                                        <input
-                                            type="range"
-                                            min="1"
-                                            max="10"
-                                            value={option.weight}
-                                            onChange={(e) => updateOption(option.id, { weight: parseInt(e.target.value) })}
-                                            className="w-24 accent-indigo-600"
-                                        />
-                                        <span className="text-[10px] font-black text-gray-400 uppercase text-center mt-1">Weight: {option.weight}</span>
-                                    </div>
-                                    <button
-                                        onClick={() => removeOption(option.id)}
-                                        className="p-2 text-gray-300 hover:text-red-500 transition-colors"
-                                    >
-                                        <Trash2 className="w-4 h-4" />
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
-                        <p className="text-xs text-indigo-700 font-bold leading-relaxed">
-                            💡 PRO TIP: Increase the weight of an option to give it a higher statistical chance of winning.
-                        </p>
-                    </div>
-                </div>
-
-                {/* The Wheel */}
-                <div className="flex flex-col items-center space-y-8 relative">
-                    <div className="relative group">
-                        <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
-                        <canvas
-                            ref={canvasRef}
-                            width={400}
-                            height={400}
-                            className="relative bg-white rounded-full shadow-2xl border-8 border-white"
-                        />
-                    </div>
-
+        <div className="space-y-8">
+            <div ref={containerRef} className="max-w-6xl mx-auto space-y-12 bg-white/50 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white shadow-2xl overflow-hidden">
+                <div className="flex justify-end pr-4">
                     <button
-                        onClick={spin}
-                        disabled={isSpinning}
-                        className={`group relative px-12 py-5 rounded-2xl font-black text-xl uppercase tracking-widest transition-all ${isSpinning
-                            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                            : 'bg-gray-900 text-white hover:bg-black hover:scale-105 shadow-[0_20px_50px_rgba(0,0,0,0.2)] active:scale-95'
-                            }`}
+                        onClick={() => {
+                            if (!document.fullscreenElement) {
+                                containerRef.current?.requestFullscreen();
+                            } else {
+                                document.exitFullscreen();
+                            }
+                        }}
+                        className="p-2 text-gray-400 hover:text-indigo-600 transition-colors"
+                        title="Toggle Fullscreen"
                     >
-                        <span className="flex items-center gap-3">
-                            <RotateCw className={`w-6 h-6 ${isSpinning ? 'animate-spin' : ''}`} />
-                            {isSpinning ? 'Architecting...' : 'Spin the Wheel'}
-                        </span>
+                        <Maximize2 className="w-6 h-6" />
                     </button>
-
-                    {winner && (
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center animate-in zoom-in fade-in duration-500 pointer-events-none">
-                            <div className="bg-white/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white inline-block scale-110">
-                                <div className="inline-flex items-center justify-center p-3 bg-yellow-100 rounded-2xl text-yellow-600 mb-4 scale-125">
-                                    <Trophy className="w-8 h-8" />
-                                </div>
-                                <h4 className="text-sm font-black text-gray-400 uppercase tracking-[0.2em] mb-1">Result Selected</h4>
-                                <p className="text-4xl font-black text-gray-900">{winner.text}</p>
-                            </div>
-                        </div>
-                    )}
                 </div>
-            </div>
+                <div className="text-center space-y-4">
+                    <div className="inline-flex items-center justify-center p-3 bg-rose-100 rounded-2xl text-rose-600 mb-2">
+                        <Target className="w-10 h-10" />
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-black text-gray-900">Decision Architect</h2>
+                    <p className="text-gray-500 max-w-xl mx-auto font-medium">
+                        Weighted probabilities meet premium mechanics. Add your options, adjust their importance, and let the wheel decide your next move.
+                    </p>
+                </div>
 
-            <style jsx>{`
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    {/* Configuration */}
+                    <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-xl space-y-6">
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-lg font-black text-gray-900 uppercase tracking-widest flex items-center gap-2">
+                                <PieChart className="w-5 h-5 text-indigo-500" /> Probability Matrix
+                            </h3>
+                            <button
+                                onClick={addOption}
+                                disabled={options.length >= 8}
+                                className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold text-sm hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                            >
+                                <Plus className="w-4 h-4" /> Add Option
+                            </button>
+                        </div>
+
+                        <div className="space-y-3 custom-scrollbar max-h-[400px] overflow-y-auto pr-2">
+                            {options.map((option) => (
+                                <div key={option.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border-2 border-transparent focus-within:border-indigo-100 focus-within:bg-white transition-all group">
+                                    <div className="w-4 h-4 rounded-full flex-shrink-0" style={{ backgroundColor: option.color }} />
+                                    <input
+                                        type="text"
+                                        value={option.text}
+                                        onChange={(e) => updateOption(option.id, { text: e.target.value })}
+                                        className="flex-grow bg-transparent font-bold text-gray-700 outline-none"
+                                    />
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex flex-col">
+                                            <input
+                                                type="range"
+                                                min="1"
+                                                max="10"
+                                                value={option.weight}
+                                                onChange={(e) => updateOption(option.id, { weight: parseInt(e.target.value) })}
+                                                className="w-24 accent-indigo-600"
+                                            />
+                                            <span className="text-[10px] font-black text-gray-400 uppercase text-center mt-1">Weight: {option.weight}</span>
+                                        </div>
+                                        <button
+                                            onClick={() => removeOption(option.id)}
+                                            className="p-2 text-gray-300 hover:text-red-500 transition-colors"
+                                        >
+                                            <Trash2 className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
+                            <p className="text-xs text-indigo-700 font-bold leading-relaxed">
+                                💡 PRO TIP: Increase the weight of an option to give it a higher statistical chance of winning.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* The Wheel */}
+                    <div className="flex flex-col items-center space-y-8 relative">
+                        <div className="relative group">
+                            <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur-2xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                            <canvas
+                                ref={canvasRef}
+                                width={400}
+                                height={400}
+                                className="relative bg-white rounded-full shadow-2xl border-8 border-white"
+                            />
+                        </div>
+
+                        <button
+                            onClick={spin}
+                            disabled={isSpinning}
+                            className={`group relative px-12 py-5 rounded-2xl font-black text-xl uppercase tracking-widest transition-all ${isSpinning
+                                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                                : 'bg-gray-900 text-white hover:bg-black hover:scale-105 shadow-[0_20px_50px_rgba(0,0,0,0.2)] active:scale-95'
+                                }`}
+                        >
+                            <span className="flex items-center gap-3">
+                                <RotateCw className={`w-6 h-6 ${isSpinning ? 'animate-spin' : ''}`} />
+                                {isSpinning ? 'Architecting...' : 'Spin the Wheel'}
+                            </span>
+                        </button>
+
+                        {winner && (
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center animate-in zoom-in fade-in duration-500 pointer-events-none">
+                                <div className="bg-white/90 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white inline-block scale-110">
+                                    <div className="inline-flex items-center justify-center p-3 bg-yellow-100 rounded-2xl text-yellow-600 mb-4 scale-125">
+                                        <Trophy className="w-8 h-8" />
+                                    </div>
+                                    <h4 className="text-sm font-black text-gray-400 uppercase tracking-[0.2em] mb-1">Result Selected</h4>
+                                    <p className="text-4xl font-black text-gray-900">{winner.text}</p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <style jsx>{`
                 .custom-scrollbar::-webkit-scrollbar {
                     width: 6px;
                 }
@@ -276,6 +278,33 @@ const DecisionWheel = () => {
                     border-radius: 10px;
                 }
             `}</style>
+            </div>
+
+            {/* SEO Content */}
+            <SEOContent title="Mastering Decisiveness">
+                <p>
+                    &quot;Analysis Paralysis&quot; is a real productivity killer. When faced with too many small choices, our willpower depletes. The Decision Architect is designed to gamify minor dilemmas, allowing you to delegate choices to chance and focus your mental energy on high-impact decisions that actually matter.
+                </p>
+
+                <FeaturesSection
+                    title="Perfect For"
+                    features={[
+                        "Lunch & Dinner dilemmas with teammates",
+                        "Prioritizing backlog tasks for the day",
+                        "Choosing the next team-building activity",
+                        "Randomizing workout routines or study topics"
+                    ]}
+                />
+
+                <UseCasesSection
+                    title="How to Use the Architect"
+                    cases={[
+                        { title: "Input Options", description: "Type your choices in the items list. Add as many as you need." },
+                        { title: "Spin the Wheel", description: "Hit the button and let the high-fidelity physics engine decide." },
+                        { title: "Take Action", description: "Once a winner is selected, commit to the choice and move forward!" }
+                    ]}
+                />
+            </SEOContent>
         </div>
     );
 };

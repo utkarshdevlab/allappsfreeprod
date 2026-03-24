@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Copy, Trash2, CheckCircle, AlertCircle, FileJson, Minimize, Maximize } from 'lucide-react';
+import { SEOContent, FeaturesSection, UseCasesSection } from './SEOContent';
 
 export default function JsonBeautifier() {
     const [input, setInput] = useState('');
@@ -155,26 +156,34 @@ export default function JsonBeautifier() {
             </div>
 
             {/* SEO Content */}
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100 prose prose-lg max-w-none">
-                <h2 className="text-blue-900">Online JSON Formatter & Validator</h2>
+            <SEOContent title="Online JSON Formatter & Validator">
                 <p>
                     JSON (JavaScript Object Notation) is a lightweight data-interchange format.
                     It&apos;s easy for humans to read and write, and easy for machines to parse and generate.
                 </p>
 
-                <h3>Features</h3>
-                <ul>
-                    <li><strong>Beautify:</strong> Proper indentation (2 or 4 spaces) makes complex JSON structures readable.</li>
-                    <li><strong>Minify:</strong> Remove all spaces and line breaks to compress the JSON for transmission.</li>
-                    <li><strong>Validate:</strong> Instantly check if your JSON is valid and see exactly where the syntax error is.</li>
-                </ul>
+                <FeaturesSection
+                    features={[
+                        "Beautify: Proper indentation (2 or 4 spaces) makes complex JSON structures readable.",
+                        "Minify: Remove all spaces and line breaks to compress the JSON for transmission.",
+                        "Validate: Instantly check if your JSON is valid and see exactly where the syntax error is."
+                    ]}
+                />
 
-                <h3>Common JSON Errors</h3>
-                <p>
-                    Unlike JavaScript objects, JSON keys must be double-quoted. Trailing commas are also not allowed in standard JSON.
-                    Our validator will catch these issues for you.
-                </p>
-            </div>
+                <UseCasesSection
+                    title="Common JSON Errors"
+                    cases={[
+                        {
+                            title: "Missing Double Quotes",
+                            description: "Unlike JavaScript objects, JSON keys must be double-quoted."
+                        },
+                        {
+                            title: "Trailing Commas",
+                            description: "Trailing commas at the end of properties and arrays are not allowed in standard JSON."
+                        }
+                    ]}
+                />
+            </SEOContent>
         </div>
     );
 }

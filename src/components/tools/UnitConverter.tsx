@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { SEOContent, FeaturesSection, FAQSection } from './SEOContent';
 
 type UnitCategory = 'length' | 'weight' | 'temperature' | 'volume';
 
@@ -196,64 +197,32 @@ const UnitConverter = () => {
             </div>
 
             {/* SEO Section */}
-            <div className="prose prose-indigo max-w-none bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm mt-12 sm:p-6 lg:p-12">
-                <h2 className="text-3xl font-black text-gray-900 mb-8 pb-4 border-b-4 border-indigo-500 w-fit">
-                    US Metric vs. Imperial System Guide
-                </h2>
+            <SEOContent title="US Metric vs. Imperial System Guide">
+                <p>
+                    The United States is one of the few countries that primarily uses the <strong>Imperial System</strong> (often referred to as US Customary units). For many travelers, engineers, and scientists, converting these units to the globally standard <strong>Metric System</strong> is an everyday necessity.
+                </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Metric to Imperial Conversions</h3>
-                        <p className="text-gray-600 leading-relaxed mb-6">
-                            The United States is one of the few countries that primarily uses the **Imperial System** (often referred to as US Customary units). For many travelers, engineers, and scientists, converting these units to the globally standard **Metric System** is an everyday necessity.
-                        </p>
-                        <div className="bg-indigo-50 p-6 rounded-2xl">
-                            <h4 className="font-bold text-indigo-900 mb-2">Common Benchmarks</h4>
-                            <ul className="text-sm text-indigo-800 space-y-2 font-medium">
-                                <li>📍 1 Inch = 2.54 Centimeters</li>
-                                <li>📍 1 Mile = 1.61 Kilometers</li>
-                                <li>📍 1 Pound = 0.45 Kilograms</li>
-                                <li>📍 1 Gallon = 3.78 Liters</li>
-                            </ul>
-                        </div>
-                    </div>
+                <p>
+                    Temperature is arguably the most common daily conversion. While the US uses Fahrenheit for weather and cooking, most scientific applications and other countries use Celsius. Key benchmarks include Freezing Point (0°C / 32°F), Room Temp (20°C / 68°F), and Boiling Point (100°C / 212°F).
+                </p>
 
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Temperature: Celsius vs. Fahrenheit</h3>
-                        <p className="text-gray-600 leading-relaxed mb-4">
-                            Temperature is arguably the most common daily conversion. While the US uses Fahrenheit for weather and cooking, most scientific applications and other countries use Celsius.
-                        </p>
-                        <div className="p-4 border-2 border-dashed border-indigo-100 rounded-2xl space-y-4">
-                            <div className="flex justify-between items-center text-sm font-bold">
-                                <span className="text-blue-500">Freezing Point</span>
-                                <span>0°C / 32°F</span>
-                            </div>
-                            <div className="flex justify-between items-center text-sm font-bold">
-                                <span className="text-gray-500">Room Temp</span>
-                                <span>20°C / 68°F</span>
-                            </div>
-                            <div className="flex justify-between items-center text-sm font-bold">
-                                <span className="text-red-500">Boiling Point</span>
-                                <span>100°C / 212°F</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <FeaturesSection
+                    title="Common Benchmarks"
+                    features={[
+                        "1 Inch = 2.54 Centimeters",
+                        "1 Mile = 1.61 Kilometers",
+                        "1 Pound = 0.45 Kilograms",
+                        "1 Gallon = 3.78 Liters"
+                    ]}
+                />
 
-                <div className="mt-12 bg-slate-900 rounded-3xl p-8 text-white">
-                    <h3 className="text-2xl font-bold text-indigo-400 mb-6 font-display">Measurement FAQ</h3>
-                    <div className="space-y-6">
-                        <div>
-                            <p className="font-bold text-indigo-200 mb-1">Why doesn&apos;t the US use the metric system?</p>
-                            <p className="text-slate-300 text-sm leading-relaxed">The US actually &quot;metricated&quot; in 1975 under the Metric Conversion Act, but it was voluntary. Extensive industrial infrastructure and cultural habits have kept US Customary units as the primary system for consumer goods.</p>
-                        </div>
-                        <div>
-                            <p className="font-bold text-indigo-200 mb-1">What is the difference between US liquid gallons and UK gallons?</p>
-                            <p className="text-slate-300 text-sm leading-relaxed">A US Gallon is approximately 3.78 liters, while an Imperial (UK) Gallon is larger at 4.54 liters. This tool defaults to **US Customary Liquid Gallons** for our US audience.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <FAQSection
+                    faqs={[
+                        { question: "Why doesn't the US use the metric system?", answer: "The US actually metricated in 1975 under the Metric Conversion Act, but it was voluntary. Extensive industrial infrastructure and cultural habits have kept US Customary units as the primary system for consumer goods." },
+                        { question: "What is the difference between US liquid gallons and UK gallons?", answer: "A US Gallon is approximately 3.78 liters, while an Imperial (UK) Gallon is larger at 4.54 liters. This tool defaults to US Customary Liquid Gallons for our US audience." }
+                    ]}
+                />
+            </SEOContent>
         </div>
     );
 };

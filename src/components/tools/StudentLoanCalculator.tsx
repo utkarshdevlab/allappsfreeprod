@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { SEOContent, FeaturesSection } from './SEOContent';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -183,20 +184,21 @@ export default function StudentLoanCalculator() {
             </div>
 
             {/* SEO Content */}
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100 prose prose-lg max-w-none">
-                <h2 className="text-blue-900">Crush Your Student Loans</h2>
+            <SEOContent title="Crush Your Student Loans">
                 <p>
                     Student loans can linger for years, accumulating thousands in interest.
                     Use our calculator to see exactly how your payments break down and discover the power of making extra payments.
                 </p>
 
-                <h3>How to Pay Off Loans Faster</h3>
-                <ul>
-                    <li><strong>Pay more than the minimum:</strong> Even an extra $50 a month can shave years off your repayment term.</li>
-                    <li><strong>Refinance:</strong> If you have good credit, refinancing to a lower interest rate can save you money immediately.</li>
-                    <li><strong>Bi-weekly payments:</strong> Making a half-payment every two weeks results in one extra full payment per year without much effort.</li>
-                </ul>
-            </div>
+                <FeaturesSection
+                    title="How to Pay Off Loans Faster"
+                    features={[
+                        "Pay more than the minimum: Even an extra $50 a month can shave years off your repayment term.",
+                        "Refinance: If you have good credit, refinancing to a lower interest rate can save you money immediately.",
+                        "Bi-weekly payments: Making a half-payment every two weeks results in one extra full payment per year without much effort."
+                    ]}
+                />
+            </SEOContent>
         </div>
     );
 }

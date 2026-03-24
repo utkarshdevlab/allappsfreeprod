@@ -19,14 +19,28 @@ export default function StructuredData({ type = 'website', data }: StructuredDat
           name: seoConfig.siteName,
           url: seoConfig.siteUrl,
           description: seoConfig.siteDescription,
+          publisher: {
+            '@type': 'Organization',
+            name: seoConfig.siteName,
+            url: seoConfig.siteUrl,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${seoConfig.siteUrl}/logo.png`,
+            },
+            sameAs: seoConfig.organization?.sameAs || [
+              'https://twitter.com/allappsfree',
+              'https://facebook.com/allappsfree',
+              'https://instagram.com/allappsfree'
+            ]
+          },
           potentialAction: {
             '@type': 'SearchAction',
             target: {
               '@type': 'EntryPoint',
-              urlTemplate: `${seoConfig.siteUrl}/tools?search={search_term_string}`,
+              urlTemplate: `${seoConfig.siteUrl}/tools?search={search_term_string}`
             },
-            'query-input': 'required name=search_term_string',
-          },
+            'query-input': 'required name=search_term_string'
+          }
         };
 
       case 'tool':

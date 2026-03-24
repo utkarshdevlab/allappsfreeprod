@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { SEOContent, UseCasesSection, FAQSection } from './SEOContent';
 
 const CompoundInterestCalculator = () => {
     const [principal, setPrincipal] = useState<number>(10000);
@@ -175,73 +176,30 @@ const CompoundInterestCalculator = () => {
             </div>
 
             {/* SEO Section */}
-            <div className="prose prose-indigo max-w-none bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm mt-12 sm:p-6 lg:p-12">
-                <h2 className="text-3xl font-black text-gray-900 mb-8 pb-4 border-b-4 border-indigo-500 w-fit">
-                    Compound Interest: The &quot;Eighth Wonder&quot; of the World
-                </h2>
+            <SEOContent title="Compound Interest: The Eighth Wonder of the World">
+                <p>
+                    Unlike simple interest, which is only calculated on the principal amount, <strong>compound interest</strong> is calculated on the principal plus the accumulated interest from previous periods. This creates a snowball effect that can lead to exponential wealth growth over time.
+                </p>
+                <p>
+                    <strong>Why Frequency Matters:</strong> The more frequently interest is compounded (e.g., daily vs. annually), the faster your money grows. Daily compounding yields slightly more than monthly, and monthly significantly more than annual.
+                </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">What is Compound Interest?</h3>
-                        <p className="text-gray-600 leading-relaxed">
-                            Unlike simple interest, which is only calculated on the principal amount, **compound interest** is calculated on the principal plus the accumulated interest from previous periods. This creates a snowball effect that can lead to exponential wealth growth over time.
-                        </p>
-                        <div className="mt-8 p-6 bg-slate-900 rounded-3xl text-white">
-                            <h4 className="font-bold mb-4 text-indigo-400">Why Frequency Matters</h4>
-                            <p className="text-sm text-slate-300 leading-relaxed italic">
-                                The more frequently interest is compounded (e.g., daily vs. annually), the faster your money grows. Daily compounding yields slightly more than monthly, and monthly significantly more than annual.
-                            </p>
-                        </div>
-                    </div>
+                <UseCasesSection
+                    title="Key Wealth Building Factors"
+                    cases={[
+                        { title: "Time (The Multiplier)", description: "The longer you leave your money invested, the more powerful the compounding effect becomes." },
+                        { title: "Consistent Contributions", description: "Adding small amounts monthly can drastically change the final outcome compared to a one-time lump sum." },
+                        { title: "Rate of Return", description: "Even a 1% difference in annual return can result in thousands of dollars over a 30-year period." }
+                    ]}
+                />
 
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Key Wealth Building Factors</h3>
-                        <ul className="space-y-4">
-                            <li className="flex gap-4">
-                                <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">1</span>
-                                <div>
-                                    <p className="font-bold text-gray-900">Time (The Multiplier)</p>
-                                    <p className="text-sm text-gray-600">The longer you leave your money invested, the more powerful the compounding effect becomes.</p>
-                                </div>
-                            </li>
-                            <li className="flex gap-4">
-                                <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">2</span>
-                                <div>
-                                    <p className="font-bold text-gray-900">Consistent Contributions</p>
-                                    <p className="text-sm text-gray-600">Adding small amounts monthly can drastically change the final outcome compared to a one-time lump sum.</p>
-                                </div>
-                            </li>
-                            <li className="flex gap-4">
-                                <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">3</span>
-                                <div>
-                                    <p className="font-bold text-gray-900">Rate of Return</p>
-                                    <p className="text-sm text-gray-600">Even a 1% difference in annual return can result in thousands of dollars over a 30-year period.</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div className="mt-12 bg-indigo-50 rounded-3xl p-8 border border-indigo-100">
-                    <h3 className="text-2xl font-bold text-indigo-900 mb-6">Compounding Investment FAQ</h3>
-                    <div className="space-y-6">
-                        <details className="group p-4 bg-white rounded-2xl shadow-sm border border-indigo-100">
-                            <summary className="font-bold text-indigo-900 cursor-pointer list-none flex justify-between items-center">
-                                What is the &quot;Rule of 72&quot;?
-                                <span className="transition-transform group-open:rotate-180">▼</span>
-                            </summary>
-                            <p className="mt-4 text-gray-600 text-sm">The Rule of 72 is a quick way to estimate how many years it will take for your investment to double. Simply divide 72 by your annual rate of return. (e.g., at an 8% return, your money doubles in 9 years).</p>
-                        </details>
-                        <details className="group p-4 bg-white rounded-2xl shadow-sm border border-indigo-100">
-                            <summary className="font-bold text-indigo-900 cursor-pointer list-none flex justify-between items-center">
-                                Is compound interest taxable?
-                                <span className="transition-transform group-open:rotate-180">▼</span>
-                            </summary>
-                            <p className="mt-4 text-gray-600 text-sm">It depends on the account type. In standard brokerage accounts, interest is generally taxable. In tax-advantaged accounts like a **401(k)** or **Roth IRA** in the US, compounding is tax-deferred or tax-free.</p>
-                        </details>
-                    </div>
-                </div>
-            </div>
+                <FAQSection
+                    faqs={[
+                        { question: "What is the Rule of 72?", answer: "The Rule of 72 is a quick way to estimate how many years it will take for your investment to double. Simply divide 72 by your annual rate of return. (e.g., at an 8% return, your money doubles in 9 years)." },
+                        { question: "Is compound interest taxable?", answer: "It depends on the account type. In standard brokerage accounts, interest is generally taxable. In tax-advantaged accounts like a 401(k) or Roth IRA in the US, compounding is tax-deferred or tax-free." }
+                    ]}
+                />
+            </SEOContent>
         </div>
     );
 };

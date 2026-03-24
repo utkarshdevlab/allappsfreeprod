@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
+import { SEOContent, UseCasesSection, FAQSection } from './SEOContent';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -302,8 +303,7 @@ export default function RentVsBuyCalculator() {
             </div>
 
             {/* SEO Content */}
-            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100 prose prose-lg max-w-none">
-                <h2 className="text-indigo-900">Should You Rent or Buy?</h2>
+            <SEOContent title="Should You Rent or Buy?">
                 <p>
                     Deciding between renting and buying a home is a major financial decision.
                     While buying builds equity, it comes with upfront costs (down payment, closing costs) and ongoing expenses (maintenance, taxes).
@@ -313,12 +313,34 @@ export default function RentVsBuyCalculator() {
                     Use our interactive Rent vs. Buy Calculator to see the total cost of each option over time,
                     factoring in opportunity costs, tax benefits, and home value appreciation.
                 </p>
-                <h3>The 5-Year Rule</h3>
-                <p>
-                    Generally, if you plan to stay in a home for less than 5 years, renting is often cheaper.
-                    The transaction costs of buying and selling (like agent commissions) usually outweigh the equity built in a short time.
-                </p>
-            </div>
+
+                <UseCasesSection
+                    title="The 5-Year Rule Explained"
+                    cases={[
+                        {
+                            title: "Short Term (Under 5 Years)",
+                            description: "Generally, if you plan to stay in a home for less than 5 years, renting is often cheaper. The transaction costs of buying and selling (like agent commissions) usually outweigh the equity built in a short time."
+                        },
+                        {
+                            title: "Long Term (Over 5 Years)",
+                            description: "If you plan to settle down for more than 5 years, the equity built in the property combined with appreciation typically offsets the initial closing costs, making buying the smarter choice."
+                        }
+                    ]}
+                />
+
+                <FAQSection
+                    faqs={[
+                        {
+                            question: "Is renting a waste of money?",
+                            answer: "No, renting provides housing and flexibility without the financial risks, maintenance costs, and liquidity limits of homeownership. The key is to invest the difference between your rent and what a mortgage would cost."
+                        },
+                        {
+                            question: "What is an opportunity cost in real estate?",
+                            answer: "Opportunity cost is the potential return you lose by tying up your down payment and closing costs in a house rather than investing that money in the stock market (like an index fund)."
+                        }
+                    ]}
+                />
+            </SEOContent>
         </div>
     );
 }

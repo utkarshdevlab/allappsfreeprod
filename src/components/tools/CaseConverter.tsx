@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { SEOContent, UseCasesSection, FeaturesSection, FAQSection } from './SEOContent';
 
 type CaseType = 'uppercase' | 'lowercase' | 'titleCase' | 'sentenceCase' | 'camelCase' | 'pascalCase' | 'kebabCase' | 'snakeCase' | 'alternatingCase';
 
@@ -140,62 +141,40 @@ export default function CaseConverter() {
             </div>
 
             {/* SEO Content Section */}
-            <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 border border-gray-200 prose prose-lg max-w-none">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Master Text Formats with Case Converter</h2>
-
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Why Formatting Matters</h3>
-                <p className="text-gray-700 mb-6">
+            <SEOContent title="Master Text Formats with Case Converter">
+                <p>
                     In the digital world, specific case formats are often required for different purposes—programming variables need camelCase or snake_case, headlines need Title Case, and social media sometimes calls for UPPERCASE shouting. Manually converting text is tedious and error-prone. Our Case Converter tool automates this process instantly.
                 </p>
 
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Available Formats</h3>
-                <div className="grid md:grid-cols-2 gap-4 mb-6">
-                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                        <strong className="text-blue-600 block mb-1">Sentence case</strong>
-                        <span className="text-sm text-gray-600">Capitalizes only the first letter of the first word. Ideal for standard sentences.</span>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                        <strong className="text-blue-600 block mb-1">lower case</strong>
-                        <span className="text-sm text-gray-600">Converts all letters to lowercase. Useful for email addresses or tags.</span>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                        <strong className="text-blue-600 block mb-1">UPPER CASE</strong>
-                        <span className="text-sm text-gray-600">CONVERTS ALL LETTERS TO UPPERCASE. GOOD FOR EMPHASIS OR ACRONYMS.</span>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                        <strong className="text-blue-600 block mb-1">Title Case</strong>
-                        <span className="text-sm text-gray-600">Capitalizes the first letter of every major word. Perfect for blog titles and headers.</span>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                        <strong className="text-blue-600 block mb-1">camelCase</strong>
-                        <span className="text-sm text-gray-600">Removes spaces and capitalizes words except the first. Standard in Java and JavaScript.</span>
-                    </div>
-                    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-                        <strong className="text-blue-600 block mb-1">snake_case</strong>
-                        <span className="text-sm text-gray-600">Replaces spaces with underscores. Common in Python and database field names.</span>
-                    </div>
-                </div>
+                <UseCasesSection
+                    title="Available Formats"
+                    cases={[
+                        { title: "Sentence case", description: "Capitalizes only the first letter of the first word. Ideal for standard sentences." },
+                        { title: "lower case", description: "Converts all letters to lowercase. Useful for email addresses or tags." },
+                        { title: "UPPER CASE", description: "CONVERTS ALL LETTERS TO UPPERCASE. GOOD FOR EMPHASIS OR ACRONYMS." },
+                        { title: "Title Case", description: "Capitalizes the first letter of every major word. Perfect for blog titles and headers." },
+                        { title: "camelCase", description: "Removes spaces and capitalizes words except the first. Standard in Java and JavaScript." },
+                        { title: "snake_case", description: "Replaces spaces with underscores. Common in Python and database field names." }
+                    ]}
+                />
 
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">How to Use</h3>
-                <ol className="list-decimal pl-6 text-gray-700 mb-6 space-y-2">
-                    <li>Paste your text into the main text area.</li>
-                    <li>Click one of the clearly labeled buttons to apply a format.</li>
-                    <li>The text transforms instantly. Change your mind? Click another button!</li>
-                    <li>Hit &quot;Copy to Clipboard&quot; to grab your formatted text.</li>
-                </ol>
+                <FeaturesSection
+                    title="How to Use"
+                    features={[
+                        "Paste your text into the main text area.",
+                        "Click one of the clearly labeled buttons to apply a format.",
+                        "The text transforms instantly. Change your mind? Click another button!",
+                        "Hit \"Copy to Clipboard\" to grab your formatted text."
+                    ]}
+                />
 
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h3>
-                <div className="space-y-4">
-                    <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Will this preserve my original text?</h4>
-                        <p className="text-gray-700">The tool modifies the text in the box directly. We recommend keeping a backup if you are experimenting with large documents.</p>
-                    </div>
-                    <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Can I convert code snippets?</h4>
-                        <p className="text-gray-700">Yes, it works effectively for variable names and comments, making it a handy utility for programmers refactoring code styles.</p>
-                    </div>
-                </div>
-            </div>
+                <FAQSection
+                    faqs={[
+                        { question: "Will this preserve my original text?", answer: "The tool modifies the text in the box directly. We recommend keeping a backup if you are experimenting with large documents." },
+                        { question: "Can I convert code snippets?", answer: "Yes, it works effectively for variable names and comments, making it a handy utility for programmers refactoring code styles." }
+                    ]}
+                />
+            </SEOContent>
         </div>
     );
 }
