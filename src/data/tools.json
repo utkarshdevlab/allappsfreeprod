@@ -1088,6 +1088,44 @@
       ],
       "lastUsed": "2024-03-24",
       "usageCount": 0
+    },
+    {
+      "id": "random-team-generator",
+      "title": "Random Team Generator",
+      "category": "Utility",
+      "type": "app",
+      "description": "Generate balanced random teams instantly. Perfect for sports, classroom activities, games, and group projects. Support for multiple grouping modes, shuffling, and export options.",
+      "popularity": 95,
+      "slug": "random-team-generator",
+      "tags": [
+        "team generator",
+        "randomizer",
+        "group creator",
+        "sports",
+        "classroom",
+        "utility"
+      ],
+      "lastUsed": "2026-04-12",
+      "usageCount": 0
+    },
+    {
+      "id": "multi-timer",
+      "title": "Timers & Stopwatches",
+      "category": "Utility",
+      "type": "app",
+      "description": "A versatile timing toolkit with multiple concurrent timers, a professional stopwatch with lap tracking, and customizable countdown presets. High-precision and premium design.",
+      "popularity": 97,
+      "slug": "multi-timer",
+      "tags": [
+        "timer",
+        "stopwatch",
+        "countdown",
+        "multi-timer",
+        "productivity",
+        "workout"
+      ],
+      "lastUsed": "2026-04-12",
+      "usageCount": 0
     }
   ]
 }

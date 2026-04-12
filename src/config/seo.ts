@@ -23,7 +23,7 @@ export const seoConfig = {
   // Default SEO Tags
   defaultSEO: {
     title: 'All Apps Free - Games & Tools',
-    description: 'Access 50+ free online tools and games with All Apps Free. From mortgage calculators to QR generators, enjoy premium features with no ads and no signups required.',
+    description: 'Access 60+ free online tools and games with All Apps Free. From team generators to timers, mortgage calculators to QR generators — premium features, no ads, no signups.',
     keywords: [
       'free games',
       'online tools',
@@ -36,7 +36,13 @@ export const seoConfig = {
       'QR code generator',
       'image converter',
       'resume checker',
-      'password generator'
+      'password generator',
+      'random team generator',
+      'team randomizer',
+      'online timer',
+      'stopwatch online',
+      'countdown timer',
+      'multi timer'
     ],
     author: 'All Apps Free',
     language: 'en',

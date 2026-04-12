@@ -13,10 +13,10 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image 
-              src="/logo.png" 
-              alt="AllAppsFree" 
-              width={312} 
+            <Image
+              src="/logo.png"
+              alt="AllAppsFree"
+              width={312}
               height={78}
               className="h-16 w-auto"
               priority
@@ -25,29 +25,35 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
             >
               Home
             </Link>
-            <Link 
-              href="/tools/games" 
+            <Link
+              href="/tools/games"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
             >
               🎮 Games
             </Link>
-            <Link 
-              href="/tools/apps" 
+            <Link
+              href="/tools/apps"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
             >
               ⚙️ Tools
             </Link>
-            <Link 
-              href="/tools" 
+            <Link
+              href="/tools"
               className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
             >
               All Tools
+            </Link>
+            <Link
+              href="/blog"
+              className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+            >
+              📅 Blog
             </Link>
           </div>
 
@@ -72,33 +78,40 @@ export default function Navigation() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-              <Link 
-                href="/" 
+              <Link
+                href="/"
                 className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
-              <Link 
-                href="/tools/games" 
+              <Link
+                href="/tools/games"
                 className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 🎮 Games
               </Link>
-              <Link 
-                href="/tools/apps" 
+              <Link
+                href="/tools/apps"
                 className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 ⚙️ Tools
               </Link>
-              <Link 
-                href="/tools" 
+              <Link
+                href="/tools"
                 className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 All Tools
+              </Link>
+              <Link
+                href="/blog"
+                className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                📅 Blog
               </Link>
             </div>
           </div>

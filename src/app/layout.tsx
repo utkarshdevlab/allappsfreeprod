@@ -22,8 +22,8 @@ const metadataBase = new URL(process.env.NEXT_PUBLIC_CANONICAL_BASE_URL ?? "http
 export const metadata: Metadata = {
   metadataBase,
   title: "All Apps Free - Games & Tools",
-  description: "Discover amazing games and useful tools. Everything you need, completely free. Play games, use utilities, and explore our collection of free online tools.",
-  keywords: ["free games", "online tools", "utilities", "apps", "games", "free software"],
+  description: "Discover 60+ free online tools and games. Team generators, timers, calculators, QR codes, games — all premium, no ads, no signups required.",
+  keywords: ["free games", "online tools", "utilities", "apps", "games", "free software", "team generator", "online timer", "stopwatch", "countdown timer"],
   authors: [{ name: "All Apps Free" }],
   creator: "All Apps Free",
   publisher: "All Apps Free",

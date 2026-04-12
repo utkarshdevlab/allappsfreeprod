@@ -2,14 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { seoConfig } from '@/config/seo';
 import { getAllTools } from '@/utils/tools';
 import SEOEditor from '@/components/admin/SEOEditor';
+import BlogList from '@/components/admin/BlogList';
 
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'seo' | 'analytics' | 'tools' | 'settings'>('seo');
+  const [activeTab, setActiveTab] = useState<'seo' | 'analytics' | 'tools' | 'settings' | 'blog'>('seo');
   const router = useRouter();
 
   useEffect(() => {
@@ -85,17 +87,17 @@ export default function AdminDashboard() {
             {[
               { id: 'seo', label: '🔍 SEO & Analytics', icon: '🔍' },
               { id: 'analytics', label: '📊 Statistics', icon: '📊' },
+              { id: 'blog', label: '📅 Blog Management', icon: '📅' },
               { id: 'tools', label: '🛠️ Tools Management', icon: '🛠️' },
               { id: 'settings', label: '⚙️ Settings', icon: '⚙️' },
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                  activeTab === tab.id
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
+                className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === tab.id
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
               >
                 {tab.label}
               </button>
@@ -145,17 +147,16 @@ export default function AdminDashboard() {
             {/* SEO Settings */}
             <div className="bg-white rounded-2xl p-6 border-2 border-gray-200">
               <h3 className="text-xl font-bold text-gray-900 mb-6">Current SEO Configuration</h3>
-              
+
               <div className="space-y-6">
                 {/* Google Analytics */}
                 <div className="border-b border-gray-200 pb-4">
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-semibold text-gray-900">Google Analytics</h4>
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                      seoConfig.analytics.googleAnalyticsId !== 'G-XXXXXXXXXX'
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-yellow-100 text-yellow-800'
-                    }`}>
+                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${seoConfig.analytics.googleAnalyticsId !== 'G-XXXXXXXXXX'
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-yellow-100 text-yellow-800'
+                      }`}>
                       {seoConfig.analytics.googleAnalyticsId !== 'G-XXXXXXXXXX' ? '✓ Configured' : '⚠ Not Set'}
                     </span>
                   </div>
@@ -171,11 +172,10 @@ export default function AdminDashboard() {
                 <div className="border-b border-gray-200 pb-4">
                   <div className="flex items-center justify-between mb-2">
                     <h4 className="font-semibold text-gray-900">Google Search Console</h4>
-                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                      seoConfig.verification.google
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-yellow-100 text-yellow-800'
-                    }`}>
+                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${seoConfig.verification.google
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-yellow-100 text-yellow-800'
+                      }`}>
                       {seoConfig.verification.google ? '✓ Verified' : '⚠ Not Verified'}
                     </span>
                   </div>
@@ -325,6 +325,26 @@ export default function AdminDashboard() {
           </div>
         )}
 
+        {/* Blog Management Tab */}
+        {activeTab === 'blog' && (
+          <div className="space-y-6">
+            <div className="flex justify-between items-center bg-white p-6 rounded-2xl border-2 border-gray-200">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Blog Posts</h3>
+                <p className="text-sm text-gray-600">Manage your site articles and news</p>
+              </div>
+              <Link
+                href="/admin/blog/editor"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors flex items-center gap-2"
+              >
+                <span>➕</span> New Post
+              </Link>
+            </div>
+
+            <BlogList />
+          </div>
+        )}
+
         {/* Tools Management Tab */}
         {activeTab === 'tools' && (
           <div className="space-y-6">
@@ -350,9 +370,8 @@ export default function AdminDashboard() {
                           <div className="text-sm text-gray-500">{tool.slug}</div>
                         </td>
                         <td className="px-4 py-4">
-                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                            tool.type === 'game' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
-                          }`}>
+                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${tool.type === 'game' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+                            }`}>
                             {tool.type}
                           </span>
                         </td>

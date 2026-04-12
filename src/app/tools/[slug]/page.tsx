@@ -63,6 +63,8 @@ import WorkEscape from '@/components/tools/WorkEscape';
 import DecisionWheel from '@/components/tools/DecisionWheel';
 import VibeMaster from '@/components/tools/VibeMaster';
 import TypeZen from '@/components/tools/TypeZen';
+import RandomTeamGenerator from '@/components/tools/RandomTeamGenerator';
+import MultiTimer from '@/components/tools/MultiTimer';
 import { getToolThumbnail } from '@/utils/generateToolThumbnails';
 
 interface ToolPageProps {
@@ -333,6 +335,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
             <VibeMaster />
           ) : tool.id === 'typezen' ? (
             <TypeZen />
+          ) : tool.id === 'random-team-generator' ? (
+            <RandomTeamGenerator />
+          ) : tool.id === 'multi-timer' ? (
+            <MultiTimer />
           ) : (
             <div className="min-h-[400px] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300">
               <div className="text-center">
