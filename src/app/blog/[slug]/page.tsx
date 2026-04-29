@@ -42,7 +42,8 @@ export default async function BlogPostPage({ params }: PostPageProps) {
 
     if (!post || !post.published) notFound();
 
-    const wordCount = post.content.split(/\s+/).length;
+    const plainText = post.content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    const wordCount = plainText ? plainText.split(' ').filter(Boolean).length : 0;
     const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
     // Fetch related posts

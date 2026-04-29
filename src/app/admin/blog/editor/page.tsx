@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense, useCallback } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -32,6 +32,9 @@ function BlogEditorContent() {
     const [isSaving, setIsSaving] = useState(false);
     const [message, setMessage] = useState({ text: '', type: 'success' as 'success' | 'error' });
 
+    // Ref to the image-insertion function exposed by TiptapEditor
+    const insertImageIntoEditor = useRef<((url: string) => void) | null>(null);
+
     useEffect(() => {
         const authenticated = sessionStorage.getItem('admin_authenticated');
         if (authenticated !== 'true') {
@@ -39,6 +42,7 @@ function BlogEditorContent() {
             return;
         }
         if (postId) fetchPost(postId);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [postId, router]);
 
     const fetchPost = async (id: string) => {
@@ -65,14 +69,10 @@ function BlogEditorContent() {
         }
     };
 
-    // Upload image for cover or inline content
-    const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>, type: 'cover' | 'inline') => {
-        const file = e.target.files?.[0];
-        if (!file) return;
-
+    // Generic upload helper — returns the public URL or null on failure
+    const uploadFile = async (file: File): Promise<string | null> => {
         const formData = new FormData();
         formData.append('file', file);
-
         try {
             const token = sessionStorage.getItem('admin_token');
             const response = await fetch('/api/admin/upload', {
@@ -80,27 +80,50 @@ function BlogEditorContent() {
                 headers: { 'Authorization': `Bearer ${token}` },
                 body: formData
             });
-
             if (response.ok) {
                 const data = await response.json();
-                if (type === 'cover') {
-                    setCoverImage(data.url);
-                } else {
-                    // For inline: append an <img> tag to the HTML content
-                    setContent(prev => prev + `<img src="${data.url}" alt="Uploaded image" />`);
-                }
-                setMessage({ text: '✓ Image uploaded', type: 'success' });
-            } else {
-                setMessage({ text: '✗ Upload failed', type: 'error' });
+                return data.url as string;
             }
+            setMessage({ text: '✗ Upload failed', type: 'error' });
+            return null;
         } catch {
             setMessage({ text: '✗ Error uploading', type: 'error' });
+            return null;
         }
-    }, []);
+    };
 
-    const handleInlineImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        handleImageUpload(e, 'inline');
-    }, [handleImageUpload]);
+    // Cover image upload
+    const handleCoverUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        const url = await uploadFile(file);
+        if (url) {
+            setCoverImage(url);
+            setMessage({ text: '✓ Cover uploaded', type: 'success' });
+        }
+    };
+
+    // Inline image upload — inserts via Tiptap's setImage so it appears in the canvas
+    const handleInlineImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        const url = await uploadFile(file);
+        if (url) {
+            if (insertImageIntoEditor.current) {
+                insertImageIntoEditor.current(url);
+                setMessage({ text: '✓ Image inserted', type: 'success' });
+            } else {
+                // Fallback: append as HTML if editor isn't ready
+                setContent(prev => prev + `<img src="${url}" alt="Uploaded image" />`);
+                setMessage({ text: '✓ Image uploaded', type: 'success' });
+            }
+        }
+    };
+
+    // Called by TiptapEditor to hand us the insertion function
+    const handleInsertImageUrl = (insertFn: (url: string) => void) => {
+        insertImageIntoEditor.current = insertFn;
+    };
 
     const handleSave = async () => {
         if (!title.trim()) {
@@ -175,13 +198,15 @@ function BlogEditorContent() {
 
                 <div className="flex items-center gap-3">
                     {message.text && (
-                        <span className={`text-xs font-bold px-3 py-1.5 rounded-full ${message.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
-                            }`}>
+                        <span className={`text-xs font-bold px-3 py-1.5 rounded-full ${message.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
                             {message.text}
                         </span>
                     )}
                     <label className="flex items-center gap-2 cursor-pointer select-none">
-                        <div className={`relative w-10 h-5 rounded-full transition-colors ${published ? 'bg-blue-600' : 'bg-gray-300'}`} onClick={() => setPublished(p => !p)}>
+                        <div
+                            className={`relative w-10 h-5 rounded-full transition-colors ${published ? 'bg-blue-600' : 'bg-gray-300'}`}
+                            onClick={() => setPublished(p => !p)}
+                        >
                             <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-all ${published ? 'left-5' : 'left-0.5'}`}></div>
                         </div>
                         <span className="text-xs font-bold text-gray-700">{published ? 'Published' : 'Draft'}</span>
@@ -205,7 +230,13 @@ function BlogEditorContent() {
                         onChange={(e) => {
                             setTitle(e.target.value);
                             if (!postId) {
-                                setSlug(e.target.value.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-').replace(/-+/g, '-'));
+                                setSlug(
+                                    e.target.value
+                                        .toLowerCase()
+                                        .replace(/[^\w ]+/g, '')
+                                        .replace(/ +/g, '-')
+                                        .replace(/-+/g, '-')
+                                );
                             }
                         }}
                         className="w-full text-5xl font-black text-gray-900 tracking-tighter border-none focus:ring-0 placeholder-gray-200 bg-transparent mb-3"
@@ -230,8 +261,12 @@ function BlogEditorContent() {
                         <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Cover Image</label>
                         {coverImage && (
                             <div className="mb-3 rounded-xl overflow-hidden aspect-video relative">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src={coverImage} alt="Cover" className="w-full h-full object-cover" />
-                                <button onClick={() => setCoverImage('')} className="absolute top-2 right-2 w-6 h-6 bg-black/50 hover:bg-black text-white rounded-full text-xs flex items-center justify-center transition-all">✕</button>
+                                <button
+                                    onClick={() => setCoverImage('')}
+                                    className="absolute top-2 right-2 w-6 h-6 bg-black/50 hover:bg-black text-white rounded-full text-xs flex items-center justify-center transition-all"
+                                >✕</button>
                             </div>
                         )}
                         <input
@@ -244,7 +279,7 @@ function BlogEditorContent() {
                         <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-700 rounded-lg text-xs font-bold transition-colors">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" /></svg>
                             Upload cover
-                            <input type="file" className="hidden" accept="image/*" onChange={(e) => handleImageUpload(e, 'cover')} />
+                            <input type="file" className="hidden" accept="image/*" onChange={handleCoverUpload} />
                         </label>
                     </div>
 
@@ -252,12 +287,18 @@ function BlogEditorContent() {
                         {/* Category */}
                         <div>
                             <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Category</label>
-                            <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <select
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
                                 <option>General</option>
                                 <option>Tutorial</option>
                                 <option>Development</option>
                                 <option>Design</option>
                                 <option>Announcement</option>
+                                <option>News</option>
+                                <option>Tips &amp; Tricks</option>
                             </select>
                         </div>
 
@@ -281,6 +322,7 @@ function BlogEditorContent() {
                     <TiptapEditor
                         content={content}
                         onChange={setContent}
+                        onInsertImageUrl={handleInsertImageUrl}
                         onImageUpload={handleInlineImageUpload}
                     />
                 </div>

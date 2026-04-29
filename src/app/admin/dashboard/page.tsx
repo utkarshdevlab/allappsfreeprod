@@ -12,6 +12,7 @@ export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'seo' | 'analytics' | 'tools' | 'settings' | 'blog'>('seo');
+  const [blogPostCount, setBlogPostCount] = useState<number | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -21,6 +22,12 @@ export default function AdminDashboard() {
     } else {
       setIsAuthenticated(true);
       setIsLoading(false);
+      // Fetch blog post count
+      const token = sessionStorage.getItem('admin_token');
+      fetch('/api/admin/blog', { headers: { 'Authorization': `Bearer ${token}` } })
+        .then(r => r.ok ? r.json() : [])
+        .then((data: unknown[]) => setBlogPostCount(data.length))
+        .catch(() => setBlogPostCount(0));
     }
   }, [router]);
 
@@ -115,7 +122,7 @@ export default function AdminDashboard() {
             <SEOEditor />
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
               <div className="bg-white rounded-xl p-6 border-2 border-gray-200">
                 <div className="text-3xl mb-2">📄</div>
                 <div className="text-2xl font-bold text-gray-900">{tools.length}</div>
@@ -141,6 +148,13 @@ export default function AdminDashboard() {
                   {Math.round(tools.reduce((sum, t) => sum + t.popularity, 0) / tools.length)}%
                 </div>
                 <div className="text-sm text-gray-600">Avg Popularity</div>
+              </div>
+              <div className="bg-white rounded-xl p-6 border-2 border-blue-100">
+                <div className="text-3xl mb-2">📝</div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {blogPostCount === null ? '…' : blogPostCount}
+                </div>
+                <div className="text-sm text-gray-600">Blog Posts</div>
               </div>
             </div>
 
