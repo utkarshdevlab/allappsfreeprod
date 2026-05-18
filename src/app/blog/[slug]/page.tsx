@@ -14,12 +14,13 @@ const GRADIENTS = [
 ];
 
 interface PostPageProps {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
+    const { slug } = await params;
     const post = await db.query.posts.findFirst({
-        where: eq(posts.slug, params.slug),
+        where: eq(posts.slug, slug),
     });
     if (!post) return {};
     return {
@@ -36,8 +37,9 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 }
 
 export default async function BlogPostPage({ params }: PostPageProps) {
+    const { slug } = await params;
     const post = await db.query.posts.findFirst({
-        where: eq(posts.slug, params.slug),
+        where: eq(posts.slug, slug),
     });
 
     if (!post || !post.published) notFound();
